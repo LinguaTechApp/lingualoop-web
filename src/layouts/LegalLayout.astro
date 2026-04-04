@@ -1,0 +1,107 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pageTitle: string;
+  lastUpdated?: string;
+}
+
+const { title, description, pageTitle, lastUpdated } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} showNavLinks={false}>
+  <section class="legal-hero">
+    <div class="container">
+      <h1 class="legal-hero__title">{pageTitle}</h1>
+      {lastUpdated && (
+        <p class="legal-hero__date">Last updated: {lastUpdated}</p>
+      )}
+    </div>
+  </section>
+
+  <section class="legal-content">
+    <div class="container">
+      <div class="legal-prose">
+        <slot />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-hero {
+    padding-top: calc(var(--nav-height) + var(--space-4xl));
+    padding-bottom: var(--space-2xl);
+  }
+
+  .legal-hero__title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+  }
+
+  .legal-hero__date {
+    margin-top: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .legal-content {
+    padding-bottom: var(--space-4xl);
+  }
+
+  .legal-prose {
+    max-width: 720px;
+  }
+
+  .legal-prose :global(h2) {
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-md);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .legal-prose :global(h3) {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-sm);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .legal-prose :global(p) {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .legal-prose :global(ul),
+  .legal-prose :global(ol) {
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .legal-prose :global(li) {
+    margin-bottom: var(--space-xs);
+  }
+
+  .legal-prose :global(a) {
+    color: var(--color-blue-light);
+    transition: color var(--transition-base);
+  }
+
+  .legal-prose :global(a:hover) {
+    color: var(--color-blue);
+  }
+
+  .legal-prose :global(strong) {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+</style>
