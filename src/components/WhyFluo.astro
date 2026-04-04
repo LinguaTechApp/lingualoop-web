@@ -1,0 +1,248 @@
+---
+import SectionLabel from './SectionLabel.astro';
+
+const benefits = [
+  {
+    emoji: '🌎',
+    title: 'Made for Spanish & Portuguese speakers',
+    desc: 'We understand the specific challenges you face — false cognates, pronunciation patterns, and grammar gaps unique to your native language.',
+  },
+  {
+    emoji: '🤖',
+    title: 'AI that feels human',
+    desc: 'Our AI tutors have distinct personalities and adapt to your level. Practice anytime without the pressure of a live teacher.',
+  },
+  {
+    emoji: '🎯',
+    title: 'Speak from day one',
+    desc: 'No months of grammar drills before your first conversation. Fluo gets you speaking immediately in real-world scenarios.',
+  },
+  {
+    emoji: '⚡',
+    title: 'All skills, one app',
+    desc: 'Speaking, listening, grammar, and vocabulary in one place. No need to juggle multiple apps or subscriptions.',
+  },
+];
+---
+
+<section id="why-fluo" class="why-fluo">
+  <div class="why-fluo__inner container">
+    <div class="why-fluo__text reveal">
+      <SectionLabel text="WHY FLUO" />
+      <h2 class="why-fluo__title">Built for the way you actually learn</h2>
+      <p class="why-fluo__subtitle">Most apps teach English as if every learner is the same. Fluo is different.</p>
+
+      <div class="why-fluo__benefits">
+        {benefits.map((b) => (
+          <div class="why-fluo__benefit">
+            <div class="why-fluo__benefit-icon">
+              <span>{b.emoji}</span>
+            </div>
+            <div>
+              <h3 class="why-fluo__benefit-title">{b.title}</h3>
+              <p class="why-fluo__benefit-desc">{b.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="why-fluo__visual reveal reveal--delay-1">
+      <div class="phone-mockup" aria-hidden="true">
+        <div class="phone-mockup__notch"></div>
+        <div class="phone-mockup__screen">
+          <p class="phone-mockup__greeting">Good morning!</p>
+          <p class="phone-mockup__brand">Fluo</p>
+
+          <div class="phone-mockup__card">
+            <span class="phone-mockup__card-emoji">🗣️</span>
+            <div>
+              <span class="phone-mockup__card-module">Speaking</span>
+              <span class="phone-mockup__card-label">Coffee Shop Role-play</span>
+            </div>
+          </div>
+
+          <div class="phone-mockup__card">
+            <span class="phone-mockup__card-emoji">🎧</span>
+            <div>
+              <span class="phone-mockup__card-module">Listening</span>
+              <span class="phone-mockup__card-label">TED Talk Dictation</span>
+            </div>
+          </div>
+
+          <div class="phone-mockup__card">
+            <span class="phone-mockup__card-emoji">📚</span>
+            <div>
+              <span class="phone-mockup__card-module">Learning Path</span>
+              <span class="phone-mockup__card-label">Present Perfect</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-fluo {
+    padding: var(--space-4xl) 0;
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .why-fluo__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+
+  .why-fluo__visual {
+    order: -1;
+  }
+
+  @media (min-width: 769px) {
+    .why-fluo__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .why-fluo__visual {
+      order: unset;
+    }
+  }
+
+  /* Text column */
+  .why-fluo__title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  @media (min-width: 769px) {
+    .why-fluo__title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .why-fluo__subtitle {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Benefits */
+  .why-fluo__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .why-fluo__benefit {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .why-fluo__benefit-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--color-blue-subtle);
+    border: 1px solid var(--color-blue-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+
+  .why-fluo__benefit-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+  }
+
+  .why-fluo__benefit-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Phone mockup */
+  .phone-mockup {
+    width: 240px;
+    height: 480px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: 40px;
+    padding: var(--space-md);
+    box-shadow: 0 0 60px var(--color-blue-glow);
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 769px) {
+    .phone-mockup {
+      width: 280px;
+      height: 560px;
+    }
+  }
+
+  .phone-mockup__notch {
+    width: 80px;
+    height: 24px;
+    background: var(--color-bg-primary);
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto var(--space-md);
+  }
+
+  .phone-mockup__screen {
+    padding: var(--space-md);
+  }
+
+  .phone-mockup__greeting {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xs);
+  }
+
+  .phone-mockup__brand {
+    font-family: var(--font-brand);
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--color-blue-light), #A855F7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Module cards inside mockup */
+  .phone-mockup__card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .phone-mockup__card-emoji {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .phone-mockup__card-module {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .phone-mockup__card-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+  }
+</style>

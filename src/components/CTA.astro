@@ -1,0 +1,70 @@
+---
+import StoreBadges from './StoreBadges.astro';
+---
+
+<section id="download" class="cta">
+  <div class="cta__glow" aria-hidden="true"></div>
+
+  <div class="cta__content container reveal">
+    <h2 class="cta__title">Ready to speak with confidence?</h2>
+    <p class="cta__subtitle">Download Fluo free and start your first conversation today.</p>
+    <div class="cta__badges">
+      <StoreBadges />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: var(--space-4xl) 0;
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .cta__glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: var(--color-blue);
+    filter: blur(100px);
+    opacity: 0.08;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta__title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+  }
+
+  @media (min-width: 769px) {
+    .cta__title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .cta__subtitle {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-xl);
+  }
+
+  .cta__badges {
+    display: flex;
+    justify-content: center;
+  }
+</style>

@@ -1,0 +1,196 @@
+---
+import SectionLabel from './SectionLabel.astro';
+
+const features = [
+  {
+    emoji: '🗣️',
+    title: 'Speaking',
+    color: 'blue',
+    desc: 'Practice real conversations with AI tutors that have unique personalities. From ordering coffee to acing job interviews — 120+ scenarios that prepare you for real life.',
+    tags: ['AI Role-play', 'Real-time Feedback', '120+ Scenarios'],
+  },
+  {
+    emoji: '🎧',
+    title: 'Listening',
+    color: 'green',
+    desc: 'Sharpen your ear with dictation exercises using real English videos. Hear native speakers at natural speed and build comprehension that actually transfers.',
+    tags: ['Real Videos', 'Dictation', 'Comprehension Quizzes'],
+  },
+  {
+    emoji: '📚',
+    title: 'Learning Path',
+    color: 'gold',
+    desc: 'Structured grammar and vocabulary lessons that take you from beginner to advanced. Stuck on something? Ask the AI Tutor and get an instant, clear explanation.',
+    tags: ['Structured Curriculum', 'AI Tutor Chat', 'A1 → C2'],
+  },
+];
+---
+
+<section id="features" class="features">
+  <div class="container">
+    <div class="features__header reveal">
+      <SectionLabel text="FEATURES" />
+      <h2 class="features__title">Three ways to master English</h2>
+      <p class="features__subtitle">Each module targets a different skill. Together, they build real fluency — not just test scores.</p>
+    </div>
+
+    <div class="features__grid">
+      {features.map((f, i) => (
+        <article class={`features__card reveal reveal--delay-${i + 1}`}>
+          <div class={`features__icon features__icon--${f.color}`}>
+            <span>{f.emoji}</span>
+          </div>
+          <h3 class="features__card-title">{f.title}</h3>
+          <p class="features__card-desc">{f.desc}</p>
+          <div class="features__tags">
+            {f.tags.map((tag) => (
+              <span class="features__tag">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: var(--space-4xl) 0;
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .features__header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .features__title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  @media (min-width: 769px) {
+    .features__title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .features__subtitle {
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  /* Grid */
+  .features__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 769px) {
+    .features__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+  }
+
+  /* Card */
+  .features__card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+    transition: background var(--transition-base),
+                border-color var(--transition-base),
+                transform var(--transition-base);
+  }
+
+  .features__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-blue-light), #A855F7);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  @media (min-width: 769px) {
+    .features__card:hover {
+      background: var(--color-bg-card-hover);
+      border-color: var(--color-blue-border);
+      transform: translateY(-4px);
+    }
+
+    .features__card:hover::before {
+      opacity: 1;
+    }
+  }
+
+  /* Icon */
+  .features__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .features__icon--blue {
+    background: rgba(29, 73, 244, 0.1);
+    border: 1px solid rgba(29, 73, 244, 0.2);
+  }
+
+  .features__icon--green {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .features__icon--gold {
+    background: rgba(234, 179, 8, 0.1);
+    border: 1px solid rgba(234, 179, 8, 0.2);
+  }
+
+  .features__card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+  }
+
+  .features__card-desc {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Tags */
+  .features__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .features__tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--color-blue-subtle);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    color: var(--color-blue-light);
+  }
+</style>
