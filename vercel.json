@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/lingualoop/privacy-policy/:path*", "destination": "/privacy-policy/", "statusCode": 301 },
+    { "source": "/lingualoop/terms-of-use/:path*", "destination": "/terms-of-use/", "statusCode": 301 },
+    { "source": "/products", "destination": "/", "statusCode": 301 },
+    { "source": "/about", "destination": "/", "statusCode": 301 },
+    { "source": "/contact", "destination": "/support/", "statusCode": 301 }
+  ]
+}

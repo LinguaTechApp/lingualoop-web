@@ -1,0 +1,80 @@
+/* ========== RESET ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ========== DESIGN TOKENS ========== */
+:root {
+  /* Brand */
+  --color-blue: #1D49F4;
+  --color-blue-light: #4B6FF7;
+  --color-blue-glow: rgba(29, 73, 244, 0.35);
+  --color-blue-subtle: rgba(29, 73, 244, 0.08);
+  --color-blue-border: rgba(29, 73, 244, 0.2);
+
+  /* Backgrounds */
+  --color-bg-primary: #090D18;
+  --color-bg-secondary: #0E1322;
+  --color-bg-card: #111728;
+  --color-bg-card-hover: #161D30;
+
+  /* Text */
+  --color-text-primary: #E7E8EA;
+  --color-text-secondary: #8B8F9A;
+  --color-text-muted: #5A5E6A;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-light: rgba(255, 255, 255, 0.1);
+
+  /* Typography */
+  --font-brand: 'Quicksand', sans-serif;       /* Solo para el nombre "Fluo" */
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 100px;
+
+  /* Transitions */
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --max-width: 1120px;
+  --nav-height: 64px;
+}
+
+/* ========== BASE ========== */
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== UTILITY ========== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 var(--space-md); }
+}
