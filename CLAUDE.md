@@ -37,3 +37,28 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 - NO usar librerías de JS para animaciones
 - Target: Lighthouse Performance ≥ 95, SEO ≥ 95
 - Sin analytics en esta fase
+
+## Comportamiento
+
+### Pensar antes de codificar
+- Explicitar supuestos. Si hay ambigüedad, preguntar antes de implementar.
+- Si existen múltiples interpretaciones, presentarlas — no elegir en silencio.
+- Si existe un approach más simple, proponerlo. Empujar de vuelta cuando sea necesario.
+
+### Simplicidad ante todo
+- Cero features que no se pidieron.
+- Cero abstracciones para código de un solo uso.
+- Cero "flexibilidad" o "configurabilidad" no solicitada.
+- Si 200 líneas pueden ser 50, reescribir.
+
+### Cambios quirúrgicos
+- No "mejorar" código adyacente, comentarios o formato.
+- No refactorizar lo que no está roto.
+- Respetar el estilo existente, aunque se haría diferente.
+- Si se nota dead code no relacionado, mencionarlo — no borrarlo.
+- Cada línea cambiada debe trazarse directamente al pedido del usuario.
+
+### Ejecución orientada a metas
+- Antes de implementar, definir criterios de éxito verificables.
+- En tareas multi-paso, declarar un plan breve con verificaciones.
+- Verificar siempre: `npm run build` exitoso, Lighthouse Performance ≥ 95, SEO ≥ 95.
