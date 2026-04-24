@@ -9,7 +9,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 :root {
   /* Brand */
   --color-blue: #1D49F4;
-  --color-blue-light: #4B6FF7;
+  --color-blue-light: #5C7DFF;
   --color-blue-glow: rgba(29, 73, 244, 0.35);
   --color-blue-subtle: rgba(29, 73, 244, 0.08);
   --color-blue-border: rgba(29, 73, 244, 0.2);
@@ -23,15 +23,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   /* Text */
   --color-text-primary: #E7E8EA;
   --color-text-secondary: #8B8F9A;
-  --color-text-muted: #5A5E6A;
+  --color-text-muted: #82869A;
 
   /* Borders */
   --color-border: rgba(255, 255, 255, 0.06);
   --color-border-light: rgba(255, 255, 255, 0.1);
 
-  /* Typography */
+  /* Typography — families */
   --font-brand: 'Quicksand', sans-serif;       /* Solo para el nombre "Fluo" */
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Typography — scale */
+  --font-size-xs: 0.75rem;                     /* 12px — microtext */
+  --font-size-sm: 0.875rem;                    /* 14px — small labels */
+  --font-size-base: 1rem;                      /* 16px — body */
+  --font-size-md: 1.125rem;                    /* 18px — emphasized body */
+  --font-size-lg: 1.25rem;                     /* 20px — card titles, strong body */
+  --font-size-xl: 1.5rem;                      /* 24px — subheads */
+  --font-size-2xl: 2rem;                       /* 32px — section titles (mobile) */
+  --font-size-3xl: 2.5rem;                     /* 40px — section titles (desktop) */
+  --font-size-display: clamp(2.5rem, 6vw, 4.5rem);  /* Hero h1 */
 
   /* Spacing */
   --space-xs: 4px;
@@ -77,4 +88,24 @@ body {
 
 @media (max-width: 480px) {
   .container { padding: 0 var(--space-md); }
+}
+
+/* ========== FOCUS ========== */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-blue-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ========== REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
