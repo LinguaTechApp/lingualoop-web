@@ -1,43 +1,39 @@
-# Astro Starter Kit: Minimal
+# Fluo Landing — lingualoop-web
 
-```sh
-npm create astro@latest -- --template minimal
+Landing page for **Fluo**, an AI-powered English learning app by LinguaTech.
+
+Built with Astro (static output), vanilla CSS with design tokens, and minimal vanilla JS. Deployed to Vercel at [linguatech.app](https://linguatech.app).
+
+## Commands
+
+| Command           | Action                                      |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Start dev server at `localhost:4321`        |
+| `npm run build`   | Build static site to `./dist/`              |
+| `npm run preview` | Preview the build locally                   |
+
+A [`Makefile`](./Makefile) exposes the same targets (`make dev`, `make build`, etc.).
+
+## Project structure
+
+```
+src/
+├── components/   # .astro components (scoped styles)
+├── layouts/      # BaseLayout, LegalLayout
+├── pages/        # index + legal pages
+└── styles/
+    └── global.css  # design tokens + reset
+public/
+├── assets/      # favicons, OG image
+└── robots.txt
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Conventions & targets
 
-## 🚀 Project Structure
+See [`CLAUDE.md`](./CLAUDE.md) for the full set of conventions, stack decisions, and behavioral guidelines. Highlights:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- No CSS frameworks, no JS animation libraries.
+- Dark theme only; mobile-first responsive.
+- Quicksand for the "Fluo" brand name; DM Sans for body.
+- Target: Lighthouse Performance ≥ 95, SEO ≥ 95.
