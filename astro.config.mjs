@@ -5,6 +5,7 @@ export default defineConfig({
   site: 'https://linguatech.app',
   integrations: [sitemap()],
   build: {
-    format: 'directory'
+    format: 'directory',
+    inlineStylesheets: 'always'
   }
 });
