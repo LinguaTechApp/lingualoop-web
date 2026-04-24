@@ -42,11 +42,11 @@ const features = [
           </div>
           <h3 class="features__card-title">{f.title}</h3>
           <p class="features__card-desc">{f.desc}</p>
-          <div class="features__tags">
+          <ul class="features__tags" role="list">
             {f.tags.map((tag) => (
-              <span class="features__tag">{tag}</span>
+              <li class="features__tag">{tag}</li>
             ))}
-          </div>
+          </ul>
         </article>
       ))}
     </div>
@@ -68,7 +68,7 @@ const features = [
   }
 
   .features__title {
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
     font-weight: 700;
     line-height: 1.2;
     margin-top: var(--space-md);
@@ -77,7 +77,7 @@ const features = [
 
   @media (min-width: 769px) {
     .features__title {
-      font-size: 2.5rem;
+      font-size: var(--font-size-3xl);
     }
   }
 
@@ -166,7 +166,7 @@ const features = [
   }
 
   .features__card-title {
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
     margin-bottom: var(--space-sm);
   }
@@ -183,6 +183,9 @@ const features = [
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   .features__tag {

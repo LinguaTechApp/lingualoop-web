@@ -72,9 +72,9 @@ const { showNavLinks = true } = Astro.props;
   }
 
   // Mobile menu
-  const hamburger = document.querySelector('.nav__hamburger');
+  const hamburger = document.querySelector<HTMLButtonElement>('.nav__hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-  const closeBtn = document.querySelector('.mobile-menu__close');
+  const closeBtn = document.querySelector<HTMLButtonElement>('.mobile-menu__close');
 
   function openMenu() {
     if (!mobileMenu || !hamburger) return;
@@ -82,6 +82,7 @@ const { showNavLinks = true } = Astro.props;
     mobileMenu.setAttribute('aria-hidden', 'false');
     hamburger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
   }
 
   function closeMenu() {
@@ -90,10 +91,18 @@ const { showNavLinks = true } = Astro.props;
     mobileMenu.setAttribute('aria-hidden', 'true');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    hamburger.focus();
   }
 
   hamburger?.addEventListener('click', openMenu);
   closeBtn?.addEventListener('click', closeMenu);
+
+  // Close menu on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('mobile-menu--open')) {
+      closeMenu();
+    }
+  });
 
   // Close menu on link tap
   mobileMenu?.querySelectorAll('a').forEach((link) => {
@@ -150,7 +159,7 @@ const { showNavLinks = true } = Astro.props;
   .nav__name {
     font-family: var(--font-brand);
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
     color: var(--color-text-primary);
   }
 
@@ -249,7 +258,7 @@ const { showNavLinks = true } = Astro.props;
   }
 
   .mobile-menu__links a {
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
     color: var(--color-text-secondary);
     transition: color var(--transition-base);
   }
@@ -265,7 +274,7 @@ const { showNavLinks = true } = Astro.props;
     padding: var(--space-md) var(--space-xl);
     background: var(--color-blue);
     color: #fff;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     font-weight: 500;
     border-radius: var(--radius-full);
     margin-top: var(--space-lg);
