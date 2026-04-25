@@ -15,6 +15,7 @@ const { title, description, pageTitle, lastUpdated } = Astro.props;
   <section class="legal-hero">
     <div class="container">
       <h1 class="legal-hero__title">{pageTitle}</h1>
+      <span class="legal-hero__accent" aria-hidden="true"></span>
       {lastUpdated && (
         <p class="legal-hero__date">Last updated: {lastUpdated}</p>
       )}
@@ -38,13 +39,24 @@ const { title, description, pageTitle, lastUpdated } = Astro.props;
 
   .legal-hero__title {
     font-size: 2.25rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
+    letter-spacing: -0.02em;
     color: var(--color-text-primary);
   }
 
+  .legal-hero__accent {
+    display: block;
+    width: 72px;
+    height: 2px;
+    margin-top: var(--space-md);
+    background: linear-gradient(90deg, var(--color-blue), #7B2FE0);
+    opacity: 0.6;
+    border-radius: 1px;
+  }
+
   .legal-hero__date {
-    margin-top: var(--space-sm);
+    margin-top: var(--space-md);
     font-size: 0.9rem;
     color: var(--color-text-muted);
   }
@@ -93,11 +105,15 @@ const { title, description, pageTitle, lastUpdated } = Astro.props;
 
   .legal-prose :global(a) {
     color: var(--color-blue-light);
-    transition: color var(--transition-base);
+    text-decoration: underline;
+    text-decoration-color: rgba(92, 125, 255, 0.4);
+    text-underline-offset: 3px;
+    transition: color var(--transition-base), text-decoration-color var(--transition-base);
   }
 
   .legal-prose :global(a:hover) {
     color: var(--color-blue);
+    text-decoration-color: var(--color-blue);
   }
 
   .legal-prose :global(strong) {
