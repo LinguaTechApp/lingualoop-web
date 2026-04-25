@@ -31,3 +31,6 @@ pnpm-debug.log*
 
 # Playwright MCP captures (screenshots, snapshots, console logs)
 .playwright-mcp/
+
+# trash
+.trash
