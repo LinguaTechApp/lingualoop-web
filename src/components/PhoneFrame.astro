@@ -2,7 +2,7 @@
 interface Props {
   src: string;
   alt: string;
-  size?: 'hero' | 'feature' | 'featureLarge' | 'small';
+  size?: 'hero' | 'feature' | 'featureLarge' | 'stepMedium' | 'small';
   loading?: 'eager' | 'lazy';
   srcset?: string;
   sizes?: string;
@@ -63,6 +63,28 @@ const { src, alt, size = 'feature', loading = 'lazy', srcset, sizes } = Astro.pr
     }
   }
 
+  .phone--stepMedium {
+    width: 220px;
+    border-radius: 36px;
+    padding: 7px;
+  }
+
+  @media (min-width: 769px) {
+    .phone--stepMedium {
+      width: 260px;
+      border-radius: 40px;
+      padding: 8px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .phone--stepMedium {
+      width: 280px;
+      border-radius: 42px;
+      padding: 9px;
+    }
+  }
+
   .phone--featureLarge {
     width: 260px;
     border-radius: 40px;
@@ -104,6 +126,9 @@ const { src, alt, size = 'feature', loading = 'lazy', srcset, sizes } = Astro.pr
   @media (min-width: 769px) { .phone--hero .phone__screen { border-radius: 38px; } }
   .phone--feature .phone__screen { border-radius: 28px; }
   @media (min-width: 769px) { .phone--feature .phone__screen { border-radius: 30px; } }
+  .phone--stepMedium .phone__screen { border-radius: 30px; }
+  @media (min-width: 769px) { .phone--stepMedium .phone__screen { border-radius: 32px; } }
+  @media (min-width: 1200px) { .phone--stepMedium .phone__screen { border-radius: 34px; } }
   .phone--featureLarge .phone__screen { border-radius: 32px; }
   @media (min-width: 769px) { .phone--featureLarge .phone__screen { border-radius: 38px; } }
   @media (min-width: 1200px) { .phone--featureLarge .phone__screen { border-radius: 43px; } }

@@ -1,39 +1,77 @@
 ---
 import SectionLabel from './SectionLabel.astro';
+import PhoneFrame from './PhoneFrame.astro';
 
-const steps = [
+type Step = {
+  number: string;
+  color: 'blue' | 'violet' | 'cyan';
+  title: string;
+  desc: string;
+  img: string;
+  imgHi: string;
+  alt: string;
+};
+
+const steps: Step[] = [
   {
-    number: '1',
+    number: '01',
+    color: 'blue',
     title: 'Choose your focus',
     desc: 'Pick Speaking, Listening, or Learning Path based on what you need today. Fluo adapts to your level.',
+    img: '/assets/optimized/fluo-01-home.jpg',
+    imgHi: '/assets/optimized/fluo-01-home-1200.jpg',
+    alt: 'Fluo home screen showing Learning Path units and Recommended Practice options',
   },
   {
-    number: '2',
+    number: '02',
+    color: 'violet',
     title: 'Practice with AI',
     desc: 'Have real conversations, train your ear, or work through lessons — all powered by advanced AI that understands your native language.',
+    img: '/assets/optimized/fluo-02-speaking-chat.jpg',
+    imgHi: '/assets/optimized/fluo-02-speaking-chat-1200.jpg',
+    alt: 'Fluo Speaking conversation with an AI tutor in a train booking roleplay',
   },
   {
-    number: '3',
+    number: '03',
+    color: 'cyan',
     title: 'Build your streak',
     desc: 'Track your daily progress and watch your confidence grow. Consistency beats intensity — every session counts.',
+    img: '/assets/optimized/fluo-05-profile-stats.jpg',
+    imgHi: '/assets/optimized/fluo-05-profile-stats-1200.jpg',
+    alt: 'Fluo profile screen showing Lifetime Progress stats and daily streak',
   },
 ];
+
+const phoneSizes = '(min-width: 1200px) 280px, (min-width: 769px) 260px, 220px';
 ---
 
-<section id="how-it-works" class="how-it-works">
+<section id="how-it-works" class="hiw">
   <div class="container">
-    <div class="how-it-works__header reveal">
+    <div class="hiw__header reveal">
       <SectionLabel text="HOW IT WORKS" />
-      <h2 class="how-it-works__title">Simple. Effective. Daily.</h2>
-      <p class="how-it-works__subtitle">Build a habit that sticks in just a few minutes a day.</p>
+      <h2 class="hiw__title">Simple. Effective. Daily.</h2>
+      <p class="hiw__subtitle">Build a habit that sticks in just a few minutes a day.</p>
     </div>
 
-    <div class="how-it-works__grid">
+    <div class="hiw__grid">
+      <div class="hiw__connector" aria-hidden="true"></div>
       {steps.map((step, i) => (
-        <div class={`how-it-works__step reveal reveal--delay-${i + 1}`}>
-          <div class="how-it-works__number">{step.number}</div>
-          <h3 class="how-it-works__step-title">{step.title}</h3>
-          <p class="how-it-works__step-desc">{step.desc}</p>
+        <div class={`hiw__step hiw__step--${step.color} reveal reveal--delay-${i + 1}`}>
+          <div class="hiw__visual">
+            <PhoneFrame
+              size="stepMedium"
+              src={step.img}
+              srcset={`${step.img} 660w, ${step.imgHi} 1200w`}
+              sizes={phoneSizes}
+              alt={step.alt}
+            />
+          </div>
+          <div class="hiw__step-eyebrow">
+            <span class="hiw__step-dot" aria-hidden="true"></span>
+            <span class="hiw__step-number">{step.number}</span>
+          </div>
+          <h3 class="hiw__step-title">{step.title}</h3>
+          <p class="hiw__step-desc">{step.desc}</p>
         </div>
       ))}
     </div>
@@ -41,7 +79,7 @@ const steps = [
 </section>
 
 <style>
-  .how-it-works {
+  .hiw {
     padding: var(--space-4xl) 0;
     background: var(--color-bg-secondary);
     border-top: 1px solid var(--color-border);
@@ -49,7 +87,7 @@ const steps = [
     scroll-margin-top: var(--nav-height);
   }
 
-  .how-it-works__header {
+  .hiw__header {
     text-align: center;
     margin-bottom: var(--space-3xl);
     display: flex;
@@ -57,28 +95,29 @@ const steps = [
     align-items: center;
   }
 
-  .how-it-works__title {
+  .hiw__title {
     font-size: var(--font-size-2xl);
     font-weight: 700;
     line-height: 1.2;
+    letter-spacing: -0.02em;
     margin-top: var(--space-md);
     margin-bottom: var(--space-md);
   }
 
   @media (min-width: 769px) {
-    .how-it-works__title {
+    .hiw__title {
       font-size: var(--font-size-3xl);
     }
   }
 
-  .how-it-works__subtitle {
+  .hiw__subtitle {
     color: var(--color-text-secondary);
     max-width: 480px;
     line-height: 1.6;
   }
 
-  /* Grid */
-  .how-it-works__grid {
+  /* Grid + connector */
+  .hiw__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
@@ -86,58 +125,147 @@ const steps = [
   }
 
   @media (min-width: 769px) {
-    .how-it-works__grid {
+    .hiw__grid {
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-xl);
+      gap: var(--space-3xl);
+      align-items: start;
     }
+  }
 
-    .how-it-works__grid::before {
-      content: '';
-      position: absolute;
-      top: 24px;
-      left: 16.67%;
-      right: 16.67%;
+  /* Connector — connects through the eyebrow row, above the descriptions.
+     Uses the eyebrow as the alignment anchor (predictable height regardless
+     of phone variant or description length). */
+  .hiw__connector {
+    position: absolute;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(29, 73, 244, 0.45) 18%,
+      rgba(123, 47, 224, 0.45) 50%,
+      rgba(6, 182, 212, 0.45) 82%,
+      transparent 100%);
+    width: 2px;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+  @media (min-width: 769px) {
+    .hiw__connector {
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(29, 73, 244, 0.45) 18%,
+        rgba(123, 47, 224, 0.45) 50%,
+        rgba(6, 182, 212, 0.45) 82%,
+        transparent 100%);
+      width: auto;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--color-blue-border), transparent);
-      z-index: 0;
+      /* Phone width 260px × aspect (2868/1320) = ~565px tall → center at ~282px from top of step */
+      top: 282px;
+      left: 8%;
+      right: 8%;
+      bottom: auto;
+      transform: none;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hiw__connector {
+      /* Phone width 280px → height ~608px → center at ~304px */
+      top: 304px;
     }
   }
 
   /* Step */
-  .how-it-works__step {
-    text-align: center;
+  .hiw__step {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .how-it-works__number {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid var(--color-blue);
-    background: var(--color-bg-card);
-    color: var(--color-blue-light);
-    font-weight: 700;
-    font-size: var(--font-size-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--space-lg);
+    text-align: center;
     position: relative;
     z-index: 1;
+    gap: var(--space-md);
   }
 
-  .how-it-works__step-title {
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: var(--space-sm);
+  /* Per-step accent variables */
+  .hiw__step--blue {
+    --accent: #1D49F4;
+    --accent-light: #5C7DFF;
+  }
+  .hiw__step--violet {
+    --accent: #7B2FE0;
+    --accent-light: #A855F7;
+  }
+  .hiw__step--cyan {
+    --accent: #06B6D4;
+    --accent-light: #67E8F9;
   }
 
-  .how-it-works__step-desc {
+  .hiw__visual {
+    position: relative;
+    z-index: 1;
+    /* The visual sits on top of the connector line.
+       Add a subtle bg disk behind to "cut" the connector and let the phone breathe. */
+  }
+
+  .hiw__visual::before {
+    content: '';
+    position: absolute;
+    inset: -8px -16px;
+    background: var(--color-bg-secondary);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(6px);
+  }
+
+  /* Eyebrow */
+  .hiw__step-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px 5px 10px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: var(--radius-full);
+    line-height: 1;
+    margin-top: var(--space-sm);
+  }
+
+  .hiw__step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    box-shadow: 0 0 8px var(--accent-light);
+    flex-shrink: 0;
+  }
+
+  .hiw__step-number {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--accent-light);
+  }
+
+  .hiw__step-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+  }
+
+  @media (min-width: 769px) {
+    .hiw__step-title {
+      font-size: 1.4rem;
+    }
+  }
+
+  .hiw__step-desc {
     color: var(--color-text-secondary);
     line-height: 1.6;
     font-size: 0.95rem;
-    max-width: 300px;
+    max-width: 320px;
   }
 </style>
