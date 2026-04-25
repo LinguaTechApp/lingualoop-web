@@ -34,7 +34,8 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 ## Assets
 - Favicons y OG image en public/assets/
 - Logo de marca en public/assets/logo.png (1x) y logo-2x.png (2x), derivado del icono iOS
-- Screenshots optimizados (660px JPEG ~30 KB c/u) en public/assets/optimized/ — siempre referenciar estos, no los PNG fuente
+- Screenshots optimizados (660px JPEG ~30 KB c/u) en public/assets/optimized/ — siempre referenciar estos en los componentes
+- PNGs fuente de los screenshots (1320×2868) en docs/screens-source/ — solo referencia, NO se sirven; regenerar los JPEG con `sips -Z 660 -s format jpeg -s formatOptions 82 INPUT --out OUTPUT`
 - Google Fonts: Quicksand (brand) + DM Sans (body) — cargar con preconnect
 
 ## Notas
