@@ -72,15 +72,15 @@ const features: Feature[] = [
 
 <section id="features" class="features">
   <div class="container">
-    <div class="features__header reveal">
+    <div class="features__header">
       <SectionLabel text="FEATURES" />
       <h2 class="features__title">Three ways to master English</h2>
       <p class="features__subtitle">Each module targets a different skill. Together, they build real fluency — not just test scores.</p>
     </div>
 
     <div class="features__rows">
-      {features.map((f, i) => (
-        <article class={`features__row features__row--${f.color} reveal reveal--delay-${i + 1}`}>
+      {features.map((f) => (
+        <article class={`features__row features__row--${f.color} reveal`}>
           <div class="features__visual">
             <div class="features__visual-glow" aria-hidden="true"></div>
             <PhoneFrame

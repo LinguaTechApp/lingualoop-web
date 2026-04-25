@@ -36,18 +36,21 @@ const { title, description, canonical, ogImage, structuredData, showNavLinks = t
   <style is:global>
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(20px);
+      transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
     }
     .reveal--visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .reveal--delay-1 { transition-delay: 0.1s; }
-    .reveal--delay-2 { transition-delay: 0.2s; }
-    .reveal--delay-3 { transition-delay: 0.3s; }
   </style>
+
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 
   <script>
     const revealElements = document.querySelectorAll('.reveal');
@@ -56,15 +59,29 @@ const { title, description, canonical, ogImage, structuredData, showNavLinks = t
       if (prefersReducedMotion) {
         revealElements.forEach((el) => el.classList.add('reveal--visible'));
       } else {
+        const reveal = (el: Element) => {
+          el.classList.add('reveal--visible');
+          observer.unobserve(el);
+        };
         const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('reveal--visible');
-              observer.unobserve(entry.target);
-            }
-          });
+          entries.forEach((entry) => { if (entry.isIntersecting) reveal(entry.target); });
         }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
         revealElements.forEach((el) => observer.observe(el));
+
+        // Fallback for very fast scrolls (fling): after scroll settles, force-reveal
+        // any element whose top is already inside the viewport.
+        let scrollTimeout: number | undefined;
+        const onScroll = () => {
+          if (scrollTimeout) window.clearTimeout(scrollTimeout);
+          scrollTimeout = window.setTimeout(() => {
+            const vh = window.innerHeight;
+            document.querySelectorAll('.reveal:not(.reveal--visible)').forEach((el) => {
+              const r = el.getBoundingClientRect();
+              if (r.top < vh && r.bottom > 0) reveal(el);
+            });
+          }, 120);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
       }
     }
   </script>

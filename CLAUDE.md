@@ -18,6 +18,10 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 - Estilos globales en src/styles/global.css (design tokens como CSS custom properties)
 - Estilos de componentes: scoped dentro de cada .astro con <style>
 - Tipografía de marca (Quicksand) solo para el nombre "Fluo"
+
+## Typography conventions
+- DM Sans es la única tipografía del sistema en toda la landing (body, headings, UI). Pesos cargados: 400, 500, 600, 700, 800.
+- Quicksand 600 es la única excepción: se usa exclusivamente para el wordmark "Fluo" en Nav y Footer. Es decisión intencional — el wordmark es el único uso legítimo de una segunda fuente, y su carácter redondeado refuerza la promesa de fluidez de la marca. NO usar Quicksand fuera de los selectores `.nav__logo` y `.footer__logo`.
 - Dark theme es el diseño principal (no hay light mode)
 - Mobile-first responsive
 

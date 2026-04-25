@@ -47,7 +47,7 @@ const phoneSizes = '(min-width: 1200px) 280px, (min-width: 769px) 260px, 220px';
 
 <section id="how-it-works" class="hiw">
   <div class="container">
-    <div class="hiw__header reveal">
+    <div class="hiw__header">
       <SectionLabel text="HOW IT WORKS" />
       <h2 class="hiw__title">Simple. Effective. Daily.</h2>
       <p class="hiw__subtitle">Build a habit that sticks in just a few minutes a day.</p>
@@ -55,8 +55,8 @@ const phoneSizes = '(min-width: 1200px) 280px, (min-width: 769px) 260px, 220px';
 
     <div class="hiw__grid">
       <div class="hiw__connector" aria-hidden="true"></div>
-      {steps.map((step, i) => (
-        <div class={`hiw__step hiw__step--${step.color} reveal reveal--delay-${i + 1}`}>
+      {steps.map((step) => (
+        <div class={`hiw__step hiw__step--${step.color} reveal`}>
           <div class="hiw__visual">
             <PhoneFrame
               size="stepMedium"

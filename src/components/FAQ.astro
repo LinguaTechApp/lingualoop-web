@@ -25,15 +25,15 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="faq">
+<section id="faq" class="faq reveal">
   <div class="container">
-    <div class="faq__header reveal">
+    <div class="faq__header">
       <SectionLabel text="FAQ" />
       <h2 class="faq__title">Frequently asked questions</h2>
       <p class="faq__subtitle">Everything you need to know before getting started.</p>
     </div>
 
-    <div class="faq__list reveal reveal--delay-1">
+    <div class="faq__list">
       {faqs.map((item) => (
         <details class="faq__item">
           <summary class="faq__question">
