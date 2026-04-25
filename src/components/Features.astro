@@ -25,7 +25,7 @@ type Feature = {
   alt: string;
 };
 
-const phoneSizes = '(min-width: 1200px) 400px, (min-width: 769px) 340px, 260px';
+const phoneSizes = '(min-width: 1200px) 350px, (min-width: 769px) 340px, 260px';
 
 const features: Feature[] = [
   {
@@ -81,6 +81,14 @@ const features: Feature[] = [
     <div class="features__rows">
       {features.map((f) => (
         <article class={`features__row features__row--${f.color} reveal`}>
+          <div class="features__body">
+            <span class="features__eyebrow" role="presentation">
+              <span class="features__eyebrow-dot" aria-hidden="true"></span>
+              {f.title}
+            </span>
+            <h3 class="features__row-title">{f.title}</h3>
+            <p class="features__row-desc">{f.desc}</p>
+          </div>
           <div class="features__visual">
             <div class="features__visual-glow" aria-hidden="true"></div>
             <PhoneFrame
@@ -91,22 +99,14 @@ const features: Feature[] = [
               alt={f.alt}
             />
           </div>
-          <div class="features__body">
-            <span class="features__eyebrow" role="presentation">
-              <span class="features__eyebrow-dot" aria-hidden="true"></span>
-              {f.title}
-            </span>
-            <h3 class="features__row-title">{f.title}</h3>
-            <p class="features__row-desc">{f.desc}</p>
-            <ul class="features__tags" role="list">
-              {f.tags.map((tag) => (
-                <li class="features__tag">
-                  <svg class="features__tag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[tag.icon]} />
-                  <span>{tag.label}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul class="features__tags" role="list">
+            {f.tags.map((tag) => (
+              <li class="features__tag">
+                <svg class="features__tag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[tag.icon]} />
+                <span>{tag.label}</span>
+              </li>
+            ))}
+          </ul>
         </article>
       ))}
     </div>
@@ -157,7 +157,7 @@ const features: Feature[] = [
   .features__row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-md);
     padding: var(--space-3xl) 0;
     position: relative;
   }
@@ -165,13 +165,24 @@ const features: Feature[] = [
   @media (min-width: 769px) {
     .features__row {
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-4xl);
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "visual body"
+        "visual tags";
+      column-gap: var(--space-4xl);
+      row-gap: var(--space-md);
       padding: var(--space-4xl) 0;
-      align-items: center;
+      align-items: start;
     }
 
-    .features__row:nth-of-type(even) .features__visual {
-      order: 2;
+    .features__body { grid-area: body; align-self: end; }
+    .features__visual { grid-area: visual; align-self: center; }
+    .features__tags { grid-area: tags; align-self: start; }
+
+    .features__row:nth-of-type(even) {
+      grid-template-areas:
+        "body visual"
+        "tags visual";
     }
   }
 
@@ -222,12 +233,12 @@ const features: Feature[] = [
 
   @media (min-width: 1200px) {
     .features__visual-glow {
-      width: 440px;
-      height: 440px;
+      width: 400px;
+      height: 400px;
     }
   }
 
-  /* Body */
+  /* Body (eyebrow + h3 + desc) */
   .features__body {
     display: flex;
     flex-direction: column;
