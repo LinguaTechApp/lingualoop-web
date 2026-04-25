@@ -10,7 +10,7 @@ const { src, alt, size = 'feature', loading = 'lazy' } = Astro.props;
 
 <div class={`phone phone--${size}`}>
   <div class="phone__screen">
-    <img src={src} alt={alt} loading={loading} decoding="async" />
+    <img src={src} alt={alt} loading={loading} decoding="async" fetchpriority={loading === 'eager' ? 'high' : undefined} />
   </div>
 </div>
 

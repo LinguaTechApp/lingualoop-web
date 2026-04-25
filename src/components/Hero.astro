@@ -5,22 +5,30 @@ import PhoneFrame from './PhoneFrame.astro';
 
 <section class="hero">
   <div class="hero__bg" aria-hidden="true">
-    <div class="hero__orb hero__orb--blue"></div>
-    <div class="hero__orb hero__orb--violet"></div>
-    <div class="hero__grid"></div>
+    <div class="hero__orb hero__orb--a"></div>
+    <div class="hero__orb hero__orb--b"></div>
+    <div class="hero__orb hero__orb--c"></div>
+    <div class="hero__orb hero__orb--d"></div>
+    <div class="hero__vignette"></div>
   </div>
 
   <div class="hero__content container">
     <div class="hero__text">
-      <div class="hero__trust">
-        <div class="hero__stars" aria-hidden="true">
+      <div class="hero__trust" aria-label="Rated 4.8 out of 5 on the App Store by over 2,000 learners">
+        <div class="hero__trust-avatars" aria-hidden="true">
+          <span class="hero__trust-avatar hero__trust-avatar--1">V</span>
+          <span class="hero__trust-avatar hero__trust-avatar--2">C</span>
+          <span class="hero__trust-avatar hero__trust-avatar--3">A</span>
+          <span class="hero__trust-avatar hero__trust-avatar--4">L</span>
+        </div>
+        <div class="hero__trust-stars" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
         </div>
-        <span class="hero__trust-text">4.8 on the App Store · 2,000+ learners</span>
+        <span class="hero__trust-text"><strong>4.8</strong> · 2,000+ learners</span>
       </div>
 
       <h1 class="hero__title">
@@ -33,7 +41,7 @@ import PhoneFrame from './PhoneFrame.astro';
       </p>
 
       <div class="hero__ctas">
-        <StoreBadges />
+        <StoreBadges variant="hero" />
       </div>
     </div>
 
@@ -46,6 +54,43 @@ import PhoneFrame from './PhoneFrame.astro';
           alt="Fluo app showing a Speaking roleplay conversation with an AI tutor"
           loading="eager"
         />
+      </div>
+
+      <div class="hero__card hero__card--feedback" aria-hidden="true">
+        <div class="hero__card-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="hero__card-body">
+          <div class="hero__card-title">Real-time feedback</div>
+          <div class="hero__card-meta">Pronunciation: 94%</div>
+        </div>
+      </div>
+
+      <div class="hero__card hero__card--cefr" aria-hidden="true">
+        <div class="hero__card-cefr">
+          <span class="hero__card-cefr-from">B1</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <span class="hero__card-cefr-to">B2</span>
+        </div>
+        <div class="hero__card-progress">
+          <div class="hero__card-progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="hero__card hero__card--waveform" aria-hidden="true">
+        <div class="hero__card-dot"></div>
+        <div class="hero__card-body">
+          <div class="hero__card-title">AI listening</div>
+          <div class="hero__card-waveform">
+            <span style="height: 40%"></span>
+            <span style="height: 80%"></span>
+            <span style="height: 55%"></span>
+            <span style="height: 95%"></span>
+            <span style="height: 65%"></span>
+            <span style="height: 35%"></span>
+            <span style="height: 75%"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -67,7 +112,11 @@ import PhoneFrame from './PhoneFrame.astro';
     }
   }
 
-  /* Background */
+  .hero .container {
+    max-width: 1240px;
+  }
+
+  /* Background layers */
   .hero__bg {
     position: absolute;
     inset: 0;
@@ -78,43 +127,67 @@ import PhoneFrame from './PhoneFrame.astro';
   .hero__orb {
     position: absolute;
     border-radius: 50%;
-    animation: heroFloat 20s ease-in-out infinite;
+    pointer-events: none;
+    animation: heroFloat 22s ease-in-out infinite;
+    will-change: transform;
   }
 
-  .hero__orb--blue {
-    width: 500px;
-    height: 500px;
+  .hero__orb--a {
+    width: 980px;
+    height: 980px;
     background: var(--color-blue);
-    filter: blur(80px);
-    opacity: 0.18;
-    top: -20%;
-    left: -10%;
+    filter: blur(110px);
+    opacity: 0.26;
+    top: -22%;
+    left: -8%;
   }
 
-  .hero__orb--violet {
+  .hero__orb--b {
+    width: 820px;
+    height: 820px;
+    background: #7B2FE0;
+    filter: blur(110px);
+    opacity: 0.22;
+    bottom: -22%;
+    right: -6%;
+    animation-delay: -8s;
+    animation-duration: 26s;
+  }
+
+  .hero__orb--c {
+    width: 520px;
+    height: 520px;
+    background: var(--color-blue-light);
+    filter: blur(90px);
+    opacity: 0.18;
+    top: 24%;
+    right: 28%;
+    animation-delay: -14s;
+    animation-duration: 20s;
+  }
+
+  .hero__orb--d {
     width: 420px;
     height: 420px;
     background: #7B2FE0;
     filter: blur(80px);
-    opacity: 0.14;
-    bottom: -15%;
-    right: -5%;
-    animation-delay: -10s;
+    opacity: 0.16;
+    top: 48%;
+    left: 22%;
+    animation-delay: -4s;
+    animation-duration: 24s;
   }
 
-  .hero__grid {
+  .hero__vignette {
     position: absolute;
     inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, var(--color-border) 0 1px, transparent 1px 60px),
-      repeating-linear-gradient(90deg, var(--color-border) 0 1px, transparent 1px 60px);
-    mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(9, 13, 24, 0.55) 95%);
+    pointer-events: none;
   }
 
   @keyframes heroFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(30px); }
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, 34px, 0); }
   }
 
   /* Layout */
@@ -130,8 +203,8 @@ import PhoneFrame from './PhoneFrame.astro';
 
   @media (min-width: 769px) {
     .hero__content {
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-      gap: var(--space-3xl);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-2xl);
     }
   }
 
@@ -145,41 +218,82 @@ import PhoneFrame from './PhoneFrame.astro';
     }
   }
 
-  /* Trust badge */
+  /* Trust pill with avatar stack */
   .hero__trust {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
-    padding: 6px 14px;
-    border: 1px solid var(--color-border-light);
-    background: rgba(255, 255, 255, 0.03);
+    gap: 10px;
+    padding: 6px 16px 6px 6px;
+    border: 1px solid rgba(29, 73, 244, 0.28);
+    background: linear-gradient(135deg, rgba(29, 73, 244, 0.1), rgba(123, 47, 224, 0.08));
     border-radius: var(--radius-full);
     margin-bottom: var(--space-lg);
     opacity: 0;
     animation: heroFadeInUp 0.7s ease-out 0.1s forwards;
   }
 
-  .hero__stars {
+  .hero__trust-avatars {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hero__trust-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    border: 2px solid var(--color-bg-primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  }
+
+  .hero__trust-avatar + .hero__trust-avatar {
+    margin-left: -8px;
+  }
+
+  .hero__trust-avatar--1 { background: linear-gradient(135deg, #1D49F4, #5C7DFF); }
+  .hero__trust-avatar--2 { background: linear-gradient(135deg, #3D5AFF, #7B2FE0); }
+  .hero__trust-avatar--3 { background: linear-gradient(135deg, #5C7DFF, #A855F7); }
+  .hero__trust-avatar--4 { background: linear-gradient(135deg, #7B2FE0, #C084FC); }
+
+  .hero__trust-stars {
     display: inline-flex;
     gap: 2px;
     color: #FFB627;
   }
 
   .hero__trust-text {
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    color: var(--color-text-primary);
     font-weight: 500;
+  }
+
+  .hero__trust-text strong {
+    font-weight: 700;
   }
 
   /* Title */
   .hero__title {
-    font-size: clamp(2.75rem, 6.5vw, 5rem);
+    font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 800;
     line-height: 1.02;
     letter-spacing: -0.03em;
     margin-bottom: var(--space-lg);
     opacity: 0;
     animation: heroFadeInUp 0.7s ease-out 0.2s forwards;
+  }
+
+  @media (max-width: 360px) {
+    .hero__title {
+      font-size: 2.6rem;
+    }
   }
 
   .hero__title-gradient {
@@ -214,7 +328,7 @@ import PhoneFrame from './PhoneFrame.astro';
     animation: heroFadeInUp 0.7s ease-out 0.5s forwards;
   }
 
-  /* Phone wrapper */
+  /* Phone visual */
   .hero__visual {
     position: relative;
     display: flex;
@@ -223,6 +337,7 @@ import PhoneFrame from './PhoneFrame.astro';
     opacity: 0;
     animation: heroFadeInUp 0.9s ease-out 0.3s forwards;
     order: -1;
+    overflow: visible;
   }
 
   @media (min-width: 769px) {
@@ -243,8 +358,8 @@ import PhoneFrame from './PhoneFrame.astro';
 
   @media (min-width: 769px) {
     .hero__phone-glow {
-      width: 440px;
-      height: 440px;
+      width: 480px;
+      height: 480px;
     }
   }
 
@@ -254,9 +369,196 @@ import PhoneFrame from './PhoneFrame.astro';
     animation: phoneFloat 6s ease-in-out infinite;
   }
 
+  @media (min-width: 769px) {
+    .hero__phone-wrapper :global(.phone--hero) {
+      width: 320px;
+    }
+  }
+
   @keyframes phoneFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+  }
+
+  /* Floating cards */
+  .hero__card {
+    position: absolute;
+    z-index: 2;
+    background: rgba(17, 23, 40, 0.7);
+    border: 1px solid var(--color-blue-border);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.45),
+      0 0 24px rgba(29, 73, 244, 0.18);
+    display: none;
+  }
+
+  @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+    .hero__card {
+      background: rgba(17, 23, 40, 0.55);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  @media (min-width: 480px) {
+    .hero__card--feedback,
+    .hero__card--waveform {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero__card--cefr {
+      display: flex;
+    }
+  }
+
+  .hero__card--feedback {
+    top: 4%;
+    left: -4%;
+    gap: 10px;
+    align-items: center;
+    transform: rotate(-3deg);
+    opacity: 0;
+    animation: heroCardIn 0.7s ease-out 0.8s forwards;
+  }
+
+  @media (min-width: 769px) {
+    .hero__card--feedback { top: 6%; left: -8%; }
+  }
+  @media (min-width: 1200px) {
+    .hero__card--feedback { left: -12%; }
+  }
+  @media (min-width: 1440px) {
+    .hero__card--feedback { top: 8%; left: -18%; }
+  }
+
+  .hero__card--cefr {
+    bottom: 14%;
+    left: 4%;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 120px;
+    transform: rotate(-3deg);
+    opacity: 0;
+    animation: heroCardIn 0.7s ease-out 1s forwards;
+  }
+
+  @media (min-width: 1024px) {
+    .hero__card--cefr { bottom: 16%; left: 0; }
+  }
+  @media (min-width: 1200px) {
+    .hero__card--cefr { left: -4%; }
+  }
+  @media (min-width: 1440px) {
+    .hero__card--cefr { left: -10%; }
+  }
+
+  .hero__card--waveform {
+    bottom: 8%;
+    right: -4%;
+    gap: 10px;
+    align-items: center;
+    transform: rotate(4deg);
+    opacity: 0;
+    animation: heroCardIn 0.7s ease-out 1.2s forwards;
+  }
+
+  @media (min-width: 769px) {
+    .hero__card--waveform { bottom: 10%; right: -6%; }
+  }
+  @media (min-width: 1200px) {
+    .hero__card--waveform { right: -10%; }
+  }
+  @media (min-width: 1440px) {
+    .hero__card--waveform { right: -16%; }
+  }
+
+  .hero__card-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-blue);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hero__card-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22C55E;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+    flex-shrink: 0;
+  }
+
+  .hero__card-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+
+  .hero__card-meta {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+  }
+
+  .hero__card-cefr {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .hero__card-cefr-from {
+    color: var(--color-text-secondary);
+  }
+
+  .hero__card-cefr-to {
+    color: var(--color-blue-light);
+  }
+
+  .hero__card-cefr svg {
+    color: var(--color-blue-light);
+  }
+
+  .hero__card-progress {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+
+  .hero__card-progress-fill {
+    width: 70%;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-blue), var(--color-blue-light));
+  }
+
+  .hero__card-waveform {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    height: 18px;
+    margin-top: 3px;
+  }
+
+  .hero__card-waveform span {
+    display: block;
+    width: 3px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--color-blue-light), var(--color-blue));
   }
 
   @keyframes heroFadeInUp {
@@ -264,10 +566,19 @@ import PhoneFrame from './PhoneFrame.astro';
     to { opacity: 1; transform: translateY(0); }
   }
 
+  @keyframes heroCardIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hero__phone-wrapper,
-    .hero__orb {
+    .hero__orb,
+    .hero__card {
       animation: none;
+    }
+    .hero__card {
+      opacity: 1;
     }
   }
 </style>
