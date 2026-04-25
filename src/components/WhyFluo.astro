@@ -40,10 +40,7 @@ const benefits = [
               <span>{b.emoji}</span>
             </div>
             <div>
-              <div class="why-fluo__benefit-heading">
-                {i === 0 && <span class="why-fluo__benefit-badge" aria-hidden="true">Differentiator</span>}
-                <h3 class="why-fluo__benefit-title">{b.title}</h3>
-              </div>
+              <h3 class="why-fluo__benefit-title">{b.title}</h3>
               <p class="why-fluo__benefit-desc">{b.desc}</p>
             </div>
           </div>
@@ -168,32 +165,10 @@ const benefits = [
     box-shadow: 0 0 24px -4px rgba(29, 73, 244, 0.30);
   }
 
-  .why-fluo__benefit-heading {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: var(--space-xs);
-  }
-
-  .why-fluo__benefit-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    background: color-mix(in srgb, var(--color-blue) 14%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-blue) 32%, transparent);
-    border-radius: var(--radius-full);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-blue-light);
-    line-height: 1;
-  }
-
   .why-fluo__benefit-title {
     font-size: var(--font-size-base);
     font-weight: 600;
+    margin-bottom: var(--space-xs);
   }
 
   .why-fluo__benefit--featured .why-fluo__benefit-title {
