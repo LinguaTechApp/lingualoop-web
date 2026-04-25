@@ -1,186 +1,138 @@
-# Fluo Landing — Feedback & Action Items
+# Fluo Landing — Roadmap & Status
 
-**Contexto:** Review de `localhost:4321` basado en screenshots desktop + mobile.
-Referencias de premium tier: Loora, Learna AI.
-Estado actual: ~70% del camino a premium. Estructura y copy sólidos; gap en densidad visual, ejecución de detalle y elementos "wow".
-
----
-
-## TL;DR — Top 3 palancas
-
-Si solo tocamos tres cosas, estas mueven la aguja más:
-
-1. **Reformular el hero** (mayor impacto, ver §1).
-2. **Reducir el gradiente azul→violeta a 1-2 usos máximo** en toda la página (ver §8).
-3. **Reformular "How it works" + alternar features en zigzag** para darle ritmo al scroll (ver §3, §4).
+**Última actualización:** Pre-deploy a Vercel. Self-hosting de fuentes en curso.
+**Estado:** Roadmap pre-launch CERRADO post-self-hosting. Web lista para deploy.
+**Stack:** Astro + Vercel, repo `lingualoop-web`.
 
 ---
 
-## 1. Hero 🔴 Alta prioridad
+## Métricas finales
 
-El hero es el problema más grande. Es lo primero que ve el usuario y lo que define la percepción premium/no-premium.
-
-### 1.1 Falta densidad visual en la primera pantalla
-- **Problema:** Mucho aire negro a los lados del contenido. El bloque de texto a la izquierda queda tímido, el phone a la derecha solitario.
-- **Acción:** Aumentar densidad con background layers (orbs grandes desenfocados, mesh gradient), elementos flotantes alrededor del phone, y ajustar el balance horizontal de contenido vs. aire.
-
-### 1.2 Glow de fondo demasiado tímido
-- **Problema:** Existe un glow morado abajo a la derecha pero es casi invisible. Loora tiene orbs grandes y desenfocados ocupando un cuarto de pantalla, con varias capas superpuestas (azul + violeta + cyan).
-- **Acción:** Subir intensidad y tamaño de los orbs. Considerar 2-3 capas superpuestas con colores diferentes.
-
-### 1.3 Grid de fondo genérico
-- **Problema:** El grid actual es plano y no suma personalidad. Se ve "Tailwind default".
-- **Acción:** Opción A — reemplazarlo por un mesh gradient animado sutil. Opción B — subir intensidad y agregar fade radial desde el centro. Opción C — removerlo y confiar en los orbs.
-
-### 1.4 Badge de rating enterrado
-- **Problema:** "4.8 ★ · 2,000+ learners" arriba del título queda casi invisible.
-- **Acción:** Darle más peso visual — pill marcada con borde/fondo sutil, o agregar avatares de 3-4 usuarios solapados al lado del rating (patrón típico de landings premium).
-
-### 1.5 Phone mockup aislado y estático
-- **Problema:** El phone está "suelto" en el espacio. Loora viste el phone con elementos flotantes alrededor (badges salidos del marco, waveform animado, indicador de "AI listening") que demuestran el producto en acción.
-- **Acción:** Agregar 2-3 elementos flotantes alrededor del phone (floating cards con features clave, waveform, badge "Real-time feedback", etc.). Idealmente con micro-animación sutil.
-
-### 1.6 Desbalance de los botones de store
-- **Problema:** "Download on App Store" al 100% y "Coming soon Google Play" al 50% rompe la simetría sin aportar info útil.
-- **Acción:** Dos opciones:
-  - A) Igualar visualmente ambos botones (mismo peso), con el texto "Coming soon" adentro del botón de Google Play.
-  - B) Dejar solo App Store en el hero y mover la mención de Google Play más abajo en la página.
-
-### 1.7 Falta el "money shot" del producto en acción
-- **Problema:** Todo el hero muestra mockup estático. Loora tiene video/loop corto de la app en uso. Sin esto, la promesa de "AI that feels human" queda en el copy, no se demuestra.
-- **Acción:** Embed de video corto (5-10s) en loop mostrando la app en uso real (alguien hablando, waveform reaccionando, AI respondiendo, feedback apareciendo). Alternativa: GIF optimizado. Ubicación: dentro del phone mockup del hero.
+| Métrica | Mobile | Desktop |
+|---|---|---|
+| Performance | 98 | 100 |
+| Accessibility | 100 | 100 |
+| Best Practices | 100 | 100 |
+| SEO | 100 | 100 |
+| LCP | 2.1–2.4s | 0.6s |
+| CLS | 0 | 0 |
+| TBT | 0ms | 0ms |
 
 ---
 
-## 2. Social Proof (Real stories) 🟢 Baja prioridad
+## Sprints completados
 
-Esta sección está bien ejecutada. Testimonios con país + CEFR (B1→B2) es exactamente el detalle que separa una landing pensada.
-
-### 2.1 (Opcional) Dar identidad a los cards
-- **Problema:** Los cards de testimonios son correctos pero planos.
-- **Acción:** Considerar hover state sutil (lift + glow azul al 10%), o un ícono de comillas grande atrás del texto con opacidad baja para darle identidad editorial.
-
----
-
-## 3. Features (Three ways to master English) 🔴 Alta prioridad
-
-### 3.1 Formato "tres cards iguales" mata el ritmo
-- **Problema:** Tres cards apiladas con phone arriba + título + texto + tags = formato bootstrap. Se siente "template".
-- **Acción:** Alternar las features en zigzag:
-  - Speaking: phone a la izquierda, contenido a la derecha.
-  - Listening: phone a la derecha, contenido a la izquierda.
-  - Learning Path: phone a la izquierda, contenido a la derecha.
-- Cada phone más grande, con su propio "stage" (glow propio, color de acento propio).
-- Esto le da ritmo al scroll.
-
-### 3.2 Pills de tags se sienten como tags de blog
-- **Problema:** "AI Role-play", "Real-time Feedback", "CEFR Calibrated" etc. son todos iguales → genéricos.
-- **Acción:** Darles más identidad visual:
-  - Ícono adelante (Lucide, Phosphor, etc.).
-  - Fondo con el azul de marca al 8-10% en lugar de gris.
-  - Border sutil con el color de acento de la feature.
-  - Mantener misma altura pero diferenciar por categoría.
+| Sprint | Scope | Commit |
+|---|---|---|
+| 1 | Hero reformulation: densidad, orbs, phone vestido, badge, balance | — |
+| 1.5 | Tuning del hero: orbs envolventes, CEFR clusterizado, avatares legibles | — |
+| 1.6 | Inversión de orden mobile (texto antes que phone) | — |
+| 1.7 | Tipografía: audit + preload DM Sans + alineación de App Store screenshots | — |
+| 2 | Gradient cleanup: gradient único en "flows." | `4ca64c3` |
+| 3 | Features zigzag + pills con identidad cromática (blue/violet/cyan) | `8a6cf30` |
+| 4 | How It Works: mockups del producto + línea conectora gradient | `b4c9c0d` |
+| 5A | Pulidos: FAQ accordion, CTA final, Why Fluo bullet diferenciador, A11y, trust pill | `58643e7` |
+| 5A.5 | LCP fix vía font preload + remoción de badge "DIFFERENTIATOR" | `5282350` |
+| 5B | Reveal animations calibradas + documentación Quicksand wordmark exception | `adc8b6e` |
+| Legal | Port de Privacy / Terms / Support desde `/fluo/*` legacy + redirects | `e579a13` |
+| Pre-deploy fixes | Badge "Conversation flow" + FAQ pricing + phone size + mobile order Features | (pendiente commit) |
+| Self-hosting fonts | DM Sans + Quicksand vía @fontsource, eliminación de Google Fonts | (pendiente commit) |
 
 ---
 
-## 4. How it works (Simple. Effective. Daily.) 🔴 Alta prioridad
+## Decisiones cerradas
 
-### 4.1 Sección demasiado desnuda
-- **Problema:** Tres círculos con números y texto es "mínimo viable", no premium. Se siente rellenando espacio.
-- **Acción:**
-  - Agregar un visual concreto en cada paso: mini-mockup, ilustración custom, o ícono de marca (no solo número).
-  - Línea conectora con gradient entre los 3 pasos.
-  - Micro-animación al entrar al viewport (fade + slide up, íconos que animan).
-  - Considerar layout horizontal con cards más grandes en lugar de columnas angostas.
+Items donde tomamos decisión deliberada y NO debe reabrirse sin razón nueva:
 
----
-
-## 5. Why Fluo (Built for the way you actually learn) 🟡 Media prioridad
-
-Esta sección está OK pero puede subir.
-
-### 5.1 Diferenciador "Made for Spanish & Portuguese speakers" no capitaliza
-- **Problema:** Es el bullet #1 y es el mayor diferenciador del producto, pero está al mismo nivel visual que los demás.
-- **Acción:** Darle tratamiento especial al primer bullet — ícono más grande con color de acento, o pequeña visualización de bandera/mapa de Spanish & Portuguese speaking countries, o un call-out visual que lo destaque.
-
-### 5.2 Phone de "AI Tutor Chat" podría aprovecharse más
-- **Problema:** El mockup es bueno pero está "solo" a la derecha. La conversación mostrada (explicación de "used to") es muy buena pero se pierde.
-- **Acción:** Agregar al menos un floating element salido del phone resaltando el feedback contextual (ej: badge "AI explains in Spanish when needed" o similar).
+- **Tipografía:** DM Sans única para todo el sitio (self-hosted vía @fontsource desde pre-deploy). Quicksand 600 EXCLUSIVO para wordmark "Fluo" en Nav y Footer (excepción intencional, documentada en `CLAUDE.md`).
+- **Brand color:** `#1D49F4` (electric blue). NO `#007AFF` (system blue) — confusión histórica recurrente.
+- **Gradient blue→violet:** uso único en "flows." del hero. NO replicar en otros headlines.
+- **Light mode:** removido por completo. La app y la web son dark-only. La excepción es el botón de Apple Sign-In en la app por requerimiento de Apple guidelines.
+- **Hero NO se anima** en scroll reveal (renderiza estático para evitar FOUC percibido).
+- **Páginas legales NO se animan** (textos largos + opacity:0 inicial = latencia percibida horrible).
+- **Section title style:** Testimonials usa dual-weight 500/800 como excepción intencional. El resto de H2 son single-weight 700. NO normalizar.
+- **Support content model:** accordion por categoría (5 categorías colapsables con preguntas internas como h3 + p). NO accordion individual por pregunta.
+- **Slugs URL:** `/privacy-policy/`, `/terms-of-use/`, `/support/`. Mantener.
+- **Email contact split:** `contact@linguatech.app` para Account Security (Terms §6); `support@linguatech.app` para todo lo demás. Ambos funcionales.
+- **Datos personales en Contact sections (teléfono AR, dirección Buenos Aires):** ocultos hasta que alguien los solicite formalmente.
+- **Hero badge copy:** "Real-time feedback · Conversation flow" (NO "Pronunciation: 94%" — promesa que el producto no entrega hoy).
+- **FAQ pricing copy:** comunica freemium permanente con metering, NO trial limitado en tiempo.
+- **Hover states:** validados en pre-deploy, todos los elementos interactivos (Nav, Footer, FAQ, Features pills, store badges, testimoniales) responden correctamente. NO revisitar sin razón nueva.
 
 ---
 
-## 6. FAQ 🟡 Media prioridad
+## Items DESCARTADOS del backlog
 
-### 6.1 Accordion estilo Bootstrap
-- **Problema:** El "+" plano, borders grises planos, no transmiten cuidado. Se siente "default component".
-- **Acción:**
-  - Border con gradient sutil o glow azul al hover.
-  - Animación de expand más suave (ease-out, ~300ms).
-  - Ícono que rota o cambia (ej: + que rota a ×, o + que morfea a −).
-  - Fondo del item activo con un tinte azul muy sutil.
-- **Esfuerzo estimado:** ~30 min. ROI alto en "feel premium".
+Items que evaluamos y decidimos no atacar (con razón explícita para que no vuelvan):
+
+- **SAR process operativo (GDPR/AR):** descartado por decisión del founder. Re-evaluar si llega volumen real de requests post-launch.
+- **Hover states sistemático:** validados manualmente, no requieren intervención.
 
 ---
 
-## 7. Final CTA (Ready to speak with confidence?) 🟡 Media prioridad
+## Post-launch: items diferidos
 
-### 7.1 Última oportunidad desperdiciada
-- **Problema:** "Ready to speak with confidence?" + botones es correcto pero plano. Es la última oportunidad de impacto.
-- **Acción:**
-  - Visual final fuerte: phone + glow grande + texto display más grande.
-  - Recap de social proof: "Join 2,000+ learners speaking English daily".
-  - Microcopy más aspiracional en lugar de transaccional.
-  - Considerar un patrón de "Before/After" o similar que cierre emocionalmente.
+Items conscientemente deferidos. Atacar cuando datos reales (analytics, conversión, feedback) los prioricen, no antes.
 
----
+### Tier A — Mayor potencial de impacto
 
-## 8. Global / Sistema 🔴 Alta prioridad
+- **Video/GIF del producto en hero.** El "money shot" que demuestre la promesa de "AI that feels human" en lugar de solo declararla en copy. Depende de grabar/generar el asset. Cuando esté: micro-sprint para integrarlo dentro del phone mockup del hero.
+- **Botón decorativo "Report Issue" en Support Troubleshooting** — actualmente neutralizado a `<strong>` sin handler. Decisión: implementar flujo real (form → mailto / backend) o sacar la referencia del content. Tenerlo como label sin función es ruido para el lector.
+- **i18n ES/PT-BR** — diferido hasta tener señal clara de filtro lingüístico en analytics (bounce rate alto en LATAM/BR específicamente con session <15s). Dado que el target son hispano y luso-hablantes, es palanca grande pero requiere copywriting bilingüe nativo, no traducción literal. Mantener 3 versiones triplica el costo de cada cambio futuro — solo iniciar cuando datos lo justifiquen.
 
-### 8.1 Gradiente azul→violeta sobre-usado
-- **Problema:** El gradient aparece en "flows" (hero), "real stories", y probablemente más títulos. Cuando un treatment se repite 4-5 veces pierde impacto.
-- **Acción:** Regla premium: máximo 1-2 usos del gradient en toda la página, idealmente solo en el headline del hero. El resto en blanco puro o con peso tipográfico diferente (light vs bold).
+### Tier B — Mejoras de marca / detalle
 
-### 8.2 (Opcional) Auditoría de microanimaciones
-- **Problema:** La página se siente estática al scrollear.
-- **Acción:** Agregar fade-in + slide-up sutil a secciones al entrar al viewport (Intersection Observer). Mantener sutil (200-400ms, easing suave), sin exagerar.
+- **Visual de transición HowItWorks → WhyFluo** (asimetría detectada en Sprint 4). Hoy HowItWorks tiene bg-secondary + borders que la separan de Features, pero WhyFluo NO tiene tratamiento equivalente — se siente como continuación de Features. Posibles soluciones: thin gradient line entre secciones, alternancia tonal zebreada, o quitar el bg-secondary de HowItWorks. Decisión deferida — no es problema confirmado por usuarios, es observación visual.
+- **Testimonials cards con identidad editorial.** Hover state sutil (lift + glow azul al 10%), o ícono de comillas grande atrás del texto con opacidad baja.
+- **Trust pill rating en Testimonials.** Subordinada en Sprint 5A. Re-evaluar visualmente con ojo fresco después del launch.
+- **Phone de "AI Tutor Chat" en Why Fluo:** podría aprovecharse más con un floating element saliendo del phone (ej: badge "AI explains in Spanish when needed").
 
-### 8.3 (Opcional) Cursor/hover states
-- **Problema:** No evalué hover states en detalle con screenshots.
-- **Acción:** Revisar que todos los elementos interactivos (botones, cards, tags, FAQ) tengan hover/focus states consistentes y premium.
+### Tier C — Sistema / infraestructura
 
----
+- **TOC sticky en páginas legales** (Privacy 13 secciones, Terms 26 secciones). Implementar solo si vemos signal de usuarios perdidos en la longitud (heatmaps, scroll depth analytics).
+- **Subdomain `fluo.linguatech.app` setup.** Infra. Decidir cuando estés listo para separar Fluo del paraguas LinguaTech (probablemente al lanzar Android o un segundo producto).
 
-## Lo que está bien (NO tocar)
+### Tier D — Internacionalización + content marketing (Phase 2/3 declaradas)
 
-Para no perder de vista lo que ya funciona:
+- **SEO blog** — Phase 3 declarada.
 
-- **Estructura narrativa:** hook → social proof → features → how → why → FAQ → CTA. Secuencia correcta.
-- **Copy diferenciado:** "fluency, not test scores", "designed for Spanish and Portuguese speakers", testimonios con país + CEFR. Específico y con alma.
-- **Paleta dark consistente.**
-- **Footer:** "Designed in Buenos Aires · Built with care" tiene alma. Mantener.
-- **Mobile version** está más lograda que desktop (el formato vertical perdona más).
-- **FAQ content:** las preguntas cubren los objection points correctos (free?, level?, offline?, Android?, cancel?).
+### Tier E — Edge cases monitorables
+
+- **Animaciones scroll en fling extremo:** validado en Sprint 5B que 450ms está OK. Si en algún momento se detecta "ondas de movimiento", bajar a 380-400ms.
 
 ---
 
-## Propuesta de orden de ataque
+## Notas operativas
 
-Sugerencia de secuencia para prompts de CC, de mayor ROI a menor:
+### Convenciones de prompts CC para esta web
 
-1. **Sprint 1 — Hero reformulation** (§1.1–1.7). Es el 40% del impacto total.
-2. **Sprint 2 — Gradient cleanup** (§8.1). Cambio quirúrgico, bajo esfuerzo, alto impacto en "feel".
-3. **Sprint 3 — Features zigzag + pills con identidad** (§3.1, §3.2).
-4. **Sprint 4 — How it works upgrade** (§4.1).
-5. **Sprint 5 — Pulidos** (FAQ §6.1, CTA final §7.1, Why Fluo §5.1, microanimaciones §8.2).
+- **Repo:** `lingualoop-web`
+- **Stack:** Astro + Vercel + DM Sans (self-hosted vía @fontsource) + Quicksand 600 (wordmark only, también self-hosted)
+- **Modelo default:** Sonnet para cambios acotados; Opus para decisiones estructurales o de marca; Haiku para audits read-only o fixes one-line.
+- **Plan-first:** obligatorio para cambios multi-archivo o con decisiones de diseño. Ejecución directa para fixes con scope claro.
+- **Validación post-ejecución:** screenshots Playwright en al menos 1440 / 1024 / 375 + Lighthouse 3-5 runs según criticidad. Reportar antes/después.
 
-Cada sprint probablemente requiere **plan-first** en CC (toca múltiples archivos del Astro y decisiones de diseño).
+### Memoria del estado de marca (para futuros sprints)
+
+- Acentos cromáticos por feature consolidados:
+  - Speaking → blue `#1D49F4`
+  - Listening → violet `#7B2FE0`
+  - Learning Path → cyan `#06B6D4`
+- Mismos 3 colores aplicados a los 3 pasos de How It Works (sin asociación 1:1 a features — solo refuerzo del sistema).
+- Avatar stack del trust pill: V·C·A·L (iniciales de testimonios reales + 1 letra elegida por contraste visual). NO inventar testimonios para justificar otras letras.
 
 ---
 
-## Notas para prompts de CC
+## Cierre
 
-- Repo: `lingualoop-web`
-- Stack: Astro + Vercel
-- No especificar archivos/líneas/snippets en los prompts — describir el estado final deseado.
-- Incluir siempre: modelo recomendado, effort, plan-first vs. ejecución directa.
-- Cada sprint probablemente Opus con effort medio-alto por involucrar decisiones de diseño.
+Post self-hosting de fuentes, la web está launch-ready.
+
+**Próximo paso concreto:** deploy a Vercel.
+
+**Recomendado post-deploy:**
+
+1. Confirmar que los redirects de `/lingualoop/*` y `/fluo/*` funcionan en producción.
+2. Trackear primer mes: scroll depth por sección, click-through al App Store, bounce por país.
+3. Esos datos deciden qué Tier atacar primero post-launch.
+
+Iterar a ciegas (sin datos) más allá de este punto tiene retornos decrecientes.
