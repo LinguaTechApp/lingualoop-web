@@ -34,8 +34,10 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 ## Assets
 - Favicons y OG image en public/assets/
 - Logo de marca en public/assets/logo.png (1x) y logo-2x.png (2x), derivado del icono iOS
-- Screenshots optimizados (660px JPEG ~30 KB c/u) en public/assets/optimized/ — siempre referenciar estos en los componentes
-- PNGs fuente de los screenshots (1320×2868) en docs/screens-source/ — solo referencia, NO se sirven; regenerar los JPEG con `sips -Z 660 -s format jpeg -s formatOptions 82 INPUT --out OUTPUT`
+- Screenshots optimizados en public/assets/optimized/. Naming: `{nombre}.jpg` (660w) + opcional `{nombre}-1200.jpg` (1200w hi-res para phones grandes en desktop). Siempre referenciar estos en los componentes
+- PNGs fuente de los screenshots (1320×2868) en docs/screens-source/ — solo referencia, NO se sirven
+- Regenerar JPEG: `sips -Z` opera sobre la dimensión MAYOR. Para retrato 1320:2868 (ratio ~2.173:1), pasar la altura: `-Z 1434` produce 660w, `-Z 2607` produce 1200w. Comando: `sips -Z 1434 -s format jpeg -s formatOptions 82 INPUT --out OUTPUT.jpg`
+- Cuando un componente renderiza un phone grande (≥320px CSS) usar `srcset` + `sizes` con ambas variantes para que mobile cargue 660w y desktop hi-DPR cargue 1200w
 - Google Fonts: Quicksand (brand) + DM Sans (body) — cargar con preconnect
 
 ## Notas

@@ -21,8 +21,11 @@ type Feature = {
   desc: string;
   tags: Tag[];
   img: string;
+  imgHi: string;
   alt: string;
 };
+
+const phoneSizes = '(min-width: 1200px) 400px, (min-width: 769px) 340px, 260px';
 
 const features: Feature[] = [
   {
@@ -35,6 +38,7 @@ const features: Feature[] = [
       { label: 'CEFR Calibrated', icon: 'Target' },
     ],
     img: '/assets/optimized/fluo-02-speaking-chat.jpg',
+    imgHi: '/assets/optimized/fluo-02-speaking-chat-1200.jpg',
     alt: 'Fluo Speaking conversation: roleplay with an AI tutor in a train booking scenario',
   },
   {
@@ -47,6 +51,7 @@ const features: Feature[] = [
       { label: 'Comprehension Quizzes', icon: 'ListChecks' },
     ],
     img: '/assets/optimized/fluo-03-listeninig-quiz.jpg',
+    imgHi: '/assets/optimized/fluo-03-listeninig-quiz-1200.jpg',
     alt: 'Fluo Listening: comprehension quiz on a video about 5G technology',
   },
   {
@@ -59,6 +64,7 @@ const features: Feature[] = [
       { label: 'A1 → C2', icon: 'TrendingUp' },
     ],
     img: '/assets/optimized/fluo-04-learning-path-list.jpg',
+    imgHi: '/assets/optimized/fluo-04-learning-path-list-1200.jpg',
     alt: 'Fluo Learning Path: B1 Intermediate units with lessons on Past & Present Bridges',
   },
 ];
@@ -77,7 +83,13 @@ const features: Feature[] = [
         <article class={`features__row features__row--${f.color} reveal reveal--delay-${i + 1}`}>
           <div class="features__visual">
             <div class="features__visual-glow" aria-hidden="true"></div>
-            <PhoneFrame size="featureLarge" src={f.img} alt={f.alt} />
+            <PhoneFrame
+              size="featureLarge"
+              src={f.img}
+              srcset={`${f.img} 660w, ${f.imgHi} 1200w`}
+              sizes={phoneSizes}
+              alt={f.alt}
+            />
           </div>
           <div class="features__body">
             <span class="features__eyebrow" role="presentation">

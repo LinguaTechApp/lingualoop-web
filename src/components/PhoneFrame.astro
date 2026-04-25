@@ -4,13 +4,23 @@ interface Props {
   alt: string;
   size?: 'hero' | 'feature' | 'featureLarge' | 'small';
   loading?: 'eager' | 'lazy';
+  srcset?: string;
+  sizes?: string;
 }
-const { src, alt, size = 'feature', loading = 'lazy' } = Astro.props;
+const { src, alt, size = 'feature', loading = 'lazy', srcset, sizes } = Astro.props;
 ---
 
 <div class={`phone phone--${size}`}>
   <div class="phone__screen">
-    <img src={src} alt={alt} loading={loading} decoding="async" fetchpriority={loading === 'eager' ? 'high' : undefined} />
+    <img
+      src={src}
+      srcset={srcset}
+      sizes={sizes}
+      alt={alt}
+      loading={loading}
+      decoding="async"
+      fetchpriority={loading === 'eager' ? 'high' : undefined}
+    />
   </div>
 </div>
 
