@@ -34,13 +34,16 @@ const benefits = [
       <p class="why-fluo__subtitle">Most apps teach English as if every learner is the same. Fluo is different.</p>
 
       <div class="why-fluo__benefits">
-        {benefits.map((b) => (
-          <div class="why-fluo__benefit">
+        {benefits.map((b, i) => (
+          <div class={`why-fluo__benefit${i === 0 ? ' why-fluo__benefit--featured' : ''}`}>
             <div class="why-fluo__benefit-icon">
               <span>{b.emoji}</span>
             </div>
             <div>
-              <h3 class="why-fluo__benefit-title">{b.title}</h3>
+              <div class="why-fluo__benefit-heading">
+                {i === 0 && <span class="why-fluo__benefit-badge" aria-hidden="true">Differentiator</span>}
+                <h3 class="why-fluo__benefit-title">{b.title}</h3>
+              </div>
               <p class="why-fluo__benefit-desc">{b.desc}</p>
             </div>
           </div>
@@ -138,8 +141,8 @@ const benefits = [
     width: 44px;
     height: 44px;
     border-radius: var(--radius-sm);
-    background: var(--color-blue-subtle);
-    border: 1px solid var(--color-blue-border);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border-light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,10 +150,55 @@ const benefits = [
     font-size: 1.2rem;
   }
 
+  /* Featured (first) benefit — Spanish/Portuguese speakers */
+  .why-fluo__benefit--featured {
+    padding: var(--space-md);
+    margin: calc(var(--space-sm) * -1) calc(var(--space-md) * -1) 0;
+    border: 1px solid rgba(29, 73, 244, 0.28);
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(29, 73, 244, 0.06), rgba(123, 47, 224, 0.04));
+  }
+
+  .why-fluo__benefit--featured .why-fluo__benefit-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--color-blue-subtle);
+    border-color: var(--color-blue-border);
+    font-size: 1.5rem;
+    box-shadow: 0 0 24px -4px rgba(29, 73, 244, 0.30);
+  }
+
+  .why-fluo__benefit-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--space-xs);
+  }
+
+  .why-fluo__benefit-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: color-mix(in srgb, var(--color-blue) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-blue) 32%, transparent);
+    border-radius: var(--radius-full);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-blue-light);
+    line-height: 1;
+  }
+
   .why-fluo__benefit-title {
     font-size: var(--font-size-base);
     font-weight: 600;
-    margin-bottom: var(--space-xs);
+  }
+
+  .why-fluo__benefit--featured .why-fluo__benefit-title {
+    font-size: 1.05rem;
+    font-weight: 700;
   }
 
   .why-fluo__benefit-desc {

@@ -98,12 +98,17 @@ const faqs = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     overflow: hidden;
-    transition: border-color var(--transition-base), background var(--transition-base);
+    transition: border-color 280ms ease-out, background 280ms ease-out, box-shadow 280ms ease-out;
+  }
+
+  .faq__item:hover {
+    border-color: rgba(29, 73, 244, 0.30);
+    box-shadow: 0 0 0 1px rgba(29, 73, 244, 0.10), 0 8px 24px -12px rgba(29, 73, 244, 0.20);
   }
 
   .faq__item[open] {
     border-color: var(--color-blue-border);
-    background: var(--color-bg-card-hover);
+    background: rgba(29, 73, 244, 0.05);
   }
 
   .faq__question {
@@ -127,7 +132,7 @@ const faqs = [
   .faq__icon {
     flex-shrink: 0;
     color: var(--color-text-secondary);
-    transition: transform var(--transition-base), color var(--transition-base);
+    transition: transform 280ms ease-out, color 280ms ease-out;
   }
 
   .faq__item[open] .faq__icon {
