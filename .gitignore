@@ -26,5 +26,8 @@ pnpm-debug.log*
 # lighthouse reports
 .lighthouse/
 
+# screenshots
+.screenshots/
+
 # Playwright MCP captures (screenshots, snapshots, console logs)
 .playwright-mcp/
