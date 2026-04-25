@@ -2,6 +2,9 @@
 
 Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 
+## Documentos de referencia
+- [docs/fluo-design-brief.md](docs/fluo-design-brief.md) — brief completo de la app (pantallas, flujos, branding, voz). Consultarlo antes de tomar decisiones de copy, jerarquía de features o tono de marca.
+
 ## Stack
 - Astro (static output)
 - CSS vanilla (design tokens en src/styles/global.css)
@@ -30,6 +33,8 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 
 ## Assets
 - Favicons y OG image en public/assets/
+- Logo de marca en public/assets/logo.png (1x) y logo-2x.png (2x), derivado del icono iOS
+- Screenshots optimizados (660px JPEG ~30 KB c/u) en public/assets/optimized/ — siempre referenciar estos, no los PNG fuente
 - Google Fonts: Quicksand (brand) + DM Sans (body) — cargar con preconnect
 
 ## Notas
@@ -37,6 +42,8 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 - NO usar librerías de JS para animaciones
 - Target: Lighthouse Performance ≥ 95, SEO ≥ 95
 - Sin analytics en esta fase
+- Estilos globales se importan vía `<style is:global>` en SEOHead (sin `is:global` Astro los scopea y no aplican a otros componentes)
+- Screenshots de verificación con Playwright MCP: guardarlos siempre en `.playwright-mcp/` (gitignored), nunca en la raíz del repo
 
 ## Comportamiento
 

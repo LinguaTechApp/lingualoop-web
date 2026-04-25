@@ -5,18 +5,39 @@
   <div class="footer__inner container">
     <div class="footer__top">
       <div class="footer__brand">
-        <div class="footer__logo" aria-hidden="true">F</div>
-        <span class="footer__name">Fluo</span>
-        <span class="footer__byline">by LinguaTech</span>
+        <a href="/" class="footer__brand-link" aria-label="Fluo home">
+          <img
+            class="footer__logo"
+            src="/assets/logo.png"
+            srcset="/assets/logo.png 1x, /assets/logo-2x.png 2x"
+            width="32"
+            height="32"
+            alt=""
+            aria-hidden="true"
+          />
+          <span class="footer__name">Fluo</span>
+        </a>
+        <p class="footer__tagline">English that flows. Made by LinguaTech for Spanish &amp; Portuguese speakers.</p>
       </div>
       <nav class="footer__links" aria-label="Footer navigation">
-        <a href="/privacy-policy/">Privacy Policy</a>
-        <a href="/terms-of-use/">Terms of Use</a>
-        <a href="/support/">Support</a>
+        <div class="footer__links-group">
+          <h4 class="footer__links-title">Product</h4>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#why-fluo">Why Fluo</a>
+          <a href="#download">Download</a>
+        </div>
+        <div class="footer__links-group">
+          <h4 class="footer__links-title">Company</h4>
+          <a href="/support/">Support</a>
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/terms-of-use/">Terms of Use</a>
+        </div>
       </nav>
     </div>
     <div class="footer__bottom">
       <p>&copy; 2025 LinguaTech. All rights reserved.</p>
+      <p class="footer__bottom-meta">Designed in Buenos Aires · Built with care</p>
     </div>
   </div>
 </footer>
@@ -24,52 +45,79 @@
 <style>
   .footer {
     margin-top: var(--space-4xl);
-    padding: var(--space-2xl) 0 var(--space-lg);
+    padding: var(--space-3xl) 0 var(--space-xl);
+    background: linear-gradient(180deg, transparent 0%, rgba(14, 19, 34, 0.6) 100%);
+    border-top: 1px solid var(--color-border);
   }
 
   .footer__top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
     border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 769px) {
+    .footer__top {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-3xl);
+      align-items: start;
+    }
   }
 
   .footer__brand {
     display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 360px;
+  }
+
+  .footer__brand-link {
+    display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: 10px;
   }
 
   .footer__logo {
-    width: 28px;
-    height: 28px;
-    border-radius: var(--radius-sm);
-    background: linear-gradient(135deg, var(--color-blue), var(--color-blue-light));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-brand);
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
+    width: 32px;
+    height: 32px;
+    display: block;
   }
 
   .footer__name {
     font-family: var(--font-brand);
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: var(--color-text-primary);
+    letter-spacing: -0.01em;
   }
 
-  .footer__byline {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
+  .footer__tagline {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
   }
 
   .footer__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .footer__links-group {
     display: flex;
-    gap: var(--space-lg);
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer__links-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
   }
 
   .footer__links a {
@@ -84,27 +132,29 @@
 
   .footer__bottom {
     padding-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: center;
     text-align: center;
+  }
+
+  @media (min-width: 769px) {
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
   }
 
   .footer__bottom p {
     font-size: 0.8rem;
     color: var(--color-text-muted);
+    margin: 0;
   }
 
-  @media (max-width: 480px) {
-    .footer__top {
-      flex-direction: column;
-      gap: var(--space-lg);
-      text-align: center;
-    }
-
-    .footer__brand {
-      justify-content: center;
-    }
-
-    .footer__links {
-      justify-content: center;
-    }
+  .footer__bottom-meta {
+    color: var(--color-text-muted);
+    opacity: 0.7;
   }
 </style>
