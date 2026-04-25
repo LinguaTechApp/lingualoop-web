@@ -1,0 +1,144 @@
+---
+import SectionLabel from './SectionLabel.astro';
+
+const faqs = [
+  {
+    q: 'Is Fluo free to use?',
+    a: 'You can start free with daily practice across Speaking, Listening, and Learning Path. Premium ($6.99/month or $39.99/year) unlocks unlimited daily practice and all scenarios.',
+  },
+  {
+    q: 'What level of English do I need to start?',
+    a: 'Any level. Take a 2-minute placement test on signup or pick a level manually — Fluo supports A1 (Beginner) through C2 (Proficient).',
+  },
+  {
+    q: 'Do I need internet to use Fluo?',
+    a: 'Yes. Real-time AI conversations and dictation exercises require an internet connection.',
+  },
+  {
+    q: 'Is the app available on Android?',
+    a: 'Currently iOS only. Android is in our roadmap — sign up to get notified when it launches.',
+  },
+  {
+    q: 'Can I cancel anytime?',
+    a: 'Yes. Cancel directly in your App Store subscription settings — your access continues until the end of the current billing period.',
+  },
+];
+---
+
+<section id="faq" class="faq">
+  <div class="container">
+    <div class="faq__header reveal">
+      <SectionLabel text="FAQ" />
+      <h2 class="faq__title">Frequently asked questions</h2>
+      <p class="faq__subtitle">Everything you need to know before getting started.</p>
+    </div>
+
+    <div class="faq__list reveal reveal--delay-1">
+      {faqs.map((item) => (
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>{item.q}</span>
+            <svg class="faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </summary>
+          <p class="faq__answer">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: var(--space-4xl) 0;
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .faq__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .faq__title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  @media (min-width: 769px) {
+    .faq__title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+
+  .faq__subtitle {
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  .faq__list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .faq__item {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--transition-base), background var(--transition-base);
+  }
+
+  .faq__item[open] {
+    border-color: var(--color-blue-border);
+    background: var(--color-bg-card-hover);
+  }
+
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-xl);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__icon {
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    transition: transform var(--transition-base), color var(--transition-base);
+  }
+
+  .faq__item[open] .faq__icon {
+    transform: rotate(45deg);
+    color: var(--color-blue-light);
+  }
+
+  .faq__answer {
+    padding: 0 var(--space-xl) var(--space-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+</style>

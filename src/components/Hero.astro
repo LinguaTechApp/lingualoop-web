@@ -1,5 +1,6 @@
 ---
 import StoreBadges from './StoreBadges.astro';
+import PhoneFrame from './PhoneFrame.astro';
 ---
 
 <section class="hero">
@@ -10,26 +11,42 @@ import StoreBadges from './StoreBadges.astro';
   </div>
 
   <div class="hero__content container">
-    <div class="hero__badge">
-      <span class="hero__badge-dot" aria-hidden="true"></span>
-      Available on iOS
+    <div class="hero__text">
+      <div class="hero__trust">
+        <div class="hero__stars" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+        </div>
+        <span class="hero__trust-text">4.8 on the App Store · 2,000+ learners</span>
+      </div>
+
+      <h1 class="hero__title">
+        English that<br />
+        <span class="hero__title-gradient">flows.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Practice speaking with AI tutors, sharpen your ear with real videos, and build skills through structured lessons — designed for Spanish and Portuguese speakers.
+      </p>
+
+      <div class="hero__ctas">
+        <StoreBadges />
+      </div>
     </div>
 
-    <h1 class="hero__title">
-      English that<br />
-      <span class="hero__title-gradient">flows.</span>
-    </h1>
-
-    <p class="hero__subtitle">
-      Practice speaking with AI tutors, sharpen your ear with real videos, and build skills through structured lessons — all designed for Spanish and Portuguese speakers.
-    </p>
-
-    <div class="hero__ctas">
-      <StoreBadges />
-    </div>
-
-    <div class="hero__scroll-hint" aria-hidden="true">
-      <span class="hero__scroll-line"></span>
+    <div class="hero__visual">
+      <div class="hero__phone-glow" aria-hidden="true"></div>
+      <div class="hero__phone-wrapper">
+        <PhoneFrame
+          size="hero"
+          src="/assets/optimized/fluo-02-speaking-chat.jpg"
+          alt="Fluo app showing a Speaking roleplay conversation with an AI tutor"
+          loading="eager"
+        />
+      </div>
     </div>
   </div>
 </section>
@@ -38,20 +55,19 @@ import StoreBadges from './StoreBadges.astro';
   .hero {
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: auto;
-    padding: calc(var(--nav-height) + var(--space-3xl)) var(--space-md) var(--space-3xl);
+    padding: calc(var(--nav-height) + var(--space-2xl)) 0 var(--space-3xl);
   }
 
   @media (min-width: 769px) {
     .hero {
-      min-height: 100vh;
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      padding: calc(var(--nav-height) + var(--space-xl)) 0 var(--space-xl);
     }
   }
 
-  /* Background effects */
+  /* Background */
   .hero__bg {
     position: absolute;
     inset: 0;
@@ -70,19 +86,19 @@ import StoreBadges from './StoreBadges.astro';
     height: 500px;
     background: var(--color-blue);
     filter: blur(80px);
-    opacity: 0.15;
+    opacity: 0.18;
     top: -20%;
     left: -10%;
   }
 
   .hero__orb--violet {
-    width: 400px;
-    height: 400px;
+    width: 420px;
+    height: 420px;
     background: #7B2FE0;
     filter: blur(80px);
-    opacity: 0.12;
-    bottom: -10%;
-    right: -10%;
+    opacity: 0.14;
+    bottom: -15%;
+    right: -5%;
     animation-delay: -10s;
   }
 
@@ -101,45 +117,66 @@ import StoreBadges from './StoreBadges.astro';
     50% { transform: translateY(30px); }
   }
 
-  /* Content */
+  /* Layout */
   .hero__content {
     position: relative;
     z-index: 1;
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+    width: 100%;
   }
 
-  /* Badge */
-  .hero__badge {
+  @media (min-width: 769px) {
+    .hero__content {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: var(--space-3xl);
+    }
+  }
+
+  .hero__text {
+    text-align: center;
+  }
+
+  @media (min-width: 769px) {
+    .hero__text {
+      text-align: left;
+    }
+  }
+
+  /* Trust badge */
+  .hero__trust {
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
+    padding: 6px 14px;
+    border: 1px solid var(--color-border-light);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-full);
     margin-bottom: var(--space-lg);
     opacity: 0;
     animation: heroFadeInUp 0.7s ease-out 0.1s forwards;
   }
 
-  .hero__badge-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-blue-light);
-    animation: heroPulse 2s ease-in-out infinite;
+  .hero__stars {
+    display: inline-flex;
+    gap: 2px;
+    color: #FFB627;
   }
 
-  @keyframes heroPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
+  .hero__trust-text {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
   }
 
   /* Title */
   .hero__title {
-    font-size: var(--font-size-display);
-    font-weight: 700;
-    line-height: 1.1;
+    font-size: clamp(2.75rem, 6.5vw, 5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
     margin-bottom: var(--space-lg);
     opacity: 0;
     animation: heroFadeInUp 0.7s ease-out 0.2s forwards;
@@ -155,9 +192,9 @@ import StoreBadges from './StoreBadges.astro';
   /* Subtitle */
   .hero__subtitle {
     font-size: var(--font-size-base);
-    line-height: 1.7;
+    line-height: 1.65;
     color: var(--color-text-secondary);
-    max-width: 600px;
+    max-width: 560px;
     margin: 0 auto var(--space-xl);
     opacity: 0;
     animation: heroFadeInUp 0.7s ease-out 0.35s forwards;
@@ -166,6 +203,8 @@ import StoreBadges from './StoreBadges.astro';
   @media (min-width: 769px) {
     .hero__subtitle {
       font-size: var(--font-size-md);
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 
@@ -175,47 +214,60 @@ import StoreBadges from './StoreBadges.astro';
     animation: heroFadeInUp 0.7s ease-out 0.5s forwards;
   }
 
-  /* Scroll hint */
-  .hero__scroll-hint {
-    display: none;
+  /* Phone wrapper */
+  .hero__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: heroFadeInUp 0.9s ease-out 0.3s forwards;
+    order: -1;
   }
 
   @media (min-width: 769px) {
-    .hero__scroll-hint {
-      display: block;
-      position: absolute;
-      bottom: var(--space-xl);
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      animation: heroFadeInUp 0.7s ease-out 0.7s forwards;
-    }
-
-    .hero__scroll-line {
-      display: block;
-      width: 1px;
-      height: 24px;
-      background: var(--color-text-muted);
-      transform-origin: top;
-      animation: heroScrollLine 2.5s ease-in-out infinite;
+    .hero__visual {
+      order: 0;
     }
   }
 
-  @keyframes heroScrollLine {
-    0% { transform: scaleY(0); opacity: 0; }
-    30% { transform: scaleY(1); opacity: 1; }
-    70% { transform: scaleY(1); opacity: 1; }
-    100% { transform: scaleY(0); opacity: 0; transform: translateY(8px) scaleY(0); }
+  .hero__phone-glow {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color-blue-glow) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 0;
+  }
+
+  @media (min-width: 769px) {
+    .hero__phone-glow {
+      width: 440px;
+      height: 440px;
+    }
+  }
+
+  .hero__phone-wrapper {
+    position: relative;
+    z-index: 1;
+    animation: phoneFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes phoneFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 
   @keyframes heroFadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__phone-wrapper,
+    .hero__orb {
+      animation: none;
     }
   }
 </style>

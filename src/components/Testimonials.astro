@@ -1,0 +1,235 @@
+---
+import SectionLabel from './SectionLabel.astro';
+
+const testimonials = [
+  {
+    quote: "After 3 months with Fluo, I can lead meetings in English without panicking. The AI roleplay made the difference.",
+    name: "Valentina R.",
+    country: "Argentina",
+    level: "B1 → B2",
+    initial: "V",
+    gradient: "linear-gradient(135deg, #EC4899, #8B5CF6)",
+  },
+  {
+    quote: "The interview roleplay prepared me for my dream job at a global company. I finally feel confident speaking English.",
+    name: "Carlos M.",
+    country: "Brazil",
+    level: "A2 → B1",
+    initial: "C",
+    gradient: "linear-gradient(135deg, #3B82F6, #06B6D4)",
+  },
+  {
+    quote: "What I love most is practicing anytime without the pressure of a live teacher. Consistent daily progress.",
+    name: "Ana L.",
+    country: "Mexico",
+    level: "B2 → C1",
+    initial: "A",
+    gradient: "linear-gradient(135deg, #F59E0B, #EF4444)",
+  },
+];
+---
+
+<section class="testimonials reveal" id="testimonials" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="testimonials__header">
+      <SectionLabel text="Loved by learners" />
+      <h2 class="testimonials__title reveal reveal--delay-1" id="testimonials-title">
+        Real progress,<br />
+        <span class="testimonials__title-gradient">real stories.</span>
+      </h2>
+
+      <div class="testimonials__rating reveal reveal--delay-2" aria-label="Rated 4.8 out of 5 on the App Store">
+        <div class="testimonials__rating-stars" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+        </div>
+        <div class="testimonials__rating-meta">
+          <span class="testimonials__rating-score">4.8</span>
+          <span class="testimonials__rating-detail">out of 5 · 2,000+ App Store reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials__grid">
+      {testimonials.map((t, i) => (
+        <article class={`testimonials__card reveal reveal--delay-${Math.min(i + 1, 3)}`}>
+          <div class="testimonials__stars" aria-label="5 out of 5 stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          </div>
+          <blockquote class="testimonials__quote">{t.quote}</blockquote>
+          <footer class="testimonials__author">
+            <div class="testimonials__avatar" style={`background: ${t.gradient}`} aria-hidden="true">{t.initial}</div>
+            <div class="testimonials__person">
+              <div class="testimonials__name">{t.name}</div>
+              <div class="testimonials__meta">{t.country} · {t.level}</div>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    padding: var(--space-4xl) 0;
+    position: relative;
+    background: linear-gradient(180deg, transparent 0%, var(--color-bg-secondary) 40%, transparent 100%);
+  }
+
+  .testimonials__header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .testimonials__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: var(--space-md) 0 var(--space-lg);
+  }
+
+  .testimonials__title-gradient {
+    background: linear-gradient(135deg, var(--color-blue-light), #A855F7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .testimonials__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-full);
+  }
+
+  .testimonials__rating-stars {
+    display: inline-flex;
+    gap: 2px;
+    color: #FFB627;
+  }
+
+  .testimonials__rating-meta {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+
+  .testimonials__rating-score {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .testimonials__rating-detail {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 480px) {
+    .testimonials__rating {
+      flex-direction: column;
+      gap: var(--space-sm);
+      border-radius: var(--radius-lg);
+    }
+    .testimonials__rating-detail {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Grid */
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 769px) {
+    .testimonials__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+  }
+
+  /* Card */
+  .testimonials__card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base);
+  }
+
+  .testimonials__card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-blue-border);
+    background: var(--color-bg-card-hover);
+  }
+
+  .testimonials__stars {
+    display: inline-flex;
+    gap: 2px;
+    color: #FFB627;
+  }
+
+  .testimonials__quote {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    margin: 0;
+    flex: 1;
+  }
+
+  .testimonials__author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .testimonials__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .testimonials__person {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonials__name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+  }
+
+  .testimonials__meta {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+  }
+</style>

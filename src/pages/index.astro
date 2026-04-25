@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import Testimonials from '../components/Testimonials.astro';
 import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import WhyFluo from '../components/WhyFluo.astro';
+import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 
 const structuredData = {
@@ -32,8 +34,10 @@ const structuredData = {
   structuredData={structuredData}
 >
   <Hero />
+  <Testimonials />
   <Features />
   <HowItWorks />
   <WhyFluo />
+  <FAQ />
   <CTA />
 </BaseLayout>

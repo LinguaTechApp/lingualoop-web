@@ -1,27 +1,31 @@
 ---
 import SectionLabel from './SectionLabel.astro';
+import PhoneFrame from './PhoneFrame.astro';
 
 const features = [
   {
-    emoji: '🗣️',
     title: 'Speaking',
     color: 'blue',
-    desc: 'Practice real conversations with AI tutors that have unique personalities. From ordering coffee to acing job interviews — 120+ scenarios that prepare you for real life.',
-    tags: ['AI Role-play', 'Real-time Feedback', '120+ Scenarios'],
+    desc: 'Practice real conversations with AI tutors that have unique personalities. From ordering coffee to acing job interviews — scenarios that prepare you for real life.',
+    tags: ['AI Role-play', 'Real-time Feedback', 'CEFR Calibrated'],
+    img: '/assets/optimized/fluo-02-speaking-chat.jpg',
+    alt: 'Fluo Speaking conversation: roleplay with an AI tutor in a train booking scenario',
   },
   {
-    emoji: '🎧',
     title: 'Listening',
     color: 'green',
-    desc: 'Sharpen your ear with dictation exercises using real English videos. Hear native speakers at natural speed and build comprehension that actually transfers.',
+    desc: 'Sharpen your ear with dictation and quizzes built on real English videos. Hear native speakers at natural speed and build comprehension that actually transfers.',
     tags: ['Real Videos', 'Dictation', 'Comprehension Quizzes'],
+    img: '/assets/optimized/fluo-03-listeninig-quiz.jpg',
+    alt: 'Fluo Listening: comprehension quiz on a video about 5G technology',
   },
   {
-    emoji: '📚',
     title: 'Learning Path',
     color: 'gold',
     desc: 'Structured grammar and vocabulary lessons that take you from beginner to advanced. Stuck on something? Ask the AI Tutor and get an instant, clear explanation.',
     tags: ['Structured Curriculum', 'AI Tutor Chat', 'A1 → C2'],
+    img: '/assets/optimized/fluo-04-learning-path-list.jpg',
+    alt: 'Fluo Learning Path: B1 Intermediate units with lessons on Past & Present Bridges',
   },
 ];
 ---
@@ -36,17 +40,23 @@ const features = [
 
     <div class="features__grid">
       {features.map((f, i) => (
-        <article class={`features__card reveal reveal--delay-${i + 1}`}>
-          <div class={`features__icon features__icon--${f.color}`}>
-            <span>{f.emoji}</span>
+        <article class={`features__card features__card--${f.color} reveal reveal--delay-${i + 1}`}>
+          <div class="features__visual">
+            <div class={`features__visual-glow features__visual-glow--${f.color}`} aria-hidden="true"></div>
+            <PhoneFrame size="feature" src={f.img} alt={f.alt} />
           </div>
-          <h3 class="features__card-title">{f.title}</h3>
-          <p class="features__card-desc">{f.desc}</p>
-          <ul class="features__tags" role="list">
-            {f.tags.map((tag) => (
-              <li class="features__tag">{tag}</li>
-            ))}
-          </ul>
+          <div class="features__body">
+            <div class="features__heading-row">
+              <span class={`features__dot features__dot--${f.color}`} aria-hidden="true"></span>
+              <h3 class="features__card-title">{f.title}</h3>
+            </div>
+            <p class="features__card-desc">{f.desc}</p>
+            <ul class="features__tags" role="list">
+              {f.tags.map((tag) => (
+                <li class="features__tag">{tag}</li>
+              ))}
+            </ul>
+          </div>
         </article>
       ))}
     </div>
@@ -71,6 +81,7 @@ const features = [
     font-size: var(--font-size-2xl);
     font-weight: 700;
     line-height: 1.2;
+    letter-spacing: -0.02em;
     margin-top: var(--space-md);
     margin-bottom: var(--space-md);
   }
@@ -91,7 +102,7 @@ const features = [
   .features__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
   }
 
   @media (min-width: 769px) {
@@ -106,12 +117,14 @@ const features = [
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: var(--space-xl);
+    padding: var(--space-2xl) var(--space-xl) var(--space-xl);
     position: relative;
     overflow: hidden;
     transition: background var(--transition-base),
                 border-color var(--transition-base),
                 transform var(--transition-base);
+    display: flex;
+    flex-direction: column;
   }
 
   .features__card::before {
@@ -138,37 +151,67 @@ const features = [
     }
   }
 
-  /* Icon */
-  .features__icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
+  /* Visual (phone + glow) */
+  .features__visual {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-md) 0;
   }
 
-  .features__icon--blue {
-    background: rgba(29, 73, 244, 0.1);
-    border: 1px solid rgba(29, 73, 244, 0.2);
+  .features__visual-glow {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    z-index: 0;
   }
 
-  .features__icon--green {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+  .features__visual-glow--blue {
+    background: rgba(29, 73, 244, 0.45);
   }
 
-  .features__icon--gold {
-    background: rgba(234, 179, 8, 0.1);
-    border: 1px solid rgba(234, 179, 8, 0.2);
+  .features__visual-glow--green {
+    background: rgba(16, 185, 129, 0.35);
   }
+
+  .features__visual-glow--gold {
+    background: rgba(234, 179, 8, 0.3);
+  }
+
+  /* Body */
+  .features__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .features__heading-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .features__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .features__dot--blue { background: var(--color-blue-light); box-shadow: 0 0 8px var(--color-blue-light); }
+  .features__dot--green { background: #10B981; box-shadow: 0 0 8px #10B981; }
+  .features__dot--gold { background: #EAB308; box-shadow: 0 0 8px #EAB308; }
 
   .features__card-title {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   .features__card-desc {
@@ -185,13 +228,14 @@ const features = [
     gap: var(--space-sm);
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: auto 0 0;
   }
 
   .features__tag {
     display: inline-block;
     padding: 4px 12px;
     background: var(--color-blue-subtle);
+    border: 1px solid var(--color-blue-border);
     border-radius: var(--radius-full);
     font-size: 0.8rem;
     color: var(--color-blue-light);

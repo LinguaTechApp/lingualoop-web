@@ -1,5 +1,6 @@
 ---
 import SectionLabel from './SectionLabel.astro';
+import PhoneFrame from './PhoneFrame.astro';
 
 const benefits = [
   {
@@ -48,37 +49,12 @@ const benefits = [
     </div>
 
     <div class="why-fluo__visual reveal reveal--delay-1">
-      <div class="phone-mockup" aria-hidden="true">
-        <div class="phone-mockup__notch"></div>
-        <div class="phone-mockup__screen">
-          <p class="phone-mockup__greeting">Good morning!</p>
-          <p class="phone-mockup__brand">Fluo</p>
-
-          <div class="phone-mockup__card">
-            <span class="phone-mockup__card-emoji">🗣️</span>
-            <div>
-              <span class="phone-mockup__card-module">Speaking</span>
-              <span class="phone-mockup__card-label">Coffee Shop Role-play</span>
-            </div>
-          </div>
-
-          <div class="phone-mockup__card">
-            <span class="phone-mockup__card-emoji">🎧</span>
-            <div>
-              <span class="phone-mockup__card-module">Listening</span>
-              <span class="phone-mockup__card-label">TED Talk Dictation</span>
-            </div>
-          </div>
-
-          <div class="phone-mockup__card">
-            <span class="phone-mockup__card-emoji">📚</span>
-            <div>
-              <span class="phone-mockup__card-module">Learning Path</span>
-              <span class="phone-mockup__card-label">Present Perfect</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="why-fluo__visual-glow" aria-hidden="true"></div>
+      <PhoneFrame
+        size="hero"
+        src="/assets/optimized/fluo-04-learning-path-tutor-ai.jpg"
+        alt="Fluo AI Tutor explaining grammar mistakes in Spanish, with examples in English"
+      />
     </div>
   </div>
 </section>
@@ -98,6 +74,10 @@ const benefits = [
 
   .why-fluo__visual {
     order: -1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   @media (min-width: 769px) {
@@ -110,11 +90,22 @@ const benefits = [
     }
   }
 
+  .why-fluo__visual-glow {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color-blue-glow) 0%, transparent 70%);
+    filter: blur(60px);
+    z-index: 0;
+  }
+
   /* Text column */
   .why-fluo__title {
     font-size: var(--font-size-2xl);
     font-weight: 700;
     line-height: 1.2;
+    letter-spacing: -0.02em;
     margin-top: var(--space-md);
     margin-bottom: var(--space-md);
   }
@@ -166,83 +157,5 @@ const benefits = [
     color: var(--color-text-secondary);
     font-size: 0.95rem;
     line-height: 1.6;
-  }
-
-  /* Phone mockup */
-  .phone-mockup {
-    width: 240px;
-    height: 480px;
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border-light);
-    border-radius: 40px;
-    padding: var(--space-md);
-    box-shadow: 0 0 60px var(--color-blue-glow);
-    overflow: hidden;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 769px) {
-    .phone-mockup {
-      width: 280px;
-      height: 560px;
-    }
-  }
-
-  .phone-mockup__notch {
-    width: 80px;
-    height: 24px;
-    background: var(--color-bg-primary);
-    border-radius: 0 0 16px 16px;
-    margin: 0 auto var(--space-md);
-  }
-
-  .phone-mockup__screen {
-    padding: var(--space-md);
-  }
-
-  .phone-mockup__greeting {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-xs);
-  }
-
-  .phone-mockup__brand {
-    font-family: var(--font-brand);
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    background: linear-gradient(135deg, var(--color-blue-light), #A855F7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: var(--space-lg);
-  }
-
-  /* Module cards inside mockup */
-  .phone-mockup__card {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-sm) var(--space-md);
-    margin-bottom: var(--space-sm);
-  }
-
-  .phone-mockup__card-emoji {
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-
-  .phone-mockup__card-module {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-
-  .phone-mockup__card-label {
-    display: block;
-    font-size: 0.7rem;
-    color: var(--color-text-muted);
   }
 </style>
