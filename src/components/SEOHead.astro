@@ -54,29 +54,14 @@ const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Preload DM Sans 800 latin (used by hero headline + CTA display headline; LCP-critical) -->
+<!-- Self-hosted fonts: preload DM Sans 800 latin (LCP-critical for hero "flows." + CTA headline) -->
 <link
   rel="preload"
   as="font"
   type="font/woff2"
-  href="https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K6z9mXg.woff2"
+  href="/fonts/dm-sans-latin-800-normal.woff2"
   crossorigin
 />
-<link
-  rel="preload"
-  as="style"
-  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600&display=swap"
-  onload="this.rel='stylesheet'"
-/>
-<noscript>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600&display=swap"
-  />
-</noscript>
 
 <!-- Global styles -->
 <style is:global>
