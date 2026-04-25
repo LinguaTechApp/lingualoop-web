@@ -35,7 +35,7 @@ const testimonials = [
       <SectionLabel text="Loved by learners" />
       <h2 class="testimonials__title reveal reveal--delay-1" id="testimonials-title">
         Real progress,<br />
-        <span class="testimonials__title-gradient">real stories.</span>
+        <span class="testimonials__title-emphasis">real stories.</span>
       </h2>
 
       <div class="testimonials__rating reveal reveal--delay-2" aria-label="Rated 4.8 out of 5 on the App Store">
@@ -92,17 +92,15 @@ const testimonials = [
 
   .testimonials__title {
     font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin: var(--space-md) 0 var(--space-lg);
   }
 
-  .testimonials__title-gradient {
-    background: linear-gradient(135deg, var(--color-blue-light), #A855F7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .testimonials__title-emphasis {
+    font-weight: 800;
+    color: inherit;
   }
 
   .testimonials__rating {
