@@ -6,34 +6,44 @@ const { variant = 'full' } = Astro.props;
 ---
 
 <div class={`store-badges store-badges--${variant}`}>
-  <a href="https://apps.apple.com/app/id6746905239" class="store-badge" target="_blank" rel="noopener">
-    <svg class="store-badge__icon" width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true">
-      <path d="M16.52 12.46c-.03-2.85 2.33-4.22 2.44-4.29-1.33-1.94-3.4-2.21-4.14-2.24-1.76-.18-3.43 1.04-4.32 1.04-.9 0-2.28-1.01-3.75-.99-1.93.03-3.71 1.12-4.7 2.85-2.01 3.48-.51 8.63 1.44 11.46.96 1.38 2.1 2.94 3.6 2.88 1.44-.06 1.99-.93 3.73-.93 1.74 0 2.23.93 3.75.9 1.56-.03 2.54-1.41 3.49-2.8 1.1-1.6 1.55-3.16 1.58-3.24-.03-.01-3.03-1.16-3.06-4.62zM13.67 3.88C14.47 2.9 15.01 1.57 14.87.21c-1.13.05-2.5.75-3.31 1.7-.73.84-1.37 2.19-1.2 3.48 1.26.1 2.55-.64 3.31-1.51z" fill="currentColor"/>
-    </svg>
-    <div class="store-badge__text">
-      <span class="store-badge__label">Download on the</span>
-      <span class="store-badge__store">App Store</span>
-    </div>
-  </a>
-
-  {variant === 'full' && (
+  {variant === 'hero' ? (
     <div class="store-badge-wrapper">
-      <span class="store-badge store-badge--disabled" role="presentation" title="Google Play version is not available yet">
-        <svg class="store-badge__icon" width="20" height="22" viewBox="0 0 20 22" fill="none" aria-hidden="true">
-          <path d="M1 18.77L11.07 12 1 5.23V18.77zM12.48 11.18L3.23 5.82 14.15 11.18 3.23 16.54l9.25-5.36z" fill="currentColor"/>
-          <path d="M1 5.23L11.07 12 1 18.77V5.23zm2.23.59l7.89 6.18-7.89 6.18V5.82z" fill="currentColor"/>
+      <a href="https://apps.apple.com/app/id6746905239" class="store-badge" target="_blank" rel="noopener">
+        <svg class="store-badge__icon" width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true">
+          <path d="M16.52 12.46c-.03-2.85 2.33-4.22 2.44-4.29-1.33-1.94-3.4-2.21-4.14-2.24-1.76-.18-3.43 1.04-4.32 1.04-.9 0-2.28-1.01-3.75-.99-1.93.03-3.71 1.12-4.7 2.85-2.01 3.48-.51 8.63 1.44 11.46.96 1.38 2.1 2.94 3.6 2.88 1.44-.06 1.99-.93 3.73-.93 1.74 0 2.23.93 3.75.9 1.56-.03 2.54-1.41 3.49-2.8 1.1-1.6 1.55-3.16 1.58-3.24-.03-.01-3.03-1.16-3.06-4.62zM13.67 3.88C14.47 2.9 15.01 1.57 14.87.21c-1.13.05-2.5.75-3.31 1.7-.73.84-1.37 2.19-1.2 3.48 1.26.1 2.55-.64 3.31-1.51z" fill="currentColor"/>
         </svg>
-        <span class="store-badge__text">
-          <span class="store-badge__label">GET IT ON</span>
-          <span class="store-badge__store">Google Play</span>
-        </span>
-      </span>
-      <span class="store-badge__coming-soon">Coming soon on Google Play</span>
+        <div class="store-badge__text">
+          <span class="store-badge__label">Download on the</span>
+          <span class="store-badge__store">App Store</span>
+        </div>
+      </a>
+      <span class="store-badges__android-note">Android coming soon</span>
     </div>
-  )}
-
-  {variant === 'hero' && (
-    <span class="store-badges__android-note">Android coming soon</span>
+  ) : (
+    <>
+      <a href="https://apps.apple.com/app/id6746905239" class="store-badge" target="_blank" rel="noopener">
+        <svg class="store-badge__icon" width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true">
+          <path d="M16.52 12.46c-.03-2.85 2.33-4.22 2.44-4.29-1.33-1.94-3.4-2.21-4.14-2.24-1.76-.18-3.43 1.04-4.32 1.04-.9 0-2.28-1.01-3.75-.99-1.93.03-3.71 1.12-4.7 2.85-2.01 3.48-.51 8.63 1.44 11.46.96 1.38 2.1 2.94 3.6 2.88 1.44-.06 1.99-.93 3.73-.93 1.74 0 2.23.93 3.75.9 1.56-.03 2.54-1.41 3.49-2.8 1.1-1.6 1.55-3.16 1.58-3.24-.03-.01-3.03-1.16-3.06-4.62zM13.67 3.88C14.47 2.9 15.01 1.57 14.87.21c-1.13.05-2.5.75-3.31 1.7-.73.84-1.37 2.19-1.2 3.48 1.26.1 2.55-.64 3.31-1.51z" fill="currentColor"/>
+        </svg>
+        <div class="store-badge__text">
+          <span class="store-badge__label">Download on the</span>
+          <span class="store-badge__store">App Store</span>
+        </div>
+      </a>
+      <div class="store-badge-wrapper">
+        <span class="store-badge store-badge--disabled" role="presentation" title="Google Play version is not available yet">
+          <svg class="store-badge__icon" width="20" height="22" viewBox="0 0 20 22" fill="none" aria-hidden="true">
+            <path d="M1 18.77L11.07 12 1 5.23V18.77zM12.48 11.18L3.23 5.82 14.15 11.18 3.23 16.54l9.25-5.36z" fill="currentColor"/>
+            <path d="M1 5.23L11.07 12 1 18.77V5.23zm2.23.59l7.89 6.18-7.89 6.18V5.82z" fill="currentColor"/>
+          </svg>
+          <span class="store-badge__text">
+            <span class="store-badge__label">GET IT ON</span>
+            <span class="store-badge__store">Google Play</span>
+          </span>
+        </span>
+        <span class="store-badge__coming-soon">Coming soon on Google Play</span>
+      </div>
+    </>
   )}
 </div>
 
