@@ -34,3 +34,4 @@ pnpm-debug.log*
 
 # trash
 .trash
+.vercel
