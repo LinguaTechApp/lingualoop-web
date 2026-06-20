@@ -1,0 +1,342 @@
+---
+import SEOHead from '../../components/SEOHead.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <SEOHead
+    title="Restablecer contraseña — Fluo"
+    description="Restablecé la contraseña de tu cuenta de Fluo."
+    noindex={true}
+  />
+</head>
+<body>
+  <Nav showNavLinks={false} />
+
+  <main class="auth">
+    <section class="auth__card" aria-live="polite">
+      <h1 class="auth__title">Restablecer contraseña</h1>
+
+      <!-- Verificando el enlace -->
+      <div id="state-loading" class="auth__state">
+        <span class="auth__spinner" aria-hidden="true"></span>
+        <p class="auth__text">Verificando el enlace…</p>
+      </div>
+
+      <!-- Enlace inválido / expirado -->
+      <div id="state-error" class="auth__state" hidden>
+        <p class="auth__text auth__text--error">
+          El enlace expiró o ya fue usado. Pedí uno nuevo desde la app Fluo.
+        </p>
+      </div>
+
+      <!-- Formulario de nueva contraseña -->
+      <form id="reset-form" class="auth__form" hidden novalidate>
+        <p class="auth__text auth__text--muted">Elegí una contraseña nueva para tu cuenta.</p>
+
+        <div class="auth__field">
+          <label class="auth__label" for="password">Nueva contraseña</label>
+          <input
+            class="auth__input"
+            id="password"
+            name="password"
+            type="password"
+            minlength="6"
+            autocomplete="new-password"
+            placeholder="Mínimo 6 caracteres"
+            required
+          />
+        </div>
+
+        <div class="auth__field">
+          <label class="auth__label" for="confirm">Confirmar contraseña</label>
+          <input
+            class="auth__input"
+            id="confirm"
+            name="confirm"
+            type="password"
+            minlength="6"
+            autocomplete="new-password"
+            placeholder="Repetí la contraseña"
+            required
+          />
+        </div>
+
+        <p id="form-error" class="auth__text auth__text--error" role="alert" hidden></p>
+
+        <button id="submit-btn" class="auth__button" type="submit">Guardar contraseña</button>
+      </form>
+
+      <!-- Éxito -->
+      <div id="state-success" class="auth__state" hidden>
+        <span class="auth__check" aria-hidden="true">✓</span>
+        <p class="auth__text">
+          ¡Listo! Volvé a la app Fluo e iniciá sesión con tu nueva contraseña.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script is:inline type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+    // Clave pública (publishable). Solo claves públicas acá, nunca claves secretas del servidor.
+    const SUPABASE_URL = 'https://gnmnmvtlxdlaiiograqc.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_M6_5Ue7ULRHqNhzhQkZ9-w_0E-T1VpD';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      auth: {
+        // Manejamos los tokens manualmente (query y hash), sin persistir nada.
+        detectSessionInUrl: false,
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    });
+
+    const els = {
+      loading: document.getElementById('state-loading'),
+      error: document.getElementById('state-error'),
+      form: document.getElementById('reset-form'),
+      success: document.getElementById('state-success'),
+      formError: document.getElementById('form-error'),
+      password: document.getElementById('password'),
+      confirm: document.getElementById('confirm'),
+      submit: document.getElementById('submit-btn'),
+    };
+
+    function show(state) {
+      els.loading.hidden = state !== 'loading';
+      els.error.hidden = state !== 'error';
+      els.form.hidden = state !== 'form';
+      els.success.hidden = state !== 'success';
+    }
+
+    async function init() {
+      // --- Flujo legacy (implicit): tokens en el hash ---
+      // #access_token=...&refresh_token=...&type=recovery
+      const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+
+      // Algunos enlaces expirados llegan como #error=...&error_description=...
+      if (hash.get('error') || hash.get('error_code')) {
+        history.replaceState(null, '', window.location.pathname);
+        show('error');
+        return;
+      }
+
+      const accessToken = hash.get('access_token');
+      const refreshToken = hash.get('refresh_token');
+
+      if (accessToken && refreshToken) {
+        const { error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+        // Limpiamos los tokens de la URL para no dejarlos visibles.
+        history.replaceState(null, '', window.location.pathname);
+        show(error ? 'error' : 'form');
+        return;
+      }
+
+      // --- Flujo moderno (OTP/PKCE): token_hash + type en el query string ---
+      const params = new URLSearchParams(window.location.search);
+      const tokenHash = params.get('token_hash');
+      const type = params.get('type') || 'recovery';
+
+      if (tokenHash) {
+        const { error } = await supabase.auth.verifyOtp({ token_hash: tokenHash, type });
+        show(error ? 'error' : 'form');
+        return;
+      }
+
+      // Sin token de ningún tipo.
+      show('error');
+    }
+
+    els.form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      els.formError.hidden = true;
+      els.formError.textContent = '';
+
+      const password = els.password.value;
+      const confirm = els.confirm.value;
+
+      const fail = (msg) => {
+        els.formError.textContent = msg;
+        els.formError.hidden = false;
+      };
+
+      if (password.length < 6) {
+        fail('La contraseña debe tener al menos 6 caracteres.');
+        return;
+      }
+      if (password !== confirm) {
+        fail('Las contraseñas no coinciden.');
+        return;
+      }
+
+      els.submit.disabled = true;
+      els.submit.textContent = 'Guardando…';
+
+      const { error } = await supabase.auth.updateUser({ password });
+
+      if (error) {
+        fail('No pudimos actualizar la contraseña. Probá de nuevo o pedí un enlace nuevo.');
+        els.submit.disabled = false;
+        els.submit.textContent = 'Guardar contraseña';
+        return;
+      }
+
+      show('success');
+    });
+
+    init().catch(() => show('error'));
+  </script>
+
+  <style>
+    /* El atributo hidden debe ganarle a los display:flex de abajo. */
+    [hidden] { display: none !important; }
+
+    .auth {
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-height) + var(--space-2xl)) clamp(20px, 4vw, 40px) var(--space-3xl);
+    }
+
+    .auth__card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl) clamp(var(--space-lg), 5vw, var(--space-2xl));
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .auth__title {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .auth__state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      text-align: center;
+    }
+
+    .auth__text {
+      font-size: var(--font-size-base);
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+    }
+
+    .auth__text--muted {
+      text-align: center;
+      margin-bottom: var(--space-sm);
+    }
+
+    .auth__text--error {
+      color: #ff8a8a;
+    }
+
+    .auth__spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--color-border-light);
+      border-top-color: var(--color-blue-light);
+      border-radius: 50%;
+      animation: auth-spin 0.8s linear infinite;
+    }
+
+    @keyframes auth-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .auth__check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-blue-subtle);
+      border: 1px solid var(--color-blue-border);
+      color: var(--color-blue-light);
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+    }
+
+    .auth__form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .auth__field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .auth__label {
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    .auth__input {
+      width: 100%;
+      font-family: inherit;
+      font-size: var(--font-size-base);
+      color: var(--color-text-primary);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-md);
+      padding: 12px var(--space-md);
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .auth__input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .auth__input:focus {
+      outline: none;
+      border-color: var(--color-blue-light);
+      box-shadow: 0 0 0 3px var(--color-blue-subtle);
+    }
+
+    .auth__button {
+      width: 100%;
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      color: #fff;
+      background: var(--color-blue);
+      border-radius: var(--radius-full);
+      padding: 13px var(--space-lg);
+      margin-top: var(--space-xs);
+      transition: background var(--transition-base), opacity var(--transition-base);
+    }
+
+    .auth__button:hover {
+      background: var(--color-blue-light);
+    }
+
+    .auth__button:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+  </style>
+</body>
+</html>
