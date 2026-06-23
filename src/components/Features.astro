@@ -1,6 +1,7 @@
 ---
 import SectionLabel from './SectionLabel.astro';
 import PhoneFrame from './PhoneFrame.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n';
 
 const icons: Record<string, string> = {
   Mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/>',
@@ -14,68 +15,58 @@ const icons: Record<string, string> = {
   TrendingUp: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
 };
 
-type Tag = { label: string; icon: keyof typeof icons };
-type Feature = {
-  title: string;
+// Structural data (color, screenshots, per-tag icons). Order matches the
+// `features.items` array in the locale dictionaries; copy is zipped in by index.
+type FeatureMeta = {
   color: 'blue' | 'violet' | 'cyan';
-  desc: string;
-  tags: Tag[];
   img: string;
   imgHi: string;
-  alt: string;
+  icons: [keyof typeof icons, keyof typeof icons, keyof typeof icons];
 };
 
 const phoneSizes = '(min-width: 1200px) 350px, (min-width: 769px) 340px, 260px';
 
-const features: Feature[] = [
+const featureMeta: FeatureMeta[] = [
   {
-    title: 'Speaking',
     color: 'blue',
-    desc: 'Practice real conversations with AI tutors that have unique personalities. From ordering coffee to acing job interviews — scenarios that prepare you for real life.',
-    tags: [
-      { label: 'AI Role-play', icon: 'Mic' },
-      { label: 'Real-time Feedback', icon: 'Zap' },
-      { label: 'CEFR Calibrated', icon: 'Target' },
-    ],
     img: '/assets/optimized/fluo-02-speaking-chat.jpg',
     imgHi: '/assets/optimized/fluo-02-speaking-chat-1200.jpg',
-    alt: 'Fluo Speaking conversation: roleplay with an AI tutor in a train booking scenario',
+    icons: ['Mic', 'Zap', 'Target'],
   },
   {
-    title: 'Listening',
     color: 'violet',
-    desc: 'Sharpen your ear with dictation and quizzes built on real English videos. Hear native speakers at natural speed and build comprehension that actually transfers.',
-    tags: [
-      { label: 'Real Videos', icon: 'Video' },
-      { label: 'Dictation', icon: 'PenLine' },
-      { label: 'Comprehension Quizzes', icon: 'ListChecks' },
-    ],
     img: '/assets/optimized/fluo-03-listeninig-quiz.jpg',
     imgHi: '/assets/optimized/fluo-03-listeninig-quiz-1200.jpg',
-    alt: 'Fluo Listening: comprehension quiz on a video about 5G technology',
+    icons: ['Video', 'PenLine', 'ListChecks'],
   },
   {
-    title: 'Learning Path',
     color: 'cyan',
-    desc: 'Structured grammar and vocabulary lessons that take you from beginner to advanced. Stuck on something? Ask the AI Tutor and get an instant, clear explanation.',
-    tags: [
-      { label: 'Structured Curriculum', icon: 'BookOpen' },
-      { label: 'AI Tutor Chat', icon: 'MessageSquare' },
-      { label: 'A1 → C2', icon: 'TrendingUp' },
-    ],
     img: '/assets/optimized/fluo-04-learning-path-list.jpg',
     imgHi: '/assets/optimized/fluo-04-learning-path-list-1200.jpg',
-    alt: 'Fluo Learning Path: B1 Intermediate units with lessons on Past & Present Bridges',
+    icons: ['BookOpen', 'MessageSquare', 'TrendingUp'],
   },
 ];
+
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+const featuresCopy = t('features');
+const features = featureMeta.map((meta, i) => {
+  const copy = featuresCopy.items[i];
+  return {
+    ...meta,
+    title: copy.title,
+    desc: copy.desc,
+    alt: copy.alt,
+    tags: copy.tags.map((label, j) => ({ label, icon: meta.icons[j] })),
+  };
+});
 ---
 
 <section id="features" class="features">
   <div class="container">
     <div class="features__header">
-      <SectionLabel text="FEATURES" />
-      <h2 class="features__title">Three ways to master English</h2>
-      <p class="features__subtitle">Each module targets a different skill. Together, they build real fluency — not just test scores.</p>
+      <SectionLabel text={featuresCopy.label} />
+      <h2 class="features__title">{featuresCopy.title}</h2>
+      <p class="features__subtitle">{featuresCopy.subtitle}</p>
     </div>
 
     <div class="features__rows">

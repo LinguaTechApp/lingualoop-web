@@ -1,5 +1,9 @@
 ---
 import StoreBadges from './StoreBadges.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n';
+
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+const cta = t('cta');
 ---
 
 <section id="download" class="cta reveal">
@@ -9,9 +13,9 @@ import StoreBadges from './StoreBadges.astro';
   </div>
 
   <div class="cta__content container">
-    <h2 class="cta__title">Ready to speak with confidence?</h2>
-    <p class="cta__subtitle">Download Fluo free and start your first conversation today.</p>
-    <p class="cta__social-proof">Join 2,000+ learners speaking English daily.</p>
+    <h2 class="cta__title">{cta.title}</h2>
+    <p class="cta__subtitle">{cta.subtitle}</p>
+    <p class="cta__social-proof">{cta.socialProof}</p>
     <div class="cta__badges">
       <StoreBadges />
     </div>

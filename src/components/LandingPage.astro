@@ -1,0 +1,52 @@
+---
+// The full marketing landing, rendered once per locale. Each locale page under
+// src/pages/{locale}/index.astro delegates here; the active locale is derived
+// from the URL inside every section, so this body is locale-agnostic.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from './Hero.astro';
+import Testimonials from './Testimonials.astro';
+import Features from './Features.astro';
+import HowItWorks from './HowItWorks.astro';
+import WhyFluo from './WhyFluo.astro';
+import FAQ from './FAQ.astro';
+import CTA from './CTA.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const seo = t('seo');
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Fluo',
+  applicationCategory: 'EducationApplication',
+  operatingSystem: 'iOS, Android',
+  description: seo.schemaDescription,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD'
+  },
+  author: {
+    '@type': 'Organization',
+    name: 'LinguaTech',
+    url: 'https://getfluo.app'
+  }
+};
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  structuredData={structuredData}
+  localized={true}
+>
+  <Hero />
+  <Testimonials />
+  <Features />
+  <HowItWorks />
+  <WhyFluo />
+  <FAQ />
+  <CTA />
+</BaseLayout>

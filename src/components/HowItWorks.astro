@@ -1,56 +1,51 @@
 ---
 import SectionLabel from './SectionLabel.astro';
 import PhoneFrame from './PhoneFrame.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n';
 
-type Step = {
+// Structural data (step number, accent color, screenshots). Order matches the
+// `howItWorks.steps` array in the locale dictionaries; copy is zipped in by index.
+type StepMeta = {
   number: string;
   color: 'blue' | 'violet' | 'cyan';
-  title: string;
-  desc: string;
   img: string;
   imgHi: string;
-  alt: string;
 };
 
-const steps: Step[] = [
+const stepMeta: StepMeta[] = [
   {
     number: '01',
     color: 'blue',
-    title: 'Choose your focus',
-    desc: 'Pick Speaking, Listening, or Learning Path based on what you need today. Fluo adapts to your level.',
     img: '/assets/optimized/fluo-01-home.jpg',
     imgHi: '/assets/optimized/fluo-01-home-1200.jpg',
-    alt: 'Fluo home screen showing Learning Path units and Recommended Practice options',
   },
   {
     number: '02',
     color: 'violet',
-    title: 'Practice with AI',
-    desc: 'Have real conversations, train your ear, or work through lessons — all powered by advanced AI that understands your native language.',
     img: '/assets/optimized/fluo-02-speaking-chat.jpg',
     imgHi: '/assets/optimized/fluo-02-speaking-chat-1200.jpg',
-    alt: 'Fluo Speaking conversation with an AI tutor in a train booking roleplay',
   },
   {
     number: '03',
     color: 'cyan',
-    title: 'Build your streak',
-    desc: 'Track your daily progress and watch your confidence grow. Consistency beats intensity — every session counts.',
     img: '/assets/optimized/fluo-05-profile-stats.jpg',
     imgHi: '/assets/optimized/fluo-05-profile-stats-1200.jpg',
-    alt: 'Fluo profile screen showing Lifetime Progress stats and daily streak',
   },
 ];
 
 const phoneSizes = '(min-width: 1200px) 280px, (min-width: 769px) 260px, 220px';
+
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+const hiw = t('howItWorks');
+const steps = stepMeta.map((meta, i) => ({ ...meta, ...hiw.steps[i] }));
 ---
 
 <section id="how-it-works" class="hiw">
   <div class="container">
     <div class="hiw__header">
-      <SectionLabel text="HOW IT WORKS" />
-      <h2 class="hiw__title">Simple. Effective. Daily.</h2>
-      <p class="hiw__subtitle">Build a habit that sticks in just a few minutes a day.</p>
+      <SectionLabel text={hiw.label} />
+      <h2 class="hiw__title">{hiw.title}</h2>
+      <p class="hiw__subtitle">{hiw.subtitle}</p>
     </div>
 
     <div class="hiw__grid">

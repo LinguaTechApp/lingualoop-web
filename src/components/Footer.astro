@@ -1,11 +1,18 @@
 ---
+import { getLocaleFromUrl, localizedPath, useTranslations } from '../i18n';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const nav = t('nav');
+const footer = t('footer');
+const homeHref = localizedPath(locale, '/');
 ---
 
 <footer class="footer">
   <div class="footer__inner container">
     <div class="footer__top">
       <div class="footer__brand">
-        <a href="/" class="footer__brand-link" aria-label="Fluo home">
+        <a href={homeHref} class="footer__brand-link" aria-label="Fluo home">
           <img
             class="footer__logo"
             src="/assets/logo.png"
@@ -17,27 +24,27 @@
           />
           <span class="footer__name">Fluo</span>
         </a>
-        <p class="footer__tagline">English that flows. Made by LinguaTech for Spanish &amp; Portuguese speakers.</p>
+        <p class="footer__tagline">{footer.tagline}</p>
       </div>
-      <nav class="footer__links" aria-label="Footer navigation">
+      <nav class="footer__links" aria-label={nav.navLabel}>
         <div class="footer__links-group">
-          <h3 class="footer__links-title">Product</h3>
-          <a href="#features">Features</a>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#why-fluo">Why Fluo</a>
-          <a href="#download">Download</a>
+          <h3 class="footer__links-title">{footer.productTitle}</h3>
+          <a href="#features">{nav.features}</a>
+          <a href="#how-it-works">{nav.howItWorks}</a>
+          <a href="#why-fluo">{nav.whyFluo}</a>
+          <a href="#download">{nav.download}</a>
         </div>
         <div class="footer__links-group">
-          <h3 class="footer__links-title">Company</h3>
-          <a href="/support/">Support</a>
-          <a href="/privacy-policy/">Privacy Policy</a>
-          <a href="/terms-of-use/">Terms of Use</a>
+          <h3 class="footer__links-title">{footer.companyTitle}</h3>
+          <a href="/support/">{footer.support}</a>
+          <a href="/privacy-policy/">{footer.privacy}</a>
+          <a href="/terms-of-use/">{footer.terms}</a>
         </div>
       </nav>
     </div>
     <div class="footer__bottom">
-      <p>&copy; 2025 LinguaTech. All rights reserved.</p>
-      <p class="footer__bottom-meta">Designed in Buenos Aires · Built with care</p>
+      <p>{footer.rights}</p>
+      <p class="footer__bottom-meta">{footer.craft}</p>
     </div>
   </div>
 </footer>

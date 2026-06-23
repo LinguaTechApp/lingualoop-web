@@ -1,0 +1,222 @@
+---
+// Accessible language switcher. Two presentations share the same locale links:
+//  - 'dropdown' (desktop nav): a native <details> disclosure — keyboard-operable
+//    for free, links are real <a> so the current page is preserved per locale.
+//  - 'inline' (mobile menu): a simple row of locale links.
+import {
+  getLocaleFromUrl,
+  getBasePath,
+  localizedPath,
+  useTranslations,
+  LOCALES,
+  LANGUAGE_NAMES,
+  LANGUAGE_SHORT,
+  HTML_LANG
+} from '../i18n';
+
+interface Props {
+  variant?: 'dropdown' | 'inline';
+}
+const { variant = 'dropdown' } = Astro.props;
+
+const locale = getLocaleFromUrl(Astro.url);
+const basePath = getBasePath(Astro.url);
+const t = useTranslations(locale);
+const label = t('nav').langLabel;
+
+const links = LOCALES.map((loc) => ({
+  loc,
+  href: localizedPath(loc, basePath),
+  name: LANGUAGE_NAMES[loc],
+  lang: HTML_LANG[loc],
+  current: loc === locale
+}));
+---
+
+{variant === 'dropdown' ? (
+  <details class="lang-switcher">
+    <summary class="lang-switcher__toggle" aria-label={label}>
+      <svg class="lang-switcher__globe" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M2 12h20"></path>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span class="lang-switcher__current">{LANGUAGE_SHORT[locale]}</span>
+      <svg class="lang-switcher__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </summary>
+    <ul class="lang-switcher__menu" role="list">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            hreflang={l.lang}
+            lang={l.lang}
+            aria-current={l.current ? 'true' : undefined}
+            class:list={['lang-switcher__option', { 'is-current': l.current }]}
+          >
+            {l.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </details>
+) : (
+  <ul class="lang-inline" role="list" aria-label={label}>
+    {links.map((l) => (
+      <li>
+        <a
+          href={l.href}
+          hreflang={l.lang}
+          lang={l.lang}
+          aria-current={l.current ? 'true' : undefined}
+          class:list={['lang-inline__option', { 'is-current': l.current }]}
+        >
+          {l.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+  /* ===== Dropdown (desktop) ===== */
+  .lang-switcher {
+    position: relative;
+  }
+
+  .lang-switcher__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .lang-switcher__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .lang-switcher__toggle:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-muted);
+  }
+
+  .lang-switcher__current {
+    letter-spacing: 0.02em;
+  }
+
+  .lang-switcher__chevron {
+    transition: transform var(--transition-base);
+  }
+
+  .lang-switcher[open] .lang-switcher__chevron {
+    transform: rotate(180deg);
+  }
+
+  .lang-switcher__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 168px;
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 50;
+  }
+
+  .lang-switcher__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    transition: background var(--transition-base), color var(--transition-base);
+  }
+
+  .lang-switcher__option:hover {
+    background: var(--color-blue-subtle);
+    color: var(--color-text-primary);
+  }
+
+  .lang-switcher__option.is-current {
+    color: var(--color-blue-light);
+    font-weight: 600;
+  }
+
+  .lang-switcher__option.is-current::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-blue-light);
+    box-shadow: 0 0 8px var(--color-blue-light);
+    flex-shrink: 0;
+  }
+
+  /* ===== Inline (mobile menu) ===== */
+  .lang-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .lang-inline__option {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-base), border-color var(--transition-base), background var(--transition-base);
+  }
+
+  .lang-inline__option:hover {
+    color: var(--color-text-primary);
+  }
+
+  .lang-inline__option.is-current {
+    color: var(--color-blue-light);
+    border-color: var(--color-blue-border);
+    background: var(--color-blue-subtle);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  // Close the dropdown on outside click or Escape (return focus to the toggle).
+  document.querySelectorAll<HTMLDetailsElement>('details.lang-switcher').forEach((el) => {
+    const summary = el.querySelector('summary');
+    document.addEventListener('click', (e) => {
+      if (el.open && !el.contains(e.target as Node)) el.open = false;
+    });
+    el.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Escape' && el.open) {
+        el.open = false;
+        summary?.focus();
+      }
+    });
+  });
+</script>

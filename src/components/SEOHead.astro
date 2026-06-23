@@ -1,4 +1,14 @@
 ---
+import {
+  getLocaleFromUrl,
+  getBasePath,
+  localizedPath,
+  LOCALES,
+  HREFLANG,
+  OG_LOCALE,
+  DEFAULT_LOCALE
+} from '../i18n';
+
 interface Props {
   title: string;
   description: string;
@@ -7,20 +17,38 @@ interface Props {
   ogType?: string;
   noindex?: boolean;
   structuredData?: object;
+  /** When true, emit hreflang alternates for all locales + x-default. */
+  localized?: boolean;
 }
 
 const {
   title,
   description,
-  canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://linguatech.app').href,
+  canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://getfluo.app').href,
   ogImage = '/assets/og-image.png',
   ogType = 'website',
   noindex = false,
   structuredData,
+  localized = false,
 } = Astro.props;
 
-const siteUrl = Astro.site?.origin ?? 'https://linguatech.app';
+const siteUrl = Astro.site?.origin ?? 'https://getfluo.app';
 const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+const locale = getLocaleFromUrl(Astro.url);
+const ogLocale = OG_LOCALE[locale];
+
+// hreflang alternates: same logical page in every language + x-default → English.
+const basePath = getBasePath(Astro.url);
+const abs = (path: string) => new URL(path, siteUrl).href;
+const alternates = localized
+  ? [
+      ...LOCALES.flatMap((loc) =>
+        HREFLANG[loc].map((code) => ({ hreflang: code, href: abs(localizedPath(loc, basePath)) }))
+      ),
+      { hreflang: 'x-default', href: abs(localizedPath(DEFAULT_LOCALE, basePath)) }
+    ]
+  : [];
 ---
 
 <meta charset="utf-8" />
@@ -31,6 +59,10 @@ const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 
 <link rel="canonical" href={canonical} />
 
+{alternates.map((alt) => (
+  <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+))}
+
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Open Graph -->
@@ -40,7 +72,7 @@ const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content={ogType} />
 <meta property="og:site_name" content="Fluo by LinguaTech" />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content={ogLocale} />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />

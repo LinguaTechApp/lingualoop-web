@@ -1,37 +1,22 @@
 ---
 import SectionLabel from './SectionLabel.astro';
 import PhoneFrame from './PhoneFrame.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n';
 
-const benefits = [
-  {
-    emoji: '🌎',
-    title: 'Made for Spanish & Portuguese speakers',
-    desc: 'We understand the specific challenges you face — false cognates, pronunciation patterns, and grammar gaps unique to your native language.',
-  },
-  {
-    emoji: '🤖',
-    title: 'AI that feels human',
-    desc: 'Our AI tutors have distinct personalities and adapt to your level. Practice anytime without the pressure of a live teacher.',
-  },
-  {
-    emoji: '🎯',
-    title: 'Speak from day one',
-    desc: 'No months of grammar drills before your first conversation. Fluo gets you speaking immediately in real-world scenarios.',
-  },
-  {
-    emoji: '⚡',
-    title: 'All skills, one app',
-    desc: 'Speaking, listening, grammar, and vocabulary in one place. No need to juggle multiple apps or subscriptions.',
-  },
-];
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+const whyFluo = t('whyFluo');
+
+// Emojis are structural; order matches `whyFluo.benefits` in the dictionaries.
+const emojis = ['🌎', '🤖', '🎯', '⚡'];
+const benefits = whyFluo.benefits.map((b, i) => ({ ...b, emoji: emojis[i] }));
 ---
 
 <section id="why-fluo" class="why-fluo reveal">
   <div class="why-fluo__inner container">
     <div class="why-fluo__text">
-      <SectionLabel text="WHY FLUO" />
-      <h2 class="why-fluo__title">Built for the way you actually learn</h2>
-      <p class="why-fluo__subtitle">Most apps teach English as if every learner is the same. Fluo is different.</p>
+      <SectionLabel text={whyFluo.label} />
+      <h2 class="why-fluo__title">{whyFluo.title}</h2>
+      <p class="why-fluo__subtitle">{whyFluo.subtitle}</p>
 
       <div class="why-fluo__benefits">
         {benefits.map((b, i) => (
@@ -53,7 +38,7 @@ const benefits = [
       <PhoneFrame
         size="hero"
         src="/assets/optimized/fluo-04-learning-path-tutor-ai.jpg"
-        alt="Fluo AI Tutor explaining grammar mistakes in Spanish, with examples in English"
+        alt={whyFluo.imageAlt}
       />
     </div>
   </div>

@@ -1,14 +1,22 @@
 ---
+import LangSwitcher from './LangSwitcher.astro';
+import { getLocaleFromUrl, localizedPath, useTranslations } from '../i18n';
+
 interface Props {
   showNavLinks?: boolean;
 }
 
 const { showNavLinks = true } = Astro.props;
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const nav = t('nav');
+const homeHref = localizedPath(locale, '/');
 ---
 
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<nav class="nav" role="navigation" aria-label={nav.navLabel}>
   <div class="nav__inner container">
-    <a href="/" class="nav__brand" aria-label="Fluo home">
+    <a href={homeHref} class="nav__brand" aria-label="Fluo home">
       <img
         class="nav__logo"
         src="/assets/logo.png"
@@ -22,18 +30,21 @@ const { showNavLinks = true } = Astro.props;
     </a>
 
     {showNavLinks && (
-      <ul class="nav__links" role="list">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#why-fluo">Why Fluo</a></li>
-        <li><a href="#download">Download</a></li>
-      </ul>
+      <div class="nav__cluster">
+        <ul class="nav__links" role="list">
+          <li><a href="#features">{nav.features}</a></li>
+          <li><a href="#how-it-works">{nav.howItWorks}</a></li>
+          <li><a href="#why-fluo">{nav.whyFluo}</a></li>
+          <li><a href="#download">{nav.download}</a></li>
+        </ul>
+        <LangSwitcher variant="dropdown" />
+      </div>
     )}
 
     {showNavLinks && (
       <button
         class="nav__hamburger"
-        aria-label="Open menu"
+        aria-label={nav.menuOpen}
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
@@ -46,14 +57,15 @@ const { showNavLinks = true } = Astro.props;
 </nav>
 
 {showNavLinks && (
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
-    <button class="mobile-menu__close" aria-label="Close menu">&times;</button>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label={nav.menuLabel}>
+    <button class="mobile-menu__close" aria-label={nav.menuClose}>&times;</button>
     <ul class="mobile-menu__links" role="list">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#why-fluo">Why Fluo</a></li>
-      <li><a href="#download">Download</a></li>
+      <li><a href="#features">{nav.features}</a></li>
+      <li><a href="#how-it-works">{nav.howItWorks}</a></li>
+      <li><a href="#why-fluo">{nav.whyFluo}</a></li>
+      <li><a href="#download">{nav.download}</a></li>
     </ul>
+    <LangSwitcher variant="inline" />
   </div>
 )}
 
@@ -153,8 +165,14 @@ const { showNavLinks = true } = Astro.props;
     letter-spacing: -0.01em;
   }
 
-  .nav__links {
+  /* Right-side cluster (section links + language switcher). Hidden on mobile;
+     its contents move into the hamburger overlay there. */
+  .nav__cluster {
     display: none;
+  }
+
+  .nav__links {
+    display: flex;
     list-style: none;
     gap: var(--space-xl);
   }
@@ -238,8 +256,10 @@ const { showNavLinks = true } = Astro.props;
 
   /* Desktop */
   @media (min-width: 769px) {
-    .nav__links {
+    .nav__cluster {
       display: flex;
+      align-items: center;
+      gap: var(--space-xl);
     }
 
     .nav__hamburger {

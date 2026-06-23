@@ -1,36 +1,18 @@
 ---
 import SectionLabel from './SectionLabel.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n';
 
-const faqs = [
-  {
-    q: 'Is Fluo free to use?',
-    a: 'Yes — there\'s a free tier with daily practice that never expires. New users get extra practice during their first week. Premium ($6.99/month or $39.99/year) unlocks unlimited practice and all scenarios.',
-  },
-  {
-    q: 'What level of English do I need to start?',
-    a: 'Any level. Take a 2-minute placement test on signup or pick a level manually — Fluo supports A1 (Beginner) through C2 (Proficient).',
-  },
-  {
-    q: 'Do I need internet to use Fluo?',
-    a: 'Yes. Real-time AI conversations and dictation exercises require an internet connection.',
-  },
-  {
-    q: 'Is the app available on Android?',
-    a: 'Currently iOS only. Android is in our roadmap — sign up to get notified when it launches.',
-  },
-  {
-    q: 'Can I cancel anytime?',
-    a: 'Yes. Cancel directly in your App Store subscription settings — your access continues until the end of the current billing period.',
-  },
-];
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+const faq = t('faq');
+const faqs = faq.items;
 ---
 
 <section id="faq" class="faq reveal">
   <div class="container">
     <div class="faq__header">
-      <SectionLabel text="FAQ" />
-      <h2 class="faq__title">Frequently asked questions</h2>
-      <p class="faq__subtitle">Everything you need to know before getting started.</p>
+      <SectionLabel text={faq.label} />
+      <h2 class="faq__title">{faq.title}</h2>
+      <p class="faq__subtitle">{faq.subtitle}</p>
     </div>
 
     <div class="faq__list">

@@ -1,44 +1,30 @@
 ---
 import SectionLabel from './SectionLabel.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n';
 
-const testimonials = [
-  {
-    quote: "After 3 months with Fluo, I can lead meetings in English without panicking. The AI roleplay made the difference.",
-    name: "Valentina R.",
-    country: "Argentina",
-    level: "B1 → B2",
-    initial: "V",
-    gradient: "linear-gradient(135deg, #EC4899, #8B5CF6)",
-  },
-  {
-    quote: "The interview roleplay prepared me for my dream job at a global company. I finally feel confident speaking English.",
-    name: "Carlos M.",
-    country: "Brazil",
-    level: "A2 → B1",
-    initial: "C",
-    gradient: "linear-gradient(135deg, #3B82F6, #06B6D4)",
-  },
-  {
-    quote: "What I love most is practicing anytime without the pressure of a live teacher. Consistent daily progress.",
-    name: "Ana L.",
-    country: "Mexico",
-    level: "B2 → C1",
-    initial: "A",
-    gradient: "linear-gradient(135deg, #F59E0B, #EF4444)",
-  },
+// Avatar initial + gradient are structural; order matches `testimonials.items`
+// in the dictionaries. Quote and country come from the active locale.
+const avatars = [
+  { initial: 'V', gradient: 'linear-gradient(135deg, #EC4899, #8B5CF6)' },
+  { initial: 'C', gradient: 'linear-gradient(135deg, #3B82F6, #06B6D4)' },
+  { initial: 'A', gradient: 'linear-gradient(135deg, #F59E0B, #EF4444)' },
 ];
+
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+const tm = t('testimonials');
+const testimonials = tm.items.map((item, i) => ({ ...item, ...avatars[i] }));
 ---
 
 <section class="testimonials reveal" id="testimonials" aria-labelledby="testimonials-title">
   <div class="container">
     <div class="testimonials__header">
-      <SectionLabel text="Loved by learners" />
+      <SectionLabel text={tm.label} />
       <h2 class="testimonials__title" id="testimonials-title">
-        Real progress,<br />
-        <span class="testimonials__title-emphasis">real stories.</span>
+        {tm.titleLine1}<br />
+        <span class="testimonials__title-emphasis">{tm.titleAccent}</span>
       </h2>
 
-      <div class="testimonials__rating" aria-label="Rated 4.8 out of 5 on the App Store">
+      <div class="testimonials__rating" aria-label={tm.ratingAria}>
         <div class="testimonials__rating-stars" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
@@ -47,28 +33,28 @@ const testimonials = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
         </div>
         <div class="testimonials__rating-meta">
-          <span class="testimonials__rating-score">4.8</span>
-          <span class="testimonials__rating-detail">out of 5 · 2,000+ App Store reviews</span>
+          <span class="testimonials__rating-score">{tm.ratingScore}</span>
+          <span class="testimonials__rating-detail">{tm.ratingDetail}</span>
         </div>
       </div>
     </div>
 
     <div class="testimonials__grid">
-      {testimonials.map((t, i) => (
+      {testimonials.map((item) => (
         <article class="testimonials__card">
-          <div class="testimonials__stars" role="img" aria-label="5 out of 5 stars">
+          <div class="testimonials__stars" role="img" aria-label={tm.cardStarsAria}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7z"/></svg>
           </div>
-          <blockquote class="testimonials__quote">{t.quote}</blockquote>
+          <blockquote class="testimonials__quote">{item.quote}</blockquote>
           <footer class="testimonials__author">
-            <div class="testimonials__avatar" style={`background: ${t.gradient}`} aria-hidden="true">{t.initial}</div>
+            <div class="testimonials__avatar" style={`background: ${item.gradient}`} aria-hidden="true">{item.initial}</div>
             <div class="testimonials__person">
-              <div class="testimonials__name">{t.name}</div>
-              <div class="testimonials__meta">{t.country} · {t.level}</div>
+              <div class="testimonials__name">{item.name}</div>
+              <div class="testimonials__meta">{item.country} · {item.level}</div>
             </div>
           </footer>
         </article>
