@@ -1,14 +1,23 @@
 ---
 import SectionLabel from './SectionLabel.astro';
 import PhoneFrame from './PhoneFrame.astro';
-import { getLocaleFromUrl, useTranslations } from '../i18n';
+import { getLocaleFromUrl, useTranslations, type Locale } from '../i18n';
 
-const t = useTranslations(getLocaleFromUrl(Astro.url));
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 const whyFluo = t('whyFluo');
 
 // Emojis are structural; order matches `whyFluo.benefits` in the dictionaries.
 const emojis = ['🌎', '🤖', '🎯', '⚡'];
 const benefits = whyFluo.benefits.map((b, i) => ({ ...b, emoji: emojis[i] }));
+
+// AI-tutor screenshot, localized where the app supports native-language
+// explanations. Other locales fall back to the default (Spanish-UI) capture.
+const TUTOR_SHOT_DEFAULT = '/assets/optimized/fluo-04-learning-path-tutor-ai.jpg';
+const tutorShotByLocale: Partial<Record<Locale, string>> = {
+  'pt-br': '/assets/optimized/fluo-04-learning-path-tutor-ai-pt-br.jpg'
+};
+const tutorShot = tutorShotByLocale[locale] ?? TUTOR_SHOT_DEFAULT;
 ---
 
 <section id="why-fluo" class="why-fluo reveal">
@@ -37,7 +46,7 @@ const benefits = whyFluo.benefits.map((b, i) => ({ ...b, emoji: emojis[i] }));
       <div class="why-fluo__visual-glow" aria-hidden="true"></div>
       <PhoneFrame
         size="hero"
-        src="/assets/optimized/fluo-04-learning-path-tutor-ai.jpg"
+        src={tutorShot}
         alt={whyFluo.imageAlt}
       />
     </div>
