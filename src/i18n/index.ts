@@ -22,6 +22,18 @@ export const LOCALES = ['en', 'es', 'pt-br', 'fr', 'it'] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'en';
 
+/**
+ * Locales exposed in the UI and SEO. `fr` and `it` stay in LOCALES (so /fr/ and
+ * /it/ still render in-language), but are hidden — no language-switcher entry,
+ * no hreflang, excluded from the sitemap, and noindex'd — until those markets
+ * launch. Re-publish by adding them back here AND to the sitemap config in
+ * astro.config.mjs.
+ */
+export const PUBLISHED_LOCALES: readonly Locale[] = ['en', 'es', 'pt-br'];
+export function isPublishedLocale(locale: Locale): boolean {
+  return PUBLISHED_LOCALES.includes(locale);
+}
+
 const dictionaries: Record<Locale, Dict> = {
   en,
   es,

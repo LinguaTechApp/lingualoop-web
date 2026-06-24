@@ -8,7 +8,7 @@ import {
   getBasePath,
   localizedPath,
   useTranslations,
-  LOCALES,
+  PUBLISHED_LOCALES,
   LANGUAGE_NAMES,
   LANGUAGE_SHORT,
   HTML_LANG
@@ -24,7 +24,7 @@ const basePath = getBasePath(Astro.url);
 const t = useTranslations(locale);
 const label = t('nav').langLabel;
 
-const links = LOCALES.map((loc) => ({
+const links = PUBLISHED_LOCALES.map((loc) => ({
   loc,
   href: localizedPath(loc, basePath),
   name: LANGUAGE_NAMES[loc],

@@ -12,17 +12,18 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // fr/it are built but hidden until launch — keep them out of the sitemap.
+      filter: (page) => !/^https?:\/\/[^/]+\/(fr|it)\//.test(page),
       i18n: {
         defaultLocale: 'en',
         // @astrojs/sitemap rejects digits in hreflang values (e.g. es-419), so
         // the sitemap advertises generic `es`. The richer es/es-419 pair is
         // emitted as <link rel="alternate"> in the page <head> (see SEOHead).
+        // fr/it omitted here (hidden); re-add when those markets launch.
         locales: {
           en: 'en',
           es: 'es',
-          'pt-br': 'pt-BR',
-          fr: 'fr',
-          it: 'it'
+          'pt-br': 'pt-BR'
         }
       }
     })

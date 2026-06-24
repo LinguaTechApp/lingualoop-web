@@ -3,7 +3,8 @@ import {
   getLocaleFromUrl,
   getBasePath,
   localizedPath,
-  LOCALES,
+  isPublishedLocale,
+  PUBLISHED_LOCALES,
   HREFLANG,
   OG_LOCALE,
   DEFAULT_LOCALE
@@ -38,17 +39,23 @@ const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 const locale = getLocaleFromUrl(Astro.url);
 const ogLocale = OG_LOCALE[locale];
 
-// hreflang alternates: same logical page in every language + x-default → English.
+// Hidden locales (fr/it) still render but are kept out of the index and the
+// hreflang graph until launch.
+const hiddenLocale = localized && !isPublishedLocale(locale);
+const robotsNoindex = noindex || hiddenLocale;
+
+// hreflang alternates: same logical page in every published language + x-default.
 const basePath = getBasePath(Astro.url);
 const abs = (path: string) => new URL(path, siteUrl).href;
-const alternates = localized
-  ? [
-      ...LOCALES.flatMap((loc) =>
-        HREFLANG[loc].map((code) => ({ hreflang: code, href: abs(localizedPath(loc, basePath)) }))
-      ),
-      { hreflang: 'x-default', href: abs(localizedPath(DEFAULT_LOCALE, basePath)) }
-    ]
-  : [];
+const alternates =
+  localized && !hiddenLocale
+    ? [
+        ...PUBLISHED_LOCALES.flatMap((loc) =>
+          HREFLANG[loc].map((code) => ({ hreflang: code, href: abs(localizedPath(loc, basePath)) }))
+        ),
+        { hreflang: 'x-default', href: abs(localizedPath(DEFAULT_LOCALE, basePath)) }
+      ]
+    : [];
 ---
 
 <meta charset="utf-8" />
@@ -63,7 +70,7 @@ const alternates = localized
   <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
 ))}
 
-{noindex && <meta name="robots" content="noindex, nofollow" />}
+{robotsNoindex && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Open Graph -->
 <meta property="og:title" content={title} />
