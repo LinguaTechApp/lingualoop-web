@@ -167,7 +167,7 @@ const ptBR: Dict = {
       },
       {
         q: 'Posso cancelar quando quiser?',
-        a: 'Sim. Cancele direto nas configurações de assinatura da sua App Store; seu acesso continua até o fim do período de cobrança atual.'
+        a: 'Sim. Cancele nas configurações de assinatura da sua loja — App Store no iOS ou Google Play no Android. Seu acesso continua até o fim do período de cobrança atual.'
       }
     ]
   },

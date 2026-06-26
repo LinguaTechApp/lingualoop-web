@@ -168,7 +168,7 @@ const it: Dict = {
       },
       {
         q: "Posso disdire quando voglio?",
-        a: "Sì. Disdici direttamente dalle impostazioni dell'abbonamento del tuo App Store; il tuo accesso continua fino alla fine del periodo di fatturazione in corso."
+        a: "Sì. Disdici dalle impostazioni dell'abbonamento del tuo store — App Store su iOS o Google Play su Android. Il tuo accesso continua fino alla fine del periodo di fatturazione in corso."
       }
     ]
   },

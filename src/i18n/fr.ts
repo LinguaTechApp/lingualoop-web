@@ -168,7 +168,7 @@ const fr: Dict = {
       },
       {
         q: "Puis-je résilier à tout moment ?",
-        a: "Oui. Résiliez directement dans les réglages d'abonnement de votre App Store ; votre accès se poursuit jusqu'à la fin de la période de facturation en cours."
+        a: "Oui. Résiliez depuis les réglages d'abonnement de votre boutique — l'App Store sur iOS ou Google Play sur Android. Votre accès se poursuit jusqu'à la fin de la période de facturation en cours."
       }
     ]
   },

@@ -165,7 +165,7 @@ const en: Dict = {
       },
       {
         q: 'Can I cancel anytime?',
-        a: 'Yes. Cancel directly in your App Store subscription settings — your access continues until the end of the current billing period.'
+        a: "Yes. Cancel from your store's subscription settings — the App Store on iOS or Google Play on Android. Your access continues until the end of the current billing period."
       }
     ]
   },

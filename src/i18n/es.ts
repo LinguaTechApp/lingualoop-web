@@ -168,7 +168,7 @@ const es: Dict = {
       },
       {
         q: '¿Puedo cancelar cuando quiera?',
-        a: 'Sí. Cancela directamente desde los ajustes de suscripción de tu App Store; tu acceso continúa hasta el final del período de facturación vigente.'
+        a: 'Sí. Cancela desde los ajustes de suscripción de tu tienda — App Store en iOS o Google Play en Android. Tu acceso continúa hasta el final del período de facturación vigente.'
       }
     ]
   },
