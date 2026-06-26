@@ -4,7 +4,7 @@ const en: Dict = {
   seo: {
     title: 'Fluo — Speak English Naturally | AI-Powered English Learning App',
     description:
-      'Fluo helps Spanish and Portuguese speakers learn English naturally through AI-powered speaking practice, real-video listening, and structured learning paths. Download free on iOS.',
+      'Fluo helps Spanish and Portuguese speakers learn English naturally through AI-powered speaking practice, real-video listening, and structured learning paths. Download free on iOS and Android.',
     schemaDescription:
       'AI-powered English learning app for Spanish and Portuguese speakers. Practice speaking with AI tutors, improve listening with real videos, and master grammar through structured paths.'
   },
@@ -161,7 +161,7 @@ const en: Dict = {
       },
       {
         q: 'Is the app available on Android?',
-        a: 'Currently iOS only. Android is in our roadmap — sign up to get notified when it launches.'
+        a: 'Yes — Fluo is available on both iOS and Android. Download it free from the App Store or Google Play.'
       },
       {
         q: 'Can I cancel anytime?',
@@ -189,10 +189,7 @@ const en: Dict = {
 
   storeBadges: {
     appStoreLabel: 'Download on the',
-    androidNote: 'Android coming soon',
-    googlePlayLabel: 'GET IT ON',
-    googlePlayComingSoon: 'Coming soon on Google Play',
-    googlePlayDisabledTitle: 'Google Play version is not available yet'
+    googlePlayLabel: 'GET IT ON'
   }
 };
 

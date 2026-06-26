@@ -7,7 +7,7 @@ const fr: Dict = {
   seo: {
     title: "Fluo — Parlez anglais avec aisance | App d'anglais avec IA",
     description:
-      "Fluo aide les francophones à apprendre l'anglais naturellement : entraînez-vous à parler avec des tuteurs IA, affûtez votre oreille avec de vraies vidéos et progressez grâce à des parcours structurés. À télécharger gratuitement sur iOS.",
+      "Fluo aide les francophones à apprendre l'anglais naturellement : entraînez-vous à parler avec des tuteurs IA, affûtez votre oreille avec de vraies vidéos et progressez grâce à des parcours structurés. À télécharger gratuitement sur iOS et Android.",
     schemaDescription:
       "App d'apprentissage de l'anglais avec IA, pensée pour les francophones. Entraînez-vous à parler avec des tuteurs IA, améliorez votre compréhension avec de vraies vidéos et maîtrisez la grammaire grâce à des parcours structurés."
   },
@@ -164,7 +164,7 @@ const fr: Dict = {
       },
       {
         q: "L'application est-elle disponible sur Android ?",
-        a: "Pour l'instant, uniquement sur iOS. Android est dans notre feuille de route : inscrivez-vous pour être prévenu du lancement."
+        a: "Oui. Fluo est disponible sur iOS et Android. Téléchargez-la gratuitement sur l'App Store ou Google Play."
       },
       {
         q: "Puis-je résilier à tout moment ?",
@@ -192,10 +192,7 @@ const fr: Dict = {
 
   storeBadges: {
     appStoreLabel: "Télécharger dans l'",
-    androidNote: "Android bientôt disponible",
-    googlePlayLabel: "DISPONIBLE SUR",
-    googlePlayComingSoon: "Bientôt sur Google Play",
-    googlePlayDisabledTitle: "La version Google Play n'est pas encore disponible"
+    googlePlayLabel: "TÉLÉCHARGER SUR"
   }
 };
 

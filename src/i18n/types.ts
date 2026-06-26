@@ -143,10 +143,7 @@ export interface FooterCopy {
 
 export interface StoreBadgesCopy {
   appStoreLabel: string;
-  androidNote: string;
   googlePlayLabel: string;
-  googlePlayComingSoon: string;
-  googlePlayDisabledTitle: string;
 }
 
 export interface Dict {

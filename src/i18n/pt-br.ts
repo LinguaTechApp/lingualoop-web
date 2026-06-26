@@ -6,7 +6,7 @@ const ptBR: Dict = {
   seo: {
     title: 'Fluo — Fale inglês com naturalidade | App de inglês com IA',
     description:
-      'O Fluo ajuda quem fala português a aprender inglês de forma natural: pratique conversas com tutores de IA, treine o ouvido com vídeos reais e evolua com trilhas de aprendizado estruturadas. Baixe grátis no iOS.',
+      'O Fluo ajuda quem fala português a aprender inglês de forma natural: pratique conversas com tutores de IA, treine o ouvido com vídeos reais e evolua com trilhas de aprendizado estruturadas. Baixe grátis no iOS e no Android.',
     schemaDescription:
       'App para aprender inglês com IA, feito para quem fala português. Pratique conversação com tutores de IA, melhore sua compreensão com vídeos reais e domine a gramática com trilhas estruturadas.'
   },
@@ -163,7 +163,7 @@ const ptBR: Dict = {
       },
       {
         q: 'O app está disponível no Android?',
-        a: 'Por enquanto só no iOS. O Android está no nosso roadmap: cadastre-se para avisarmos quando lançar.'
+        a: 'Sim. O Fluo está disponível no iOS e no Android. Baixe grátis na App Store ou no Google Play.'
       },
       {
         q: 'Posso cancelar quando quiser?',
@@ -191,10 +191,7 @@ const ptBR: Dict = {
 
   storeBadges: {
     appStoreLabel: 'Baixe na',
-    androidNote: 'Android em breve',
-    googlePlayLabel: 'DISPONÍVEL NO',
-    googlePlayComingSoon: 'Em breve no Google Play',
-    googlePlayDisabledTitle: 'A versão para Google Play ainda não está disponível'
+    googlePlayLabel: 'DISPONÍVEL NO'
   }
 };
 
