@@ -53,7 +53,7 @@ Items donde tomamos decisión deliberada y NO debe reabrirse sin razón nueva:
 - **Section title style:** Testimonials usa dual-weight 500/800 como excepción intencional. El resto de H2 son single-weight 700. NO normalizar.
 - **Support content model:** accordion por categoría (5 categorías colapsables con preguntas internas como h3 + p). NO accordion individual por pregunta.
 - **Slugs URL:** `/privacy-policy/`, `/terms-of-use/`, `/support/`. Mantener.
-- **Email contact split:** `contact@linguatech.app` para Account Security (Terms §6); `support@linguatech.app` para todo lo demás. Ambos funcionales.
+- **Email contact único:** `contact@linguatech.app` en TODA la web (texto visible + `mailto:`). El split previo (`support@` para soporte general) se descartó: `support@linguatech.app` nunca existió y rebotaba. NO reintroducir una segunda dirección sin verificar primero que el buzón exista. Commit `283ddb3`.
 - **Datos personales en Contact sections (teléfono AR, dirección Buenos Aires):** ocultos hasta que alguien los solicite formalmente.
 - **Hero badge copy:** "Real-time feedback · Conversation flow" (NO "Pronunciation: 94%" — promesa que el producto no entrega hoy).
 - **FAQ pricing copy:** comunica freemium permanente con metering, NO trial limitado en tiempo.
