@@ -1,5 +1,7 @@
 # Fluo — Brief de diseño para landing
 
+> ⚠️ **Reconstrucción del 2026-04-24 — verificar contra DB/código antes de usar para copy/diseño.** Varios datos de este brief son reconstrucciones aproximadas y algunos quedaron desactualizados; se corrigieron los errores conocidos (tipografía, voces, personajes) en una pasada posterior, pero el resto sigue sin re-verificar. Trátalo como punto de partida, no como fuente de verdad.
+
 > **Nota:** La mayoría de los documentos internos del proyecto todavía dicen "LinguaLoop" (rebrand completo en iOS, pendiente en web/deep links). Para la landing usá **Fluo** consistentemente. Donde no tenga literales exactos en los docs lo aclaro explícitamente.
 
 ---
@@ -163,7 +165,7 @@ Tap → sheet (`.presentationDetents([.medium, .large])`):
 
 ### 2.2 Tipografía
 
-**Familia**: SF Pro (sistema iOS). Para web usar **SF Pro** si Apple lo permite o el equivalente más cercano: **Inter** o **Geist Sans**.
+**Familia**: la app iOS usa SF Pro (sistema iOS). **Para la landing la tipografía es DM Sans + Quicksand** (corregido 2026-06-29; **no** SF Pro / Inter / Geist Sans): **DM Sans** es la única familia del sistema en toda la landing (body, headings, UI; pesos 400/500/600/700/800) y **Quicksand 600** se usa exclusivamente para el wordmark "Fluo" (Nav + Footer). Fuente: `lingualoop-web/CLAUDE.md` + `src/styles/global.css`.
 
 Jerarquía que usa la app:
 
@@ -291,17 +293,11 @@ Es un solo "personaje" funcional, no hay variantes. Usa `gpt-5.4-nano` con tempe
 **Cada escenario tiene un personaje asignado** (tabla `speaking.characters`). Los personajes tienen:
 
 - `name` (nombre propio)
-- `voice_id` (una de 6 voces OpenAI: alloy, echo, fable, onyx, nova, shimmer)
+- `voice_id` — **las voces son de Inworld TTS-2** (corregido 2026-06-29; **no** "6 voces OpenAI"). Verificá los IDs/nombres reales contra la DB (`speaking.characters`) y el backend antes de usar nombres de voz en la landing.
 - `base_archetype` (etiqueta corta, ej. "Friendly Barista")
 - `base_system_prompt` (personalidad base)
 
-> No tengo la lista completa en el knowledge. El archetype confirmado es "Friendly Barista". Podés asumir una lista similar para la landing (verificá contra DB antes de usar nombres literales):
-
-- **Maya** — Friendly Barista (voice: nova) — café scenarios
-- **James** — HR Manager (voice: onyx) — job interview scenarios
-- **Sofia** — Travel Guide (voice: shimmer) — tourism scenarios
-- **David** — Business Partner (voice: echo) — work/negotiation scenarios
-- **Emma** — Conversation Partner (voice: fable) — free talk, discussions
+> ⚠️ **SIN VERIFICAR — no usar estos nombres en la landing.** El único archetype confirmado es **"Friendly Barista"**. Los nombres de personaje (p. ej. "Maya/James/Sofia") y las asignaciones de voz que figuraban acá eran **inventados** (y citaban voces de OpenAI, que tampoco corresponde — las voces son **Inworld TTS-2**), así que se quitaron. Para cualquier nombre/voz real de personaje, consultá la tabla `speaking.characters` en la DB antes de publicar.
 
 ---
 
