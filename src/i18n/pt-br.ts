@@ -186,7 +186,8 @@ const ptBR: Dict = {
     privacy: 'Política de Privacidade',
     terms: 'Termos de Uso',
     rights: '© 2026 LinguaTech. Todos os direitos reservados.',
-    craft: 'Desenhado em Buenos Aires · Feito com carinho'
+    craft: 'Desenhado em Buenos Aires · Feito com carinho',
+    followUs: 'Siga a Fluo'
   },
 
   storeBadges: {

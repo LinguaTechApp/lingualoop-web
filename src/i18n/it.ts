@@ -187,7 +187,8 @@ const it: Dict = {
     privacy: "Informativa sulla privacy",
     terms: "Termini di utilizzo",
     rights: "© 2026 LinguaTech. Tutti i diritti riservati.",
-    craft: "Progettato a Buenos Aires · Fatto con cura"
+    craft: "Progettato a Buenos Aires · Fatto con cura",
+    followUs: "Segui Fluo"
   },
 
   storeBadges: {

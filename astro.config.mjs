@@ -13,7 +13,10 @@ export default defineConfig({
   integrations: [
     sitemap({
       // fr/it are built but hidden until launch — keep them out of the sitemap.
-      filter: (page) => !/^https?:\/\/[^/]+\/(fr|it)\//.test(page),
+      // /download is a noindex redirect utility — exclude it too.
+      filter: (page) =>
+        !/^https?:\/\/[^/]+\/(fr|it)\//.test(page) &&
+        !/^https?:\/\/[^/]+\/download\/?$/.test(page),
       i18n: {
         defaultLocale: 'en',
         // @astrojs/sitemap rejects digits in hreflang values (e.g. es-419), so

@@ -1,0 +1,97 @@
+---
+// Utility route for the social-media bio link: detects the platform and bounces
+// to the matching store. Desktop / no-JS visitors see both badges instead.
+// The redirect reads its URLs straight from the rendered StoreBadges markup, so
+// the store links live in exactly one place (StoreBadges.astro).
+import SEOHead from '../components/SEOHead.astro';
+import StoreBadges from '../components/StoreBadges.astro';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <SEOHead
+    title="Descargar Fluo"
+    description="Descarga Fluo en tu teléfono: inglés que fluye, para hispanohablantes."
+    noindex={true}
+  />
+</head>
+<body>
+  <main class="download">
+    <img
+      class="download__logo"
+      src="/assets/logo.png"
+      srcset="/assets/logo.png 1x, /assets/logo-2x.png 2x"
+      width="56"
+      height="56"
+      alt="Fluo"
+    />
+    <h1 class="download__title">Descarga Fluo</h1>
+    <p class="download__lead">Te llevamos a la tienda de tu teléfono…</p>
+    <StoreBadges />
+    <a class="download__home" href="/">Ir a la página de Fluo</a>
+  </main>
+
+  <script is:inline>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var isIOS =
+        /iPhone|iPad|iPod/i.test(ua) ||
+        (/Macintosh/.test(ua) && 'ontouchend' in document);
+      var isAndroid = /Android/i.test(ua);
+      if (!isIOS && !isAndroid) return; // desktop / other: leave both badges visible
+
+      var target = null;
+      var badges = document.querySelectorAll('.store-badge');
+      for (var i = 0; i < badges.length; i++) {
+        var href = badges[i].getAttribute('href') || '';
+        if (isIOS && href.indexOf('apps.apple.com') !== -1) target = href;
+        if (isAndroid && href.indexOf('play.google.com') !== -1) target = href;
+      }
+      if (target) window.location.replace(target);
+    })();
+  </script>
+
+  <style>
+    .download {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: var(--space-lg);
+      padding: var(--space-2xl) clamp(20px, 4vw, 40px);
+    }
+
+    .download__logo {
+      width: 56px;
+      height: 56px;
+    }
+
+    .download__title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text-primary);
+    }
+
+    .download__lead {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      margin-top: calc(-1 * var(--space-sm));
+    }
+
+    .download__home {
+      margin-top: var(--space-sm);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      transition: color var(--transition-base);
+    }
+
+    .download__home:hover {
+      color: var(--color-text-primary);
+    }
+  </style>
+</body>
+</html>

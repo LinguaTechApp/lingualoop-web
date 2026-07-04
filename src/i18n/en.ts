@@ -184,7 +184,8 @@ const en: Dict = {
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
     rights: '© 2026 LinguaTech. All rights reserved.',
-    craft: 'Designed in Buenos Aires · Built with care'
+    craft: 'Designed in Buenos Aires · Built with care',
+    followUs: 'Follow Fluo'
   },
 
   storeBadges: {

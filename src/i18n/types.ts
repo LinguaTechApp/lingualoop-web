@@ -139,6 +139,7 @@ export interface FooterCopy {
   terms: string;
   rights: string;
   craft: string;
+  followUs: string;
 }
 
 export interface StoreBadgesCopy {
