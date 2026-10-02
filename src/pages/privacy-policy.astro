@@ -63,7 +63,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
     We use Supabase as our backend service provider. Supabase handles user authentication, data storage, and analytics infrastructure. All user data is securely stored on Supabase servers.
   </p>
   <p>
-    User content — including chat messages and audio recordings — is sent to our backend edge functions, which act as a secure proxy to OpenAI and Google Gemini. These providers process the data solely to deliver the requested language learning features, in accordance with their respective data processing agreements.
+    User content — including chat messages and audio recordings — is sent to our backend edge functions, which act as a secure proxy to the AI service providers listed below. These providers process the data solely to deliver the requested language learning features, in accordance with their respective data processing agreements.
   </p>
   <p>Other service providers:</p>
   <ul>
@@ -74,7 +74,8 @@ import LegalLayout from '../layouts/LegalLayout.astro';
     <li><strong>OpenAI</strong> (OpenAI, L.L.C.) — processes user text and audio for AI conversations, transcription (Whisper), and speech synthesis (TTS).</li>
     <li><strong>Google Gemini</strong> (Google LLC) — processes user text for AI conversations and feedback.</li>
     <li><strong>Singular</strong> (Singular Labs, Inc.) — mobile attribution and analytics.</li>
-    <li><strong>Inworld</strong> (Inworld AI, Inc.) — text-to-speech provider.</li>
+    <li><strong>Inworld</strong> (Inworld AI, Inc.) — processes user text and audio for AI conversations, transcription, speech synthesis (TTS) and real-time voice calls.</li>
+    <li><strong>Microsoft Azure AI Speech</strong> (Microsoft Corporation) — processes short voice recordings to assess pronunciation.</li>
     <li><strong>LangSmith</strong> (LangChain, Inc.) — observability infrastructure for AI features; user identifiers and sensitive content are sanitized before any data is sent.</li>
   </ul>
 
