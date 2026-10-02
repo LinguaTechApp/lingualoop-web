@@ -4,9 +4,9 @@ import LegalLayout from '../layouts/LegalLayout.astro';
 
 <LegalLayout
   title="Privacy Policy — Fluo"
-  description="How Fluo collects, uses, and protects your personal data. Last updated April 2026."
+  description="How Fluo collects, uses, and protects your personal data. Last updated October 2026."
   pageTitle="Privacy Policy"
-  lastUpdated="April 2026"
+  lastUpdated="October 2026"
 >
   <p>
     At LinguaTech, we care deeply about your privacy. This Privacy Policy explains how we collect, use, and protect your personal information in connection with the Fluo mobile application ("App"). By using Fluo, you agree to the terms of this Privacy Policy. Terms used here that are not defined have the meaning given in our <a href="/terms-of-use/">Terms of Service</a>.
@@ -18,7 +18,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
     <li><strong>Name and Email Address:</strong> Collected through Apple Sign-In or Google Sign-In to create and manage your account.</li>
     <li><strong>User ID:</strong> A unique identifier associated with your account, used internally to manage your profile and app data.</li>
     <li><strong>Purchase History:</strong> Subscription data (monthly or annual), including plan type and status, used to manage access to paid content.</li>
-    <li><strong>Gameplay Content:</strong> Responses generated during language activities (e.g., dictation, quizzes, or AI conversations) are stored and analyzed to improve learning outcomes.</li>
+    <li><strong>Gameplay Content:</strong> Responses generated during language activities (e.g., dictation, quizzes, or AI conversations) are stored and analyzed to improve learning outcomes. Transcripts of AI conversations (your messages and the tutor's replies) and the feedback generated for them may also be reviewed, including with automated tools, to check the quality of the tutor and its feedback. Full conversation transcripts are kept for up to 90 days and then deleted.</li>
     <li><strong>Voice and Audio Data:</strong> Voice recordings submitted through the app are sent to our backend for transcription via an edge function. Temporary audio files are deleted from your device after processing.</li>
     <li><strong>Product Interaction:</strong> Usage events (e.g., app opened, activity completed) are collected to understand general app usage and improve the experience.</li>
     <li><strong>Customer Support:</strong> If you contact us, we store any details you provide in order to respond and assist you effectively.</li>
@@ -37,11 +37,17 @@ import LegalLayout from '../layouts/LegalLayout.astro';
     <li>Provide customer support</li>
     <li>Monitor technical performance and usage trends</li>
   </ul>
-  <p>We do not use your data for marketing or advertising purposes.</p>
+  <p>We also use a limited set of app events to measure the performance of our own advertising campaigns, as described in Section 3. We do not use your data to show you personalized ads.</p>
 
   <h2>3. Advertising and Tracking</h2>
   <p>
-    We do not use your personal information for advertising, tracking, or data brokerage. We do not engage in cross-app tracking or share user data with advertising platforms.
+    We do not sell your personal information or use it for data brokerage, and the Fluo app does not show ads.
+  </p>
+  <p>
+    On Android, when you install Fluo after seeing one of our ads, Firebase (Google) shares a limited set of app events (for example: first open, onboarding completed, activity completed) together with device or advertising identifiers with Google Ads, so we can measure and improve the performance of our ad campaigns. You can reset or delete your advertising ID, or opt out of ads personalization, in your device settings.
+  </p>
+  <p>
+    On iOS, we do not track you across apps and websites owned by other companies.
   </p>
 
   <h2>4. How We Collect Information</h2>
@@ -61,7 +67,8 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   </p>
   <p>Other service providers:</p>
   <ul>
-    <li><strong>Firebase</strong> (Google LLC) — analytics.</li>
+    <li><strong>Firebase</strong> (Google LLC) — analytics and, on Android, measurement of our ad campaigns.</li>
+    <li><strong>Google Ads</strong> (Google LLC) — receives the limited app events described in Section 3 to measure our ad campaigns.</li>
     <li><strong>Firebase Crashlytics</strong> (Google LLC) — crash reporting for app stability monitoring.</li>
     <li><strong>YouTube API</strong> (Google LLC) — fetches public video metadata; no personal data is sent.</li>
     <li><strong>OpenAI</strong> (OpenAI, L.L.C.) — processes user text and audio for AI conversations, transcription (Whisper), and speech synthesis (TTS).</li>
@@ -110,6 +117,9 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   </p>
   <p>
     If you are a resident of Argentina, you may have additional rights under Ley 25.326 (Personal Data Protection Law).
+  </p>
+  <p>
+    If you are a resident of Mexico, Colombia or Chile, you may have additional rights under, respectively, the Ley Federal de Protección de Datos Personales en Posesión de los Particulares (including your ARCO rights), Ley 1581 de 2012, and Ley 19.628.
   </p>
   <p>
     To exercise any of these rights, please email us at <a href="mailto:contact@linguatech.app">contact@linguatech.app</a>.
