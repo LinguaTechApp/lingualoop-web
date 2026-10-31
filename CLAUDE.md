@@ -9,7 +9,7 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 - Astro (static output)
 - CSS vanilla (design tokens en src/styles/global.css)
 - JS vanilla (mínimo, solo interacciones esenciales)
-- Deploy: Vercel (custom domain linguatech.app)
+- Deploy: Vercel (custom domain getfluo.app)
 
 ## Convenciones
 - Componentes en src/components/ (.astro)
@@ -31,13 +31,13 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 - `npm run preview` — preview del build
 
 ## Dominio y redirects
-- Dominio: linguatech.app
+- Dominio: getfluo.app
 - Redirects legacy en vercel.json (rutas del sitio anterior)
 - URLs legales: /privacy-policy/, /terms-of-use/, /support/
 
 ## Assets
 - Favicons y OG image en public/assets/
-- Logo de marca en public/assets/logo.png (1x) y logo-2x.png (2x), derivado del icono iOS
+- Logo de marca en public/assets/logo.png (1x) y logo-2x.png (2x), derivado de fluo-mark.svg (lingualoop-marketing/docs/retention/icon-r33/)
 - Screenshots optimizados en public/assets/optimized/. Naming: `{nombre}.jpg` (660w) + opcional `{nombre}-1200.jpg` (1200w hi-res para phones grandes en desktop). Siempre referenciar estos en los componentes
 - PNGs fuente de los screenshots (1320×2868) en docs/screens-source/ — solo referencia, NO se sirven
 - Regenerar JPEG: `sips -Z` opera sobre la dimensión MAYOR. Para retrato 1320:2868 (ratio ~2.173:1), pasar la altura: `-Z 1434` produce 660w, `-Z 2607` produce 1200w. Comando: `sips -Z 1434 -s format jpeg -s formatOptions 82 INPUT --out OUTPUT.jpg`
