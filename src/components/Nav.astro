@@ -19,14 +19,13 @@ const homeHref = localizedPath(locale, '/');
     <a href={homeHref} class="nav__brand" aria-label="Fluo home">
       <img
         class="nav__logo"
-        src="/assets/logo.png?v=2"
-        srcset="/assets/logo.png?v=2 1x, /assets/logo-2x.png?v=2 2x"
-        width="32"
-        height="32"
+        src="/assets/logo.png?v=3"
+        srcset="/assets/logo.png?v=3 1x, /assets/logo-2x.png?v=3 2x"
+        width="60"
+        height="28"
         alt=""
         aria-hidden="true"
       />
-      <span class="nav__name">Fluo</span>
     </a>
 
     {showNavLinks && (
@@ -152,17 +151,9 @@ const homeHref = localizedPath(locale, '/');
   }
 
   .nav__logo {
-    width: 32px;
-    height: 32px;
+    width: 60px;
+    height: 28px;
     display: block;
-  }
-
-  .nav__name {
-    font-family: var(--font-brand);
-    font-weight: 600;
-    font-size: var(--font-size-lg);
-    color: var(--color-text-primary);
-    letter-spacing: -0.01em;
   }
 
   /* Right-side cluster (section links + language switcher). Hidden on mobile;

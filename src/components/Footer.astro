@@ -16,14 +16,13 @@ const homeHref = localizedPath(locale, '/');
         <a href={homeHref} class="footer__brand-link" aria-label="Fluo home">
           <img
             class="footer__logo"
-            src="/assets/logo.png?v=2"
-            srcset="/assets/logo.png?v=2 1x, /assets/logo-2x.png?v=2 2x"
-            width="32"
-            height="32"
+            src="/assets/logo.png?v=3"
+            srcset="/assets/logo.png?v=3 1x, /assets/logo-2x.png?v=3 2x"
+            width="64"
+            height="30"
             alt=""
             aria-hidden="true"
           />
-          <span class="footer__name">Fluo</span>
         </a>
         <p class="footer__tagline">{footer.tagline}</p>
         <ul class="footer__social" aria-label={footer.followUs}>
@@ -105,17 +104,9 @@ const homeHref = localizedPath(locale, '/');
   }
 
   .footer__logo {
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 30px;
     display: block;
-  }
-
-  .footer__name {
-    font-family: var(--font-brand);
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: var(--color-text-primary);
-    letter-spacing: -0.01em;
   }
 
   .footer__tagline {

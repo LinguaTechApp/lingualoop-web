@@ -17,11 +17,11 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 - Páginas en src/pages/ (.astro)
 - Estilos globales en src/styles/global.css (design tokens como CSS custom properties)
 - Estilos de componentes: scoped dentro de cada .astro con <style>
-- Tipografía de marca (Quicksand) solo para el nombre "Fluo"
+- El nombre "Fluo" en Nav y Footer es la imagen del wordmark (logo.png / logo-2x.png), no texto
 
 ## Typography conventions
-- DM Sans es la única tipografía del sistema en toda la landing (body, headings, UI). Pesos cargados: 400, 500, 600, 700, 800.
-- Quicksand 600 es la única excepción: se usa exclusivamente para el wordmark "Fluo" en Nav y Footer. Es decisión intencional — el wordmark es el único uso legítimo de una segunda fuente, y su carácter redondeado refuerza la promesa de fluidez de la marca. NO usar Quicksand fuera de los selectores `.nav__logo` y `.footer__logo`.
+- DM Sans es la única tipografía de la landing (body, headings, UI). Pesos cargados: 400, 500, 600, 700, 800.
+- Quicksand se eliminó (2026-11-04): el wordmark "Fluo" ahora es una imagen (palabra blanca), no texto.
 - Dark theme es el diseño principal (no hay light mode)
 - Mobile-first responsive
 
@@ -37,12 +37,12 @@ Landing page para Fluo (app de aprendizaje de inglés por LinguaTech).
 
 ## Assets
 - Favicons y OG image en public/assets/
-- Logo de marca en public/assets/logo.png (1x) y logo-2x.png (2x), derivado de fluo-mark.svg (lingualoop-marketing/docs/retention/icon-r33/)
+- Logo de marca = wordmark "Fluo" en blanco: public/assets/logo.png (128w) y logo-2x.png (256w), derivados de lingualoop-marketing/docs/retention/mockups/img/logo-r58/aplicado/palabra-blanca.png. Favicons (16/32/ico) desde icono-f-512.png (F sobre azul); apple-touch-icon desde logo-1.5.4/play/icon-512.png. Al cambiar un asset, subir el `?v=` (/assets/* tiene cache inmutable de un año)
 - Screenshots optimizados en public/assets/optimized/. Naming: `{nombre}.jpg` (660w) + opcional `{nombre}-1200.jpg` (1200w hi-res para phones grandes en desktop). Siempre referenciar estos en los componentes
 - PNGs fuente de los screenshots (1320×2868) en docs/screens-source/ — solo referencia, NO se sirven
 - Regenerar JPEG: `sips -Z` opera sobre la dimensión MAYOR. Para retrato 1320:2868 (ratio ~2.173:1), pasar la altura: `-Z 1434` produce 660w, `-Z 2607` produce 1200w. Comando: `sips -Z 1434 -s format jpeg -s formatOptions 82 INPUT --out OUTPUT.jpg`
 - Cuando un componente renderiza un phone grande (≥320px CSS) usar `srcset` + `sizes` con ambas variantes para que mobile cargue 660w y desktop hi-DPR cargue 1200w
-- Google Fonts: Quicksand (brand) + DM Sans (body) — cargar con preconnect
+- DM Sans self-hosted en public/fonts/
 
 ## Notas
 - NO usar frameworks de CSS (Tailwind, etc.)
