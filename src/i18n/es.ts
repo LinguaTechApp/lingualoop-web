@@ -1,21 +1,18 @@
 import type { Dict } from './types';
 
-// Español latinoamericano neutro (leve sesgo México, sin "vosotros").
-// Voz de marca: cálida, directa, alentadora. Lidera con el wedge:
-// conversación con tutor de IA + feedback concreto.
+// Español latinoamericano neutro (tuteo, nunca voseo). Copy aprobado:
+// lingualoop-marketing/docs/retention/r43-textos.md — no reescribir acá.
 const es: Dict = {
   seo: {
-    title: 'Fluo — Habla inglés con naturalidad | App de inglés con IA',
+    title: 'Fluo — Habla inglés sin vergüenza | Tutora de IA con feedback',
     description:
-      'Fluo ayuda a los hispanohablantes a aprender inglés de forma natural: practica conversaciones con tutores de IA, entrena el oído con videos reales y avanza con rutas de aprendizaje estructuradas. Descárgala gratis en iOS y Android.',
-    schemaDescription:
-      'App para aprender inglés con IA, pensada para hispanohablantes. Practica conversación con tutores de IA, mejora tu comprensión con videos reales y domina la gramática con rutas estructuradas.'
+      'Practica conversaciones reales en inglés con una tutora de IA y recibe feedback concreto en cada respuesta, explicado en español. Del A1 al C2. Gratis para empezar en Android y iOS.'
   },
 
   nav: {
-    features: 'Funciones',
     howItWorks: 'Cómo funciona',
-    whyFluo: 'Por qué Fluo',
+    lessons: 'Lecciones',
+    faq: 'Preguntas',
     download: 'Descargar',
     navLabel: 'Navegación principal',
     langLabel: 'Idioma',
@@ -25,169 +22,136 @@ const es: Dict = {
   },
 
   hero: {
-    trustAria: 'Calificada 4.8 de 5 en el App Store por más de 2,000 estudiantes',
-    ratingScore: '4.8',
-    trustLearners: '+2,000 estudiantes',
-    titleLine1: 'Inglés que',
-    titleAccent: 'fluye.',
+    titleLead: 'Habla inglés',
+    titleAccent: 'sin vergüenza.',
     subtitle:
-      'Practica conversaciones reales con tutores de IA, entrena tu oído con videos reales y desarrolla tus habilidades con lecciones estructuradas: diseñado para hispanohablantes.',
-    cardFeedback: { title: 'Feedback al instante', meta: 'Fluidez al conversar' },
-    cardListening: { title: 'Comprensión con IA' },
-    imageAlt: 'App de Fluo mostrando una conversación de role-play de Conversación con un tutor de IA'
+      'Practica conversaciones reales con tu tutora de IA y recibe feedback concreto en cada respuesta, explicado en español.',
+    tutorBubble: 'What did you do last weekend?',
+    learnerBefore: 'I',
+    learnerWrong: 'go',
+    learnerRight: 'went',
+    learnerAfter: 'to the beach with my friends.',
+    correctionNote: 'Pasado de «go»: «went»',
+    trust: ['Gratis para empezar', 'Del A1 al C2', 'Android y iOS'],
+    imageAlt: 'Emma, tutora de IA de Fluo'
   },
 
-  testimonials: {
-    label: 'Amada por estudiantes',
-    titleLine1: 'Progreso real,',
-    titleAccent: 'historias reales.',
-    ratingAria: 'Calificada 4.8 de 5 en el App Store',
-    ratingScore: '4.8',
-    ratingDetail: 'de 5 · +2,000 reseñas en el App Store',
-    cardStarsAria: '5 de 5 estrellas',
-    items: [
-      {
-        quote:
-          'Después de 3 meses con Fluo, dirijo reuniones en inglés sin entrar en pánico. El role-play con IA marcó la diferencia.',
-        name: 'Valentina R.',
-        country: 'Argentina',
-        level: 'B1 → B2'
-      },
-      {
-        quote:
-          'El role-play de entrevistas me preparó para el trabajo de mis sueños en una empresa global. Por fin me siento seguro hablando inglés.',
-        name: 'Carlos M.',
-        country: 'Brasil',
-        level: 'A2 → B1'
-      },
-      {
-        quote:
-          'Lo que más me gusta es practicar a cualquier hora, sin la presión de un profesor en vivo. Un avance constante, día a día.',
-        name: 'Ana L.',
-        country: 'México',
-        level: 'B2 → C1'
-      }
-    ]
-  },
-
-  features: {
-    label: 'FUNCIONES',
-    title: 'Tres formas de dominar el inglés',
-    subtitle:
-      'Cada módulo trabaja una habilidad distinta. Juntos construyen fluidez real, no solo puntajes de examen.',
-    items: [
-      {
-        title: 'Conversación',
-        desc: 'Practica conversaciones reales con tutores de IA que tienen personalidades únicas. Desde pedir un café hasta brillar en una entrevista de trabajo: escenarios que te preparan para la vida real.',
-        tags: ['Role-play con IA', 'Feedback en tiempo real', 'Calibrado al MCER'],
-        alt: 'Conversación en Fluo: role-play con un tutor de IA en un escenario de reserva de tren'
-      },
-      {
-        title: 'Comprensión auditiva',
-        desc: 'Entrena tu oído con dictados y quizzes hechos con videos reales en inglés. Escucha a hablantes nativos a velocidad natural y desarrolla una comprensión que de verdad se transfiere.',
-        tags: ['Videos reales', 'Dictado', 'Quizzes de comprensión'],
-        alt: 'Comprensión auditiva en Fluo: quiz sobre un video acerca de la tecnología 5G'
-      },
-      {
-        title: 'Ruta de aprendizaje',
-        desc: 'Lecciones estructuradas de gramática y vocabulario que te llevan de principiante a avanzado. ¿Te trabaste con algo? Pregúntale al Tutor de IA y recibe una explicación clara al instante.',
-        tags: ['Plan estructurado', 'Chat con Tutor de IA', 'A1 → C2'],
-        alt: 'Ruta de aprendizaje de Fluo: unidades de nivel B1 intermedio con lecciones de tiempos pasados y presentes'
-      }
-    ]
-  },
-
-  howItWorks: {
+  conversation: {
     label: 'CÓMO FUNCIONA',
-    title: 'Simple. Efectivo. Diario.',
-    subtitle: 'Crea un hábito que se sostiene con solo unos minutos al día.',
+    title: 'Así es una conversación',
+    subtitle:
+      'Escenas de la vida real, a tu nivel. Hablas, la tutora te responde y te dice qué mejorar.',
     steps: [
       {
-        title: 'Elige tu enfoque',
-        desc: 'Elige Conversación, Comprensión auditiva o Ruta de aprendizaje según lo que necesites hoy. Fluo se adapta a tu nivel.',
-        alt: 'Pantalla de inicio de Fluo con unidades de la Ruta de aprendizaje y opciones de práctica recomendada'
+        lead: 'Elige una escena.',
+        text: 'Pide en un restaurante, preséntate en una entrevista o cuenta cómo fue tu día. Cada escena tiene tareas claras para cumplir.',
+        alt: 'Conversación en Fluo: una escena en un restaurante, con el tutor y las tareas'
       },
       {
-        title: 'Practica con IA',
-        desc: 'Ten conversaciones reales, entrena tu oído o avanza con las lecciones: todo impulsado por una IA avanzada que entiende tu idioma.',
-        alt: 'Conversación en Fluo con un tutor de IA en un role-play de reserva de tren'
+        lead: 'Habla o escribe, como prefieras.',
+        text: 'Responde con tu voz o con el teclado. Si te trabas, la tutora te da ideas de qué decir y te ayuda en español.',
+        alt: 'Fluo: elegir cómo responder, tocar para hablar, manos libres o escribir'
       },
       {
-        title: 'Construye tu racha',
-        desc: 'Sigue tu progreso diario y mira crecer tu confianza. La constancia le gana a la intensidad: cada sesión cuenta.',
-        alt: 'Pantalla de perfil de Fluo con estadísticas de progreso total y racha diaria'
+        lead: 'Mira qué mejorar.',
+        text: 'En cada respuesta ves lo que dijiste, cómo decirlo mejor y por qué, explicado en tu idioma.',
+        alt: ''
       }
+    ],
+    closingNote:
+      'Al terminar, un resumen con lo que hiciste bien y una cosa para practicar la próxima vez.'
+  },
+
+  lessons: {
+    label: 'LECCIONES',
+    title: 'Lecciones que te hacen hablar',
+    text: 'Cada lección te explica en español, con ejemplos e ilustraciones, te hace repetir en voz alta y cierra con práctica hablada.',
+    tags: ['Del A1 al C2', 'Explicaciones en tu idioma', 'Repite en voz alta', 'Práctica hablada al final'],
+    alts: [
+      'Lección de Fluo: Emma explica una frase en español, con una tarjeta ilustrada',
+      'Lección completa en Fluo, con las frases nuevas aprendidas'
     ]
   },
 
-  whyFluo: {
-    label: 'POR QUÉ FLUO',
-    title: 'Hecho para la forma en que realmente aprendes',
-    subtitle: 'La mayoría de las apps enseñan inglés como si todos aprendieran igual. Fluo es diferente.',
-    benefits: [
+  plan: {
+    label: 'TU PLAN',
+    title: 'Un plan a tu medida',
+    text: 'Cuéntanos tu nivel, tu objetivo y cuánto tiempo tienes. Fluo arma tu práctica de cada día.',
+    plusLead: 'Y además:',
+    plusText: 'escucha videos reales y conversa de lo que quieras.',
+    alts: [
+      'Plan de Fluo con nivel, enfoque, meta diaria y horario de práctica',
+      'Inicio de Fluo: tu práctica de hoy'
+    ]
+  },
+
+  compare: {
+    title: 'Fluo o una clase particular',
+    otherHeader: 'Clase',
+    rows: [
+      { label: 'Cuándo practicas', fluo: 'a cualquier hora', other: 'en el horario que acuerdes' },
+      { label: 'Frente a quién', fluo: 'practicas sin público', other: 'frente a otra persona' },
+      { label: 'Feedback', fluo: 'en cada respuesta', other: 'depende del profesor' },
+      { label: 'Explicaciones', fluo: 'en español', other: 'depende del profesor' },
       {
-        title: 'Hecho para hispanohablantes',
-        desc: 'Entendemos los retos específicos que enfrentas: falsos amigos, patrones de pronunciación y vacíos de gramática propios de tu idioma.'
-      },
-      {
-        title: 'Una IA que se siente humana',
-        desc: 'Nuestros tutores de IA tienen personalidades propias y se adaptan a tu nivel. Practica cuando quieras, sin la presión de un profesor en vivo.'
-      },
-      {
-        title: 'Habla desde el primer día',
-        desc: 'Nada de meses de ejercicios de gramática antes de tu primera conversación. Con Fluo empiezas a hablar de inmediato en escenarios de la vida real.'
-      },
-      {
-        title: 'Todas las habilidades, una sola app',
-        desc: 'Conversación, comprensión, gramática y vocabulario en un solo lugar. Sin malabares con varias apps ni suscripciones.'
+        label: 'Precio',
+        fluo: 'gratis para empezar; Premium US$39.99 al año',
+        other: 'se paga cada clase'
       }
-    ],
-    imageAlt: 'El Tutor de IA de Fluo explicando tus errores de gramática con ejemplos claros'
+    ]
   },
 
   faq: {
-    label: 'FAQ',
-    title: 'Preguntas frecuentes',
-    subtitle: 'Todo lo que necesitas saber antes de empezar.',
+    title: 'Preguntas',
     items: [
       {
         q: '¿Fluo es gratis?',
-        a: 'Sí. Hay un plan gratuito con práctica diaria que nunca caduca. Quienes recién empiezan reciben práctica extra durante su primera semana. Premium (US$6.99/mes o US$39.99/año) desbloquea práctica ilimitada y todos los escenarios.'
+        a: 'Sí. Puedes empezar gratis y practicar todos los días, con un límite diario; la primera semana tienes práctica extra. Premium (US$6.99 al mes o US$39.99 al año; el precio puede variar según tu país) desbloquea la práctica ilimitada, todas las escenas y la conversación libre.'
       },
       {
-        q: '¿Qué nivel de inglés necesito para empezar?',
-        a: 'Cualquier nivel. Haz una prueba de nivel de 2 minutos al registrarte o elige tu nivel a mano: Fluo va del A1 (principiante) al C2 (avanzado).'
+        q: '¿Qué nivel necesito?',
+        a: 'Ninguno en especial. Fluo va del A1 (principiante) al C2. Al empezar eliges tu nivel, y si no lo sabes, te ayudamos a descubrirlo.'
       },
       {
-        q: '¿Necesito internet para usar Fluo?',
-        a: 'Sí. Las conversaciones con IA en tiempo real y los ejercicios de dictado requieren conexión a internet.'
+        q: '¿Sirve si me da vergüenza hablar?',
+        a: 'Para eso está. Practicas con una tutora de IA, sin público y sin apuro. Si te trabas, te da ideas de qué decir y te ayuda en español.'
       },
       {
-        q: '¿La app está disponible en Android?',
-        a: 'Sí. Fluo está disponible en iOS y Android. Descárgala gratis en el App Store o en Google Play.'
+        q: '¿En qué se diferencia de ChatGPT o Duolingo?',
+        a: 'Duolingo enseña con ejercicios cortos; Fluo te pone a conversar desde el primer día. ChatGPT conversa, pero no está hecho para enseñarte: Fluo tiene escenas con tareas, un plan por nivel y feedback de cada respuesta explicado en español.'
+      },
+      {
+        q: '¿Me ayuda con la pronunciación?',
+        a: 'Sí. Además de la gramática, puedes escuchar cómo se dice cada frase y practicar la pronunciación.'
+      },
+      {
+        q: '¿Puedo escribir en vez de hablar?',
+        a: 'Sí. Puedes responder hablando o escribiendo, como te quede más cómodo.'
+      },
+      {
+        q: '¿En qué teléfonos funciona?',
+        a: 'En Android y en iPhone. Descárgala gratis en Google Play o en el App Store. Necesitas conexión a internet.'
       },
       {
         q: '¿Puedo cancelar cuando quiera?',
-        a: 'Sí. Cancela desde los ajustes de suscripción de tu tienda — App Store en iOS o Google Play en Android. Tu acceso continúa hasta el final del período de facturación vigente.'
+        a: 'Sí. Cancela desde las suscripciones de tu tienda: Google Play en Android o el App Store en iPhone. Sigues con acceso hasta el final del período que pagaste.'
       }
     ]
   },
 
   cta: {
-    title: '¿Listo para hablar con confianza?',
-    subtitle: 'Descarga Fluo gratis y empieza tu primera conversación hoy.',
-    socialProof: 'Únete a más de 2,000 estudiantes que hablan inglés todos los días.'
+    title: 'Tu primera conversación, hoy.',
+    subtitle: 'Descarga Fluo gratis y habla inglés sin vergüenza desde el primer día.'
   },
 
   footer: {
-    tagline: 'Inglés que fluye. Hecho por LinguaTech para hispanohablantes.',
+    tagline: 'Inglés que fluye. Hecho por LinguaTech en Buenos Aires.',
     productTitle: 'Producto',
     companyTitle: 'Empresa',
     support: 'Soporte',
     privacy: 'Política de privacidad',
     terms: 'Términos de uso',
     rights: '© 2026 LinguaTech. Todos los derechos reservados.',
-    craft: 'Diseñado en Buenos Aires · Hecho con dedicación',
     followUs: 'Sigue a Fluo'
   },
 

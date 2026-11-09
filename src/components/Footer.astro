@@ -46,9 +46,9 @@ const homeHref = localizedPath(locale, '/');
       <nav class="footer__links" aria-label={nav.navLabel}>
         <div class="footer__links-group">
           <h3 class="footer__links-title">{footer.productTitle}</h3>
-          <a href="#features">{nav.features}</a>
           <a href="#how-it-works">{nav.howItWorks}</a>
-          <a href="#why-fluo">{nav.whyFluo}</a>
+          <a href="#lessons">{nav.lessons}</a>
+          <a href="#faq">{nav.faq}</a>
           <a href="#download">{nav.download}</a>
         </div>
         <div class="footer__links-group">
@@ -61,7 +61,6 @@ const homeHref = localizedPath(locale, '/');
     </div>
     <div class="footer__bottom">
       <p>{footer.rights}</p>
-      <p class="footer__bottom-meta">{footer.craft}</p>
     </div>
   </div>
 </footer>
@@ -192,10 +191,5 @@ const homeHref = localizedPath(locale, '/');
     font-size: 0.8rem;
     color: var(--color-text-muted);
     margin: 0;
-  }
-
-  .footer__bottom-meta {
-    color: var(--color-text-muted);
-    opacity: 0.7;
   }
 </style>

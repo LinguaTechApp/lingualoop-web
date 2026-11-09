@@ -31,9 +31,9 @@ const homeHref = localizedPath(locale, '/');
     {showNavLinks && (
       <div class="nav__cluster">
         <ul class="nav__links" role="list">
-          <li><a href="#features">{nav.features}</a></li>
           <li><a href="#how-it-works">{nav.howItWorks}</a></li>
-          <li><a href="#why-fluo">{nav.whyFluo}</a></li>
+          <li><a href="#lessons">{nav.lessons}</a></li>
+          <li><a href="#faq">{nav.faq}</a></li>
           <li><a href="#download">{nav.download}</a></li>
         </ul>
         <LangSwitcher variant="dropdown" />
@@ -59,9 +59,9 @@ const homeHref = localizedPath(locale, '/');
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label={nav.menuLabel}>
     <button class="mobile-menu__close" aria-label={nav.menuClose}>&times;</button>
     <ul class="mobile-menu__links" role="list">
-      <li><a href="#features">{nav.features}</a></li>
       <li><a href="#how-it-works">{nav.howItWorks}</a></li>
-      <li><a href="#why-fluo">{nav.whyFluo}</a></li>
+      <li><a href="#lessons">{nav.lessons}</a></li>
+      <li><a href="#faq">{nav.faq}</a></li>
       <li><a href="#download">{nav.download}</a></li>
     </ul>
     <LangSwitcher variant="inline" />

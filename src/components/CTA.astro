@@ -4,19 +4,23 @@ import { getLocaleFromUrl, useTranslations } from '../i18n';
 
 const t = useTranslations(getLocaleFromUrl(Astro.url));
 const cta = t('cta');
+const hero = t('hero');
 ---
 
-<section id="download" class="cta reveal">
-  <div class="cta__bg" aria-hidden="true">
-    <div class="cta__orb cta__orb--blue"></div>
-    <div class="cta__orb cta__orb--violet"></div>
-  </div>
-
-  <div class="cta__content container">
-    <h2 class="cta__title">{cta.title}</h2>
-    <p class="cta__subtitle">{cta.subtitle}</p>
-    <p class="cta__social-proof">{cta.socialProof}</p>
-    <div class="cta__badges">
+<section id="download" class="cta">
+  <div class="container">
+    <div class="cta__card reveal">
+      <img
+        class="cta__avatar"
+        src="/assets/optimized/emma-studio-360.webp"
+        width="88"
+        height="88"
+        alt={hero.imageAlt}
+        loading="lazy"
+        decoding="async"
+      />
+      <h2 class="cta__title">{cta.title}</h2>
+      <p class="cta__subtitle">{cta.subtitle}</p>
       <StoreBadges />
     </div>
   </div>
@@ -24,78 +28,54 @@ const cta = t('cta');
 
 <style>
   .cta {
-    padding: var(--space-4xl) 0;
-    position: relative;
-    overflow: hidden;
+    padding: var(--space-3xl) 0 var(--space-2xl);
     scroll-margin-top: var(--nav-height);
   }
 
-  .cta__bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .cta__orb {
-    position: absolute;
-    border-radius: 50%;
-  }
-
-  .cta__orb--blue {
-    width: 720px;
-    height: 720px;
-    background: var(--color-blue);
-    filter: blur(110px);
-    opacity: 0.22;
-    top: 50%;
-    left: 50%;
-    transform: translate(-55%, -50%);
-  }
-
-  .cta__orb--violet {
-    width: 520px;
-    height: 520px;
-    background: #7B2FE0;
-    filter: blur(100px);
-    opacity: 0.16;
-    top: 50%;
-    left: 50%;
-    transform: translate(-30%, -40%);
-  }
-
-  .cta__content {
+  .cta__card {
     position: relative;
-    z-index: 1;
+    overflow: hidden;
     text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
+    padding: var(--space-3xl) var(--space-lg);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(92, 125, 255, 0.28);
+    background:
+      radial-gradient(70% 90% at 50% 0%, rgba(29, 73, 244, 0.45), transparent 70%),
+      radial-gradient(50% 70% at 90% 100%, rgba(123, 47, 224, 0.30), transparent 70%),
+      var(--color-bg-card);
+    box-shadow: 0 40px 80px -40px rgba(29, 73, 244, 0.45);
+  }
+
+  @media (min-width: 769px) {
+    .cta__card { padding: var(--space-4xl) var(--space-2xl); }
+  }
+
+  .cta__avatar {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto var(--space-lg);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 18%;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 6px rgba(29, 73, 244, 0.35), 0 16px 32px -8px rgba(0, 0, 0, 0.6);
   }
 
   .cta__title {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
     font-weight: 800;
     line-height: 1.05;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
     margin-bottom: var(--space-md);
+    text-wrap: balance;
   }
 
   .cta__subtitle {
     color: var(--color-text-secondary);
     line-height: 1.6;
-    margin-bottom: var(--space-sm);
+    max-width: 32em;
+    margin: 0 auto var(--space-xl);
     font-size: var(--font-size-md);
-  }
-
-  .cta__social-proof {
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: var(--space-xl);
-    letter-spacing: 0.005em;
-  }
-
-  .cta__badges {
-    display: flex;
-    justify-content: center;
+    text-wrap: pretty;
   }
 </style>

@@ -1,0 +1,174 @@
+---
+import { getLocaleFromUrl, useTranslations } from '../i18n';
+
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+const c = t('compare');
+
+// Row icons (structural), in the order of `compare.rows`.
+const icons = [
+  '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>',
+  '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><polyline points="8 10 11 13 16 8"/>',
+  '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/>',
+  '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5"/>'
+];
+---
+
+<section id="compare" class="cmp">
+  <div class="container">
+    <header class="section-head">
+      <h2 class="section-title">{c.title}</h2>
+    </header>
+
+    <div class="cmp__wrap reveal">
+      <table class="cmp__table">
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col" class="cmp__fluo-head">
+              <img src="/assets/logo.png?v=3" srcset="/assets/logo.png?v=3 1x, /assets/logo-2x.png?v=3 2x" width="60" height="28" alt="Fluo" />
+            </th>
+            <th scope="col" class="cmp__other-head">{c.otherHeader}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {c.rows.map((row, i) => (
+            <tr>
+              <th scope="row">
+                <span class="cmp__label">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[i]} />
+                  {row.label}
+                </span>
+              </th>
+              <td class="cmp__fluo">{row.fluo}</td>
+              <td class="cmp__other">{row.other}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cmp {
+    padding: var(--space-4xl) 0;
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .cmp .section-head {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .cmp__wrap {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .cmp__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+  }
+
+  @media (min-width: 769px) {
+    .cmp__table { font-size: var(--font-size-base); }
+  }
+
+  .cmp__table col,
+  .cmp__table th,
+  .cmp__table td {
+    padding: 14px 10px;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  @media (min-width: 769px) {
+    .cmp__table th,
+    .cmp__table td { padding: 18px 20px; }
+  }
+
+  /* Column widths: label | Fluo | class */
+  .cmp__table thead td { width: 34%; }
+  .cmp__fluo-head,
+  .cmp__other-head { width: 33%; }
+
+  @media (min-width: 769px) {
+    .cmp__table thead td { width: 32%; }
+  }
+
+  /* Row label */
+  .cmp__table tbody th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .cmp__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cmp__label svg {
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    .cmp__label svg { display: block; }
+  }
+
+  /* Zebra rows */
+  tbody tr:nth-child(odd) th,
+  tbody tr:nth-child(odd) td {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  tbody tr th { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+  tbody tr td:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+
+  /* Highlighted Fluo column */
+  .cmp__fluo-head,
+  .cmp__fluo {
+    background: rgba(29, 73, 244, 0.12) !important;
+    border-left: 1px solid rgba(92, 125, 255, 0.35);
+    border-right: 1px solid rgba(92, 125, 255, 0.35);
+  }
+
+  .cmp__fluo-head {
+    border-top: 1px solid rgba(92, 125, 255, 0.35);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-top: 22px !important;
+  }
+
+  .cmp__fluo-head img {
+    margin: 0 auto;
+    width: 60px;
+    height: 28px;
+  }
+
+  tbody tr:last-child .cmp__fluo {
+    border-bottom: 1px solid rgba(92, 125, 255, 0.35);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  }
+
+  .cmp__fluo {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .cmp__other-head {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+  }
+
+  .cmp__other {
+    color: var(--color-text-secondary);
+  }
+</style>

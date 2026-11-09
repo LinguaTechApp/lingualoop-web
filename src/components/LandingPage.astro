@@ -4,10 +4,10 @@
 // from the URL inside every section, so this body is locale-agnostic.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from './Hero.astro';
-import Testimonials from './Testimonials.astro';
-import Features from './Features.astro';
-import HowItWorks from './HowItWorks.astro';
-import WhyFluo from './WhyFluo.astro';
+import Conversation from './Conversation.astro';
+import Lessons from './Lessons.astro';
+import Plan from './Plan.astro';
+import Compare from './Compare.astro';
 import FAQ from './FAQ.astro';
 import CTA from './CTA.astro';
 import { getLocaleFromUrl, useTranslations } from '../i18n';
@@ -23,7 +23,7 @@ const structuredData = {
   name: 'Fluo',
   applicationCategory: 'EducationApplication',
   operatingSystem: 'iOS, Android',
-  description: seo.schemaDescription,
+  description: seo.description,
   offers: {
     '@type': 'Offer',
     price: '0',
@@ -45,10 +45,10 @@ const structuredData = {
   localized={true}
 >
   <Hero />
-  <Testimonials />
-  <Features />
-  <HowItWorks />
-  <WhyFluo />
+  <Conversation />
+  <Lessons />
+  <Plan />
+  <Compare />
   <FAQ />
   <CTA />
 </BaseLayout>

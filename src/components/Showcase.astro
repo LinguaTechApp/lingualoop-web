@@ -1,0 +1,125 @@
+---
+// Text + two app screens, used by the «Lecciones» and «Tu plan» sections.
+// Extra content under the paragraph (tags, «Y además») goes in the slot.
+import SectionLabel from './SectionLabel.astro';
+import PhoneFrame from './PhoneFrame.astro';
+
+interface Props {
+  id?: string;
+  label: string;
+  title: string;
+  text: string;
+  /** Two screens, same size (540×1102 draft captures without system bars). */
+  shots: [string, string];
+  alts: [string, string];
+  /** Screens on the left on desktop. */
+  reverse?: boolean;
+  tint?: 'blue' | 'violet';
+}
+
+const { id, label, title, text, shots, alts, reverse = false, tint = 'blue' } = Astro.props;
+---
+
+<section id={id} class:list={['show', `show--${tint}`, { 'show--reverse': reverse }]}>
+  <div class="show__inner container">
+    <div class="show__text reveal">
+      <SectionLabel text={label} />
+      <h2 class="section-title show__title">{title}</h2>
+      <p class="show__desc">{text}</p>
+      <slot />
+    </div>
+
+    <div class="show__visual reveal">
+      <div class="show__glow" aria-hidden="true"></div>
+      {shots.map((src, i) => (
+        <div class={`show__phone show__phone--${i + 1}`}>
+          <PhoneFrame ratio="540 / 1102" src={src} alt={alts[i]} width={540} height={1102} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .show {
+    padding: var(--space-4xl) 0;
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .show--blue { --tint: rgba(29, 73, 244, 0.38); }
+  .show--violet { --tint: rgba(123, 47, 224, 0.34); }
+
+  .show__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .show__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-4xl);
+    }
+
+    .show--reverse .show__visual {
+      order: -1;
+    }
+  }
+
+  .show__text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .show__text {
+      text-align: left;
+      align-items: flex-start;
+    }
+  }
+
+  .show__desc {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-md);
+    line-height: 1.65;
+    max-width: 32em;
+    margin-top: var(--space-md);
+    text-wrap: pretty;
+  }
+
+  .show__visual {
+    --phone-w: min(172px, calc((100vw - 52px) / 2));
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 769px) {
+    .show__visual { --phone-w: 230px; gap: var(--space-lg); }
+  }
+
+  @media (min-width: 1100px) {
+    .show__visual { --phone-w: 250px; }
+  }
+
+  .show__glow {
+    position: absolute;
+    inset: 0 -10%;
+    background: radial-gradient(closest-side, var(--tint), transparent);
+    z-index: 0;
+  }
+
+  .show__phone {
+    position: relative;
+    z-index: 1;
+  }
+
+  .show__phone--2 {
+    transform: translateY(var(--space-2xl));
+  }
+</style>

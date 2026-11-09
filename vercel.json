@@ -32,6 +32,12 @@
     { "source": "/about/:path*", "destination": "/", "statusCode": 301 },
     { "source": "/contact", "destination": "/support/", "statusCode": 301 },
     { "source": "/contact/", "destination": "/support/", "statusCode": 301 },
-    { "source": "/contact/:path*", "destination": "/support/", "statusCode": 301 }
+    { "source": "/contact/:path*", "destination": "/support/", "statusCode": 301 },
+    { "source": "/fr", "destination": "/", "statusCode": 301 },
+    { "source": "/fr/", "destination": "/", "statusCode": 301 },
+    { "source": "/fr/:path*", "destination": "/", "statusCode": 301 },
+    { "source": "/it", "destination": "/", "statusCode": 301 },
+    { "source": "/it/", "destination": "/", "statusCode": 301 },
+    { "source": "/it/:path*", "destination": "/", "statusCode": 301 }
   ]
 }

@@ -2,7 +2,8 @@
  * i18n core: locale config + the typed `t()` helper used across the landing.
  *
  * Routing is handled by Astro's native i18n (see astro.config.mjs): the default
- * locale `en` is served at `/`, the rest under `/es/`, `/pt-br/`, `/fr/`, `/it/`.
+ * locale `en` is served at `/`, the rest under `/es/` and `/pt-br/`. The old
+ * `/fr/` and `/it/` pages were removed in R43 and 301 to `/` (vercel.json).
  * Components derive the active locale from `Astro.url` via `getLocaleFromUrl`,
  * then read copy with `useTranslations(locale)`.
  *
@@ -15,67 +16,43 @@ import type { Dict } from './types';
 import en from './en';
 import es from './es';
 import ptBR from './pt-br';
-import fr from './fr';
-import it from './it';
 
-export const LOCALES = ['en', 'es', 'pt-br', 'fr', 'it'] as const;
+export const LOCALES = ['en', 'es', 'pt-br'] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'en';
-
-/**
- * Locales exposed in the UI and SEO. `fr` and `it` stay in LOCALES (so /fr/ and
- * /it/ still render in-language), but are hidden — no language-switcher entry,
- * no hreflang, excluded from the sitemap, and noindex'd — until those markets
- * launch. Re-publish by adding them back here AND to the sitemap config in
- * astro.config.mjs.
- */
-export const PUBLISHED_LOCALES: readonly Locale[] = ['en', 'es', 'pt-br'];
-export function isPublishedLocale(locale: Locale): boolean {
-  return PUBLISHED_LOCALES.includes(locale);
-}
 
 const dictionaries: Record<Locale, Dict> = {
   en,
   es,
-  'pt-br': ptBR,
-  fr,
-  it
+  'pt-br': ptBR
 };
 
 /** Native language name, shown in the switcher menu. */
 export const LANGUAGE_NAMES: Record<Locale, string> = {
   en: 'English',
   es: 'Español',
-  'pt-br': 'Português',
-  fr: 'Français',
-  it: 'Italiano'
+  'pt-br': 'Português'
 };
 
 /** Compact code shown on the switcher toggle. */
 export const LANGUAGE_SHORT: Record<Locale, string> = {
   en: 'EN',
   es: 'ES',
-  'pt-br': 'PT',
-  fr: 'FR',
-  it: 'IT'
+  'pt-br': 'PT'
 };
 
 /** Value for `<html lang>`. */
 export const HTML_LANG: Record<Locale, string> = {
   en: 'en',
   es: 'es',
-  'pt-br': 'pt-BR',
-  fr: 'fr',
-  it: 'it'
+  'pt-br': 'pt-BR'
 };
 
 /** og:locale (underscore form). */
 export const OG_LOCALE: Record<Locale, string> = {
   en: 'en_US',
   es: 'es_LA',
-  'pt-br': 'pt_BR',
-  fr: 'fr_FR',
-  it: 'it_IT'
+  'pt-br': 'pt_BR'
 };
 
 /**
@@ -86,9 +63,7 @@ export const OG_LOCALE: Record<Locale, string> = {
 export const HREFLANG: Record<Locale, string[]> = {
   en: ['en'],
   es: ['es', 'es-419'],
-  'pt-br': ['pt-BR'],
-  fr: ['fr'],
-  it: ['it']
+  'pt-br': ['pt-BR']
 };
 
 /** Resolve the active locale from a page URL (path-prefix based, deterministic). */

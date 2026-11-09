@@ -1,18 +1,18 @@
 import type { Dict } from './types';
 
+// English (default locale, served at /). Approved copy:
+// lingualoop-marketing/docs/retention/r43-textos.md — do not rewrite here.
 const en: Dict = {
   seo: {
-    title: 'Fluo — Speak English Naturally | AI-Powered English Learning App',
+    title: 'Fluo — Speak English without fear | AI tutor with feedback',
     description:
-      'Fluo helps Spanish and Portuguese speakers learn English naturally through AI-powered speaking practice, real-video listening, and structured learning paths. Download free on iOS and Android.',
-    schemaDescription:
-      'AI-powered English learning app for Spanish and Portuguese speakers. Practice speaking with AI tutors, improve listening with real videos, and master grammar through structured paths.'
+      'Practice real English conversations with an AI tutor and get clear feedback on every answer, explained in Spanish or Portuguese. A1 to C2. Free to start on Android and iOS.'
   },
 
   nav: {
-    features: 'Features',
-    howItWorks: 'How It Works',
-    whyFluo: 'Why Fluo',
+    howItWorks: 'How it works',
+    lessons: 'Lessons',
+    faq: 'FAQ',
     download: 'Download',
     navLabel: 'Main navigation',
     langLabel: 'Language',
@@ -22,169 +22,135 @@ const en: Dict = {
   },
 
   hero: {
-    trustAria: 'Rated 4.8 out of 5 on the App Store by over 2,000 learners',
-    ratingScore: '4.8',
-    trustLearners: '2,000+ learners',
-    titleLine1: 'English that',
-    titleAccent: 'flows.',
+    titleLead: 'Speak English',
+    titleAccent: 'without fear.',
     subtitle:
-      'Practice speaking with AI tutors, sharpen your ear with real videos, and build skills through structured lessons — designed for Spanish and Portuguese speakers.',
-    cardFeedback: { title: 'Real-time feedback', meta: 'Conversation flow' },
-    cardListening: { title: 'AI listening' },
-    imageAlt: 'Fluo app showing a Speaking roleplay conversation with an AI tutor'
+      'Practice real conversations with your AI tutor and get clear feedback on every answer, explained in your language.',
+    tutorBubble: 'What did you do last weekend?',
+    learnerBefore: 'I',
+    learnerWrong: 'go',
+    learnerRight: 'went',
+    learnerAfter: 'to the beach with my friends.',
+    correctionNote: 'Past of “go”: “went”',
+    trust: ['Free to start', 'A1 to C2', 'Android and iOS'],
+    imageAlt: 'Emma, Fluo’s AI tutor'
   },
 
-  testimonials: {
-    label: 'Loved by learners',
-    titleLine1: 'Real progress,',
-    titleAccent: 'real stories.',
-    ratingAria: 'Rated 4.8 out of 5 on the App Store',
-    ratingScore: '4.8',
-    ratingDetail: 'out of 5 · 2,000+ App Store reviews',
-    cardStarsAria: '5 out of 5 stars',
-    items: [
-      {
-        quote:
-          'After 3 months with Fluo, I can lead meetings in English without panicking. The AI roleplay made the difference.',
-        name: 'Valentina R.',
-        country: 'Argentina',
-        level: 'B1 → B2'
-      },
-      {
-        quote:
-          'The interview roleplay prepared me for my dream job at a global company. I finally feel confident speaking English.',
-        name: 'Carlos M.',
-        country: 'Brazil',
-        level: 'A2 → B1'
-      },
-      {
-        quote:
-          'What I love most is practicing anytime without the pressure of a live teacher. Consistent daily progress.',
-        name: 'Ana L.',
-        country: 'Mexico',
-        level: 'B2 → C1'
-      }
-    ]
-  },
-
-  features: {
-    label: 'FEATURES',
-    title: 'Three ways to master English',
-    subtitle:
-      'Each module targets a different skill. Together, they build real fluency — not just test scores.',
-    items: [
-      {
-        title: 'Speaking',
-        desc: 'Practice real conversations with AI tutors that have unique personalities. From ordering coffee to acing job interviews — scenarios that prepare you for real life.',
-        tags: ['AI Role-play', 'Real-time Feedback', 'CEFR Calibrated'],
-        alt: 'Fluo Speaking conversation: roleplay with an AI tutor in a train booking scenario'
-      },
-      {
-        title: 'Listening',
-        desc: 'Sharpen your ear with dictation and quizzes built on real English videos. Hear native speakers at natural speed and build comprehension that actually transfers.',
-        tags: ['Real Videos', 'Dictation', 'Comprehension Quizzes'],
-        alt: 'Fluo Listening: comprehension quiz on a video about 5G technology'
-      },
-      {
-        title: 'Learning Path',
-        desc: 'Structured grammar and vocabulary lessons that take you from beginner to advanced. Stuck on something? Ask the AI Tutor and get an instant, clear explanation.',
-        tags: ['Structured Curriculum', 'AI Tutor Chat', 'A1 → C2'],
-        alt: 'Fluo Learning Path: B1 Intermediate units with lessons on Past & Present Bridges'
-      }
-    ]
-  },
-
-  howItWorks: {
+  conversation: {
     label: 'HOW IT WORKS',
-    title: 'Simple. Effective. Daily.',
-    subtitle: 'Build a habit that sticks in just a few minutes a day.',
+    title: 'What a conversation looks like',
+    subtitle:
+      'Real-life scenes at your level. You speak, your tutor replies and shows you what to improve.',
     steps: [
       {
-        title: 'Choose your focus',
-        desc: 'Pick Speaking, Listening, or Learning Path based on what you need today. Fluo adapts to your level.',
-        alt: 'Fluo home screen showing Learning Path units and Recommended Practice options'
+        lead: 'Pick a scene.',
+        text: 'Order at a restaurant, introduce yourself at a job interview or talk about your day. Each scene has clear tasks to complete.',
+        alt: 'A conversation in Fluo: a restaurant scene with the tutor and its tasks'
       },
       {
-        title: 'Practice with AI',
-        desc: 'Have real conversations, train your ear, or work through lessons — all powered by advanced AI that understands your native language.',
-        alt: 'Fluo Speaking conversation with an AI tutor in a train booking roleplay'
+        lead: 'Speak or type, your choice.',
+        text: 'Answer with your voice or the keyboard. If you get stuck, your tutor suggests what to say and helps in your language.',
+        alt: 'Fluo: choosing how to answer, tap to talk, hands-free or type'
       },
       {
-        title: 'Build your streak',
-        desc: 'Track your daily progress and watch your confidence grow. Consistency beats intensity — every session counts.',
-        alt: 'Fluo profile screen showing Lifetime Progress stats and daily streak'
+        lead: 'See what to improve.',
+        text: 'On every answer you see what you said, how to say it better and why, explained in your language.',
+        alt: ''
       }
+    ],
+    closingNote: 'At the end, a summary of what you did well and one thing to practice next time.'
+  },
+
+  lessons: {
+    label: 'LESSONS',
+    title: 'Lessons that get you speaking',
+    text: 'Each lesson explains things in your language, with examples and illustrations, has you repeat out loud and ends with speaking practice.',
+    tags: ['A1 to C2', 'Explanations in your language', 'Repeat out loud', 'Speaking practice at the end'],
+    alts: [
+      'A Fluo lesson: Emma explains a phrase with an illustrated card',
+      'A completed Fluo lesson with the new phrases learned'
     ]
   },
 
-  whyFluo: {
-    label: 'WHY FLUO',
-    title: 'Built for the way you actually learn',
-    subtitle: 'Most apps teach English as if every learner is the same. Fluo is different.',
-    benefits: [
+  plan: {
+    label: 'YOUR PLAN',
+    title: 'A plan that fits you',
+    text: 'Tell us your level, your goal and how much time you have. Fluo builds your practice for each day.',
+    plusLead: 'Plus:',
+    plusText: 'listen to real videos and talk about anything you like.',
+    alts: [
+      'A Fluo plan with level, focus, daily goal and practice time',
+      'Fluo home: your practice for today'
+    ]
+  },
+
+  compare: {
+    title: 'Fluo or a private class',
+    otherHeader: 'Class',
+    rows: [
+      { label: 'When you practice', fluo: 'any time', other: 'at the time you book' },
+      { label: 'In front of whom', fluo: 'no audience', other: 'in front of another person' },
+      { label: 'Feedback', fluo: 'on every answer', other: 'depends on the teacher' },
+      { label: 'Explanations', fluo: 'in your language', other: 'depends on the teacher' },
       {
-        title: 'Made for Spanish & Portuguese speakers',
-        desc: 'We understand the specific challenges you face — false cognates, pronunciation patterns, and grammar gaps unique to your native language.'
-      },
-      {
-        title: 'AI that feels human',
-        desc: 'Our AI tutors have distinct personalities and adapt to your level. Practice anytime without the pressure of a live teacher.'
-      },
-      {
-        title: 'Speak from day one',
-        desc: 'No months of grammar drills before your first conversation. Fluo gets you speaking immediately in real-world scenarios.'
-      },
-      {
-        title: 'All skills, one app',
-        desc: 'Speaking, listening, grammar, and vocabulary in one place. No need to juggle multiple apps or subscriptions.'
+        label: 'Price',
+        fluo: 'free to start; Premium US$39.99 a year',
+        other: 'you pay per class'
       }
-    ],
-    imageAlt: 'Fluo AI Tutor explaining your grammar mistakes with clear examples'
+    ]
   },
 
   faq: {
-    label: 'FAQ',
-    title: 'Frequently asked questions',
-    subtitle: 'Everything you need to know before getting started.',
+    title: 'FAQ',
     items: [
       {
-        q: 'Is Fluo free to use?',
-        a: "Yes — there's a free tier with daily practice that never expires. New users get extra practice during their first week. Premium ($6.99/month or $39.99/year) unlocks unlimited practice and all scenarios."
+        q: 'Is Fluo free?',
+        a: 'Yes. You can start for free and practice every day, with a daily limit; your first week includes extra practice. Premium (US$6.99 a month or US$39.99 a year; prices may vary by country) unlocks unlimited practice, every scene and free conversation.'
       },
       {
-        q: 'What level of English do I need to start?',
-        a: 'Any level. Take a 2-minute placement test on signup or pick a level manually — Fluo supports A1 (Beginner) through C2 (Proficient).'
+        q: 'What level do I need?',
+        a: "None in particular. Fluo goes from A1 (beginner) to C2. You pick your level when you start, and if you're not sure, we help you find it."
       },
       {
-        q: 'Do I need internet to use Fluo?',
-        a: 'Yes. Real-time AI conversations and dictation exercises require an internet connection.'
+        q: "Does it help if I'm shy about speaking?",
+        a: "That's what it's for. You practice with an AI tutor, with no audience and no rush. If you get stuck, it suggests what to say and helps in your language."
       },
       {
-        q: 'Is the app available on Android?',
-        a: 'Yes — Fluo is available on both iOS and Android. Download it free from the App Store or Google Play.'
+        q: 'How is it different from ChatGPT or Duolingo?',
+        a: "Duolingo teaches with short exercises; Fluo gets you talking from day one. ChatGPT can chat, but it isn't built to teach you: Fluo has scenes with tasks, a plan for your level and feedback on every answer, explained in your language."
+      },
+      {
+        q: 'Does it help with pronunciation?',
+        a: 'Yes. Besides grammar, you can hear how each phrase is said and practice your pronunciation.'
+      },
+      {
+        q: 'Can I type instead of speaking?',
+        a: 'Yes. You can answer by speaking or typing, whichever feels better.'
+      },
+      {
+        q: 'Which phones does it work on?',
+        a: 'Android and iPhone. Download it free on Google Play or the App Store. You need an internet connection.'
       },
       {
         q: 'Can I cancel anytime?',
-        a: "Yes. Cancel from your store's subscription settings — the App Store on iOS or Google Play on Android. Your access continues until the end of the current billing period."
+        a: "Yes. Cancel from your store's subscriptions: Google Play on Android or the App Store on iPhone. You keep access until the end of the period you paid for."
       }
     ]
   },
 
   cta: {
-    title: 'Ready to speak with confidence?',
-    subtitle: 'Download Fluo free and start your first conversation today.',
-    socialProof: 'Join 2,000+ learners speaking English daily.'
+    title: 'Your first conversation, today.',
+    subtitle: 'Download Fluo for free and speak English without fear from day one.'
   },
 
   footer: {
-    tagline: 'English that flows. Made by LinguaTech for Spanish & Portuguese speakers.',
+    tagline: 'English that flows. Made by LinguaTech in Buenos Aires.',
     productTitle: 'Product',
     companyTitle: 'Company',
     support: 'Support',
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
     rights: '© 2026 LinguaTech. All rights reserved.',
-    craft: 'Designed in Buenos Aires · Built with care',
     followUs: 'Follow Fluo'
   },
 

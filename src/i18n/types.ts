@@ -3,24 +3,25 @@
  *
  * Each `src/i18n/{locale}.ts` file is annotated `const dict: Dict = { … }`, so a
  * missing or mistyped key surfaces in the editor and in `astro check`. Only
- * user-facing *text* lives here — structural data (icons, colors, image paths,
- * gradients, store URLs) stays in the components and is zipped against these
- * strings by index.
+ * user-facing *text* lives here — structural data (icons, image paths, store
+ * URLs) stays in the components and is zipped against these strings by index.
+ *
+ * Visible copy comes verbatim from lingualoop-marketing/docs/retention/r43-textos.md.
+ * Where a string is split (e.g. `titleLead` + `titleAccent`, `lead` + `text`), the
+ * parts joined with a space are the approved text.
  */
 
 export interface SeoCopy {
   /** <title> */
   title: string;
-  /** <meta name="description"> + og/twitter description */
+  /** <meta name="description"> + og/twitter description + JSON-LD description */
   description: string;
-  /** JSON-LD SoftwareApplication.description */
-  schemaDescription: string;
 }
 
 export interface NavCopy {
-  features: string;
   howItWorks: string;
-  whyFluo: string;
+  lessons: string;
+  faq: string;
   download: string;
   /** aria-label for <nav> */
   navLabel: string;
@@ -34,82 +35,73 @@ export interface NavCopy {
   menuLabel: string;
 }
 
-export interface HeroCard {
-  title: string;
-  meta?: string;
-}
-
 export interface HeroCopy {
-  trustAria: string;
-  /** Average rating, e.g. "4.8" / "4,8" — decimal separator is locale-specific. */
-  ratingScore: string;
-  trustLearners: string;
-  titleLine1: string;
+  /** H1 = `${titleLead} ${titleAccent}`; the accent gets the brand gradient. */
+  titleLead: string;
   titleAccent: string;
   subtitle: string;
-  cardFeedback: HeroCard;
-  cardListening: HeroCard;
+  /** Tutor bubble (English in every locale). */
+  tutorBubble: string;
+  /** Learner bubble: `${before} ~~wrong~~ **right** ${after}` (English in every locale). */
+  learnerBefore: string;
+  learnerWrong: string;
+  learnerRight: string;
+  learnerAfter: string;
+  /** Correction note, without the leading ✓ (rendered as an icon). */
+  correctionNote: string;
+  /** Trust line items, shown joined by « · ». */
+  trust: [string, string, string];
+  /** alt of Emma's portrait (not in r43-textos; written for accessibility). */
   imageAlt: string;
 }
 
-export interface TestimonialItem {
-  quote: string;
-  /** Person name — not translated, but country is. */
-  name: string;
-  country: string;
-  level: string;
-}
-
-export interface TestimonialsCopy {
-  label: string;
-  titleLine1: string;
-  titleAccent: string;
-  ratingAria: string;
-  /** Average rating, e.g. "4.8" / "4,8" — decimal separator is locale-specific. */
-  ratingScore: string;
-  ratingDetail: string;
-  cardStarsAria: string;
-  items: [TestimonialItem, TestimonialItem, TestimonialItem];
-}
-
-export interface FeatureItem {
-  title: string;
-  desc: string;
-  tags: [string, string, string];
-  alt: string;
-}
-
-export interface FeaturesCopy {
-  label: string;
-  title: string;
-  subtitle: string;
-  items: [FeatureItem, FeatureItem, FeatureItem];
-}
-
 export interface StepItem {
-  title: string;
-  desc: string;
+  /** Bold lead sentence. */
+  lead: string;
+  text: string;
+  /** alt of the step screen (not in r43-textos; written for accessibility). */
   alt: string;
 }
 
-export interface HowItWorksCopy {
+export interface ConversationCopy {
   label: string;
   title: string;
   subtitle: string;
   steps: [StepItem, StepItem, StepItem];
+  closingNote: string;
 }
 
-export interface BenefitItem {
-  title: string;
-  desc: string;
-}
-
-export interface WhyFluoCopy {
+export interface LessonsCopy {
   label: string;
   title: string;
-  subtitle: string;
-  benefits: [BenefitItem, BenefitItem, BenefitItem, BenefitItem];
-  imageAlt: string;
+  text: string;
+  tags: [string, string, string, string];
+  /** alts of the two screens (not in r43-textos). */
+  alts: [string, string];
+}
+
+export interface PlanCopy {
+  label: string;
+  title: string;
+  text: string;
+  /** «Y además:» — the line is `${plusLead} ${plusText}`. */
+  plusLead: string;
+  plusText: string;
+  /** alts of the two screens (not in r43-textos). */
+  alts: [string, string];
+}
+
+export interface CompareRow {
+  label: string;
+  fluo: string;
+  other: string;
+}
+
+export interface CompareCopy {
+  title: string;
+  /** Column header for the private class (the «Clase:» key of every row). */
+  otherHeader: string;
+  rows: [CompareRow, CompareRow, CompareRow, CompareRow, CompareRow];
 }
 
 export interface FaqItem {
@@ -118,16 +110,13 @@ export interface FaqItem {
 }
 
 export interface FaqCopy {
-  label: string;
   title: string;
-  subtitle: string;
   items: FaqItem[];
 }
 
 export interface CtaCopy {
   title: string;
   subtitle: string;
-  socialProof: string;
 }
 
 export interface FooterCopy {
@@ -138,7 +127,6 @@ export interface FooterCopy {
   privacy: string;
   terms: string;
   rights: string;
-  craft: string;
   followUs: string;
 }
 
@@ -151,10 +139,10 @@ export interface Dict {
   seo: SeoCopy;
   nav: NavCopy;
   hero: HeroCopy;
-  testimonials: TestimonialsCopy;
-  features: FeaturesCopy;
-  howItWorks: HowItWorksCopy;
-  whyFluo: WhyFluoCopy;
+  conversation: ConversationCopy;
+  lessons: LessonsCopy;
+  plan: PlanCopy;
+  compare: CompareCopy;
   faq: FaqCopy;
   cta: CtaCopy;
   footer: FooterCopy;

@@ -1,138 +1,59 @@
 ---
+// Neutral phone frame (no OS chrome), so the same screens fit Android and iOS.
+// The parent sets --phone-w; radius and bezel scale with it. The screen keeps
+// the capture's aspect ratio (`ratio`).
 interface Props {
-  src: string;
-  alt: string;
-  size?: 'hero' | 'feature' | 'featureLarge' | 'stepMedium' | 'small';
+  /** Without src the screen renders the default slot (e.g. a placeholder). */
+  src?: string;
+  alt?: string;
+  /** Screen aspect ratio as "w / h", e.g. "540 / 1102". */
+  ratio: string;
+  /** Intrinsic pixel size of the image (avoids layout shift). */
+  width?: number;
+  height?: number;
   loading?: 'eager' | 'lazy';
-  srcset?: string;
-  sizes?: string;
 }
-const { src, alt, size = 'feature', loading = 'lazy', srcset, sizes } = Astro.props;
+const { src, alt, ratio, width, height, loading = 'lazy' } = Astro.props;
 ---
 
-<div class={`phone phone--${size}`}>
+<div class="phone" style={`--phone-ratio: ${ratio}`}>
   <div class="phone__screen">
-    <img
-      src={src}
-      srcset={srcset}
-      sizes={sizes}
-      alt={alt}
-      loading={loading}
-      decoding="async"
-      fetchpriority={loading === 'eager' ? 'high' : undefined}
-    />
+    {src ? (
+      <img
+        src={src}
+        width={width}
+        height={height}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        fetchpriority={loading === 'eager' ? 'high' : undefined}
+      />
+    ) : (
+      <slot />
+    )}
   </div>
 </div>
 
 <style>
   .phone {
     position: relative;
+    width: var(--phone-w, 260px);
+    border-radius: calc(var(--phone-w, 260px) * 0.14);
+    padding: calc(var(--phone-w, 260px) * 0.028);
     background: linear-gradient(145deg, #2a2f3d, #12151e);
     box-shadow:
       0 30px 60px -15px rgba(0, 0, 0, 0.8),
       0 0 0 1.5px rgba(255, 255, 255, 0.08),
       inset 0 0 0 1.5px rgba(255, 255, 255, 0.03);
-    aspect-ratio: 1320 / 2868;
-  }
-
-  .phone--hero {
-    width: 270px;
-    border-radius: 42px;
-    padding: 8px;
-  }
-
-  @media (min-width: 769px) {
-    .phone--hero {
-      width: 300px;
-      border-radius: 46px;
-      padding: 9px;
-    }
-  }
-
-  .phone--feature {
-    width: 200px;
-    border-radius: 34px;
-    padding: 6px;
-  }
-
-  @media (min-width: 769px) {
-    .phone--feature {
-      width: 220px;
-      border-radius: 36px;
-      padding: 7px;
-    }
-  }
-
-  .phone--stepMedium {
-    width: 220px;
-    border-radius: 36px;
-    padding: 7px;
-  }
-
-  @media (min-width: 769px) {
-    .phone--stepMedium {
-      width: 260px;
-      border-radius: 40px;
-      padding: 8px;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .phone--stepMedium {
-      width: 280px;
-      border-radius: 42px;
-      padding: 9px;
-    }
-  }
-
-  .phone--featureLarge {
-    width: 260px;
-    border-radius: 40px;
-    padding: 8px;
-  }
-
-  @media (min-width: 769px) {
-    .phone--featureLarge {
-      width: 340px;
-      border-radius: 48px;
-      padding: 10px;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .phone--featureLarge {
-      width: 350px;
-      border-radius: 50px;
-      padding: 10px;
-    }
-  }
-
-  .phone--small {
-    width: 170px;
-    border-radius: 28px;
-    padding: 5px;
   }
 
   .phone__screen {
-    width: 100%;
-    height: 100%;
+    aspect-ratio: var(--phone-ratio);
     background: #000;
-    border-radius: inherit;
+    border-radius: calc(var(--phone-w, 260px) * 0.112);
     overflow: hidden;
     position: relative;
   }
-
-  .phone--hero .phone__screen { border-radius: 34px; }
-  @media (min-width: 769px) { .phone--hero .phone__screen { border-radius: 38px; } }
-  .phone--feature .phone__screen { border-radius: 28px; }
-  @media (min-width: 769px) { .phone--feature .phone__screen { border-radius: 30px; } }
-  .phone--stepMedium .phone__screen { border-radius: 30px; }
-  @media (min-width: 769px) { .phone--stepMedium .phone__screen { border-radius: 32px; } }
-  @media (min-width: 1200px) { .phone--stepMedium .phone__screen { border-radius: 34px; } }
-  .phone--featureLarge .phone__screen { border-radius: 32px; }
-  @media (min-width: 769px) { .phone--featureLarge .phone__screen { border-radius: 38px; } }
-  @media (min-width: 1200px) { .phone--featureLarge .phone__screen { border-radius: 40px; } }
-  .phone--small .phone__screen { border-radius: 23px; }
 
   .phone__screen img {
     width: 100%;
