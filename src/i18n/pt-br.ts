@@ -32,7 +32,7 @@ const ptBR: Dict = {
     learnerRight: 'went',
     learnerAfter: 'to the beach with my friends.',
     correctionNote: 'Passado de «go»: «went»',
-    trust: ['Grátis para começar', 'Do A1 ao C2', 'Android e iOS'],
+    trust: ['Aulas grátis todos os dias', 'Do A1 ao C2', 'Android e iOS'],
     imageAlt: 'Emma, tutora de IA do Fluo'
   },
 
@@ -55,7 +55,7 @@ const ptBR: Dict = {
       {
         lead: 'Veja o que melhorar.',
         text: 'Em cada resposta você vê o que disse, como dizer melhor e por quê, explicado no seu idioma.',
-        alt: ''
+        alt: 'Feedback de uma resposta no Fluo: o que você disse, como dizer melhor e cada correção'
       }
     ],
     closingNote:
@@ -65,8 +65,8 @@ const ptBR: Dict = {
   lessons: {
     label: 'AULAS',
     title: 'Aulas que fazem você falar',
-    text: 'Cada aula explica em português, com exemplos e ilustrações, faz você repetir em voz alta e termina com prática de conversa.',
-    tags: ['Do A1 ao C2', 'Explicações no seu idioma', 'Repita em voz alta', 'Prática de conversa no final'],
+    text: 'Cada aula explica em português, com exemplos e ilustrações, faz você praticar em voz alta e termina com uma conversa curta.',
+    tags: ['Do A1 ao C2', 'Explicações no seu idioma', 'Pratique em voz alta', 'Uma conversa no final'],
     alts: [
       'Aula do Fluo: Emma explica uma frase, com um cartão ilustrado',
       'Aula concluída no Fluo, com as frases novas aprendidas'
@@ -95,7 +95,7 @@ const ptBR: Dict = {
       { label: 'Explicações', fluo: 'em português', other: 'depende do professor' },
       {
         label: 'Preço',
-        fluo: 'grátis para começar; Premium US$ 39,99 por ano',
+        fluo: 'aulas grátis todos os dias; o Premium custa por mês menos que uma aula',
         other: 'paga-se cada aula'
       }
     ]
@@ -106,7 +106,7 @@ const ptBR: Dict = {
     items: [
       {
         q: 'O Fluo é grátis?',
-        a: 'Sim. Você pode começar grátis e praticar todos os dias, com um limite diário; na primeira semana você tem prática extra. O Premium (US$ 6,99 por mês ou US$ 39,99 por ano; o preço pode variar conforme o país) libera prática ilimitada, todas as cenas e a conversa livre.'
+        a: 'Sim. Sem pagar, você tem aulas e atividades de escuta todos os dias e conversas com a tutora toda semana (mais na sua primeira semana). O Premium é para quem quer mais: conversas e prática sem limite, todas as cenas e a conversa livre. Custa por mês menos que uma aula particular, e no app você vê o preço do seu país.'
       },
       {
         q: 'Que nível eu preciso ter?',

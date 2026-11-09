@@ -3,9 +3,8 @@
 // The parent sets --phone-w; radius and bezel scale with it. The screen keeps
 // the capture's aspect ratio (`ratio`).
 interface Props {
-  /** Without src the screen renders the default slot (e.g. a placeholder). */
-  src?: string;
-  alt?: string;
+  src: string;
+  alt: string;
   /** Screen aspect ratio as "w / h", e.g. "540 / 1102". */
   ratio: string;
   /** Intrinsic pixel size of the image (avoids layout shift). */
@@ -18,19 +17,15 @@ const { src, alt, ratio, width, height, loading = 'lazy' } = Astro.props;
 
 <div class="phone" style={`--phone-ratio: ${ratio}`}>
   <div class="phone__screen">
-    {src ? (
-      <img
-        src={src}
-        width={width}
-        height={height}
-        alt={alt}
-        loading={loading}
-        decoding="async"
-        fetchpriority={loading === 'eager' ? 'high' : undefined}
-      />
-    ) : (
-      <slot />
-    )}
+    <img
+      src={src}
+      width={width}
+      height={height}
+      alt={alt}
+      loading={loading}
+      decoding="async"
+      fetchpriority={loading === 'eager' ? 'high' : undefined}
+    />
   </div>
 </div>
 

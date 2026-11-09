@@ -32,7 +32,7 @@ const en: Dict = {
     learnerRight: 'went',
     learnerAfter: 'to the beach with my friends.',
     correctionNote: 'Past of “go”: “went”',
-    trust: ['Free to start', 'A1 to C2', 'Android and iOS'],
+    trust: ['Free lessons every day', 'A1 to C2', 'Android and iOS'],
     imageAlt: 'Emma, Fluo’s AI tutor'
   },
 
@@ -55,7 +55,7 @@ const en: Dict = {
       {
         lead: 'See what to improve.',
         text: 'On every answer you see what you said, how to say it better and why, explained in your language.',
-        alt: ''
+        alt: 'Feedback on an answer in Fluo: what you said, a better way to say it and each correction'
       }
     ],
     closingNote: 'At the end, a summary of what you did well and one thing to practice next time.'
@@ -64,8 +64,8 @@ const en: Dict = {
   lessons: {
     label: 'LESSONS',
     title: 'Lessons that get you speaking',
-    text: 'Each lesson explains things in your language, with examples and illustrations, has you repeat out loud and ends with speaking practice.',
-    tags: ['A1 to C2', 'Explanations in your language', 'Repeat out loud', 'Speaking practice at the end'],
+    text: 'Each lesson explains things in your language, with examples and illustrations, has you practice out loud and ends with a short conversation.',
+    tags: ['A1 to C2', 'Explanations in your language', 'Practice out loud', 'A conversation at the end'],
     alts: [
       'A Fluo lesson: Emma explains a phrase with an illustrated card',
       'A completed Fluo lesson with the new phrases learned'
@@ -94,7 +94,7 @@ const en: Dict = {
       { label: 'Explanations', fluo: 'in your language', other: 'depends on the teacher' },
       {
         label: 'Price',
-        fluo: 'free to start; Premium US$39.99 a year',
+        fluo: 'free lessons every day; Premium costs less per month than one class',
         other: 'you pay per class'
       }
     ]
@@ -105,7 +105,7 @@ const en: Dict = {
     items: [
       {
         q: 'Is Fluo free?',
-        a: 'Yes. You can start for free and practice every day, with a daily limit; your first week includes extra practice. Premium (US$6.99 a month or US$39.99 a year; prices may vary by country) unlocks unlimited practice, every scene and free conversation.'
+        a: 'Yes. Without paying you get lessons and listening activities every day, and conversations with your tutor every week (more in your first week). Premium is for those who want more: unlimited conversations and practice, every scene and free conversation. It costs less per month than one private class, and the app shows the price for your country.'
       },
       {
         q: 'What level do I need?',

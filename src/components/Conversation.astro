@@ -3,12 +3,13 @@ import SectionLabel from './SectionLabel.astro';
 import PhoneFrame from './PhoneFrame.astro';
 import { getLocaleFromUrl, useTranslations } from '../i18n';
 
-// Draft screens: Android 1.5.7 captures (540×1199, no system bars). Step 3
-// (per-answer feedback) has no approved capture yet → «captura pendiente».
-const shots: (string | null)[] = [
+// Draft screens (540×1199, no system bars): Android 1.5.7 captures for steps
+// 1–2; step 3 is the R97 feedback sheet (B2), cropped to start at «LO QUE
+// DIJISTE» and extended at the bottom with the sheet's flat background.
+const shots = [
   '/assets/optimized/r43-escena.jpg',
   '/assets/optimized/r43-responder.jpg',
-  null
+  '/assets/optimized/r43-feedback.jpg'
 ];
 
 const t = useTranslations(getLocaleFromUrl(Astro.url));
@@ -28,15 +29,7 @@ const steps = c.steps.map((step, i) => ({ ...step, src: shots[i], number: i + 1 
       {steps.map((step) => (
         <li class="conv__step reveal">
           <div class="conv__visual">
-            <PhoneFrame
-              ratio="540 / 1199"
-              src={step.src ?? undefined}
-              alt={step.alt}
-              width={540}
-              height={1199}
-            >
-              <div class="conv__pending">captura pendiente</div>
-            </PhoneFrame>
+            <PhoneFrame ratio="540 / 1199" src={step.src} alt={step.alt} width={540} height={1199} />
           </div>
           <div class="conv__body">
             <span class="conv__num" aria-hidden="true">{step.number}</span>
@@ -103,19 +96,6 @@ const steps = c.steps.map((step, i) => ({ ...step, src: shots[i], number: i + 1 
 
   @media (min-width: 1100px) {
     .conv__visual { --phone-w: 232px; }
-  }
-
-  .conv__pending {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #3A3D45;
-    color: #C9CBD1;
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    letter-spacing: 0.02em;
   }
 
   .conv__body {
